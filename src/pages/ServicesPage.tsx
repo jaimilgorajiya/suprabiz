@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, Fragment } from "react";
 import heroImg from "@/imports/suprabiz-services-digital-agency.jpg";
 import brandingImg from "@/imports/suprabiz-branding-service.jpg";
 import socialImg from "@/imports/suprabiz-social-media-marketing.jpg";
@@ -191,7 +191,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
         ref={quickNavRef}
         id="services-nav"
         aria-label="Capabilities Quick Jump"
-        className="sticky top-[80px] z-30 w-full bg-white/95 backdrop-blur-md border-y border-[rgba(8,112,58,0.08)] py-3.5 px-6 sm:px-8 lg:px-10"
+        className="static md:sticky md:top-[80px] z-30 w-full bg-white/95 backdrop-blur-md border-y border-[rgba(8,112,58,0.08)] py-3 px-4 sm:px-8 lg:px-10"
       >
         <div className="max-w-[1380px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div className="flex items-center gap-2 shrink-0">
@@ -204,7 +204,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
             </span>
           </div>
 
-          <div className="flex items-center flex-wrap gap-x-6 sm:gap-x-8 gap-y-2">
+          <div className="flex items-center flex-wrap gap-x-4 sm:gap-x-8 gap-y-2">
             {quickNavItems.map((item, idx) => (
               <a
                 key={item.id}
@@ -233,10 +233,10 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       {/* ─── 03. Service 01: BRANDING (Text Left, Visual Right) ────────────────── */}
       <section
         id="branding"
-        className="scroll-mt-28 py-20 sm:py-24 lg:py-[110px] px-6 sm:px-8 lg:px-10 bg-white"
+        className="scroll-mt-28 py-14 sm:py-20 lg:py-[110px] px-4 sm:px-8 lg:px-10 bg-white"
       >
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Text (Order 1 on mobile, Order 1 on desktop) */}
             <div className="order-1 flex flex-col items-start">
               {/* Number & Eyebrow */}
@@ -336,14 +336,14 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       {/* ─── 04. Service 02: SOCIAL MEDIA MARKETING (Visual Left, Text Right) ──── */}
       <section
         id="social-media"
-        className="scroll-mt-28 py-20 sm:py-24 lg:py-[110px] px-6 sm:px-8 lg:px-10 bg-[#F8FAF6] border-y border-[rgba(8,112,58,0.06)]"
+        className="scroll-mt-28 py-14 sm:py-20 lg:py-[110px] px-4 sm:px-8 lg:px-10 bg-[#F8FAF6] border-y border-[rgba(8,112,58,0.06)]"
       >
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Visual (Order 2 on mobile, Order 1 on desktop) */}
             <div className="order-2 lg:order-1">
               <div
-                className="relative rounded-[26px] overflow-hidden h-[360px] sm:h-[460px] lg:h-[500px]"
+                className="relative rounded-[26px] overflow-hidden h-[300px] xs:h-[360px] sm:h-[460px] lg:h-[500px]"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.08)",
                   boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
@@ -363,7 +363,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
                 <span
-                  className="text-[48px] sm:text-[64px] font-semibold leading-none select-none"
+                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
                   style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
                 >
                   02
@@ -378,7 +378,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Title */}
               <h2
-                className="text-[34px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
+                className="text-[30px] xs:text-[36px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 Turn Attention Into Meaningful Connection.
@@ -386,7 +386,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Description */}
               <p
-                className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 We create social strategies and content designed to make brands more relevant,
@@ -438,10 +438,10 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       {/* ─── 05. Service 03: SEO (Text Left, Custom Visual Right) ──────────────── */}
       <section
         id="seo"
-        className="scroll-mt-28 py-20 sm:py-24 lg:py-[110px] px-6 sm:px-8 lg:px-10 bg-white"
+        className="scroll-mt-28 py-14 sm:py-20 lg:py-[110px] px-4 sm:px-8 lg:px-10 bg-white"
       >
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Text (Order 1 on mobile, Order 1 on desktop) */}
             <div className="order-1 flex flex-col items-start">
               {/* Number & Eyebrow */}
@@ -630,14 +630,14 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       {/* ─── 06. Service 04: WEB DESIGN (Visual Left, Text Right) ──────────────── */}
       <section
         id="web-design"
-        className="scroll-mt-28 py-20 sm:py-24 lg:py-[110px] px-6 sm:px-8 lg:px-10 bg-[#F4F8F5] border-y border-[rgba(8,112,58,0.06)]"
+        className="scroll-mt-28 py-14 sm:py-20 lg:py-[110px] px-4 sm:px-8 lg:px-10 bg-[#F4F8F5] border-y border-[rgba(8,112,58,0.06)]"
       >
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Visual (Order 2 on mobile, Order 1 on desktop) */}
             <div className="order-2 lg:order-1">
               <div
-                className="relative rounded-[26px] overflow-hidden h-[360px] sm:h-[460px] lg:h-[500px]"
+                className="relative rounded-[26px] overflow-hidden h-[300px] xs:h-[360px] sm:h-[460px] lg:h-[500px]"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.08)",
                   boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
@@ -657,7 +657,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
                 <span
-                  className="text-[48px] sm:text-[64px] font-semibold leading-none select-none"
+                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
                   style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
                 >
                   04
@@ -672,7 +672,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Title */}
               <h2
-                className="text-[34px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
+                className="text-[30px] xs:text-[36px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 Digital Experiences Built to Convert.
@@ -680,7 +680,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Description */}
               <p
-                className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 We design modern, responsive websites that combine strong visual identity with
@@ -732,16 +732,16 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       {/* ─── 07. Service 05: PERFORMANCE MARKETING (Text Left, Custom Visual) ─── */}
       <section
         id="performance-marketing"
-        className="scroll-mt-28 py-20 sm:py-24 lg:py-[110px] px-6 sm:px-8 lg:px-10 bg-white"
+        className="scroll-mt-28 py-14 sm:py-20 lg:py-[110px] px-4 sm:px-8 lg:px-10 bg-white"
       >
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Text (Order 1 on mobile, Order 1 on desktop) */}
             <div className="order-1 flex flex-col items-start">
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
                 <span
-                  className="text-[48px] sm:text-[64px] font-semibold leading-none select-none"
+                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
                   style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
                 >
                   05
@@ -900,21 +900,21 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       {/* ─── 08. Service 06: DIGITAL MARKETING (Visual Left, Text Right) ───────── */}
       <section
         id="digital-marketing"
-        className="scroll-mt-28 py-20 sm:py-24 lg:py-[110px] px-6 sm:px-8 lg:px-10 bg-[#F8FAF6] border-y border-[rgba(8,112,58,0.06)]"
+        className="scroll-mt-28 py-14 sm:py-20 lg:py-[110px] px-4 sm:px-8 lg:px-10 bg-[#F8FAF6] border-y border-[rgba(8,112,58,0.06)]"
       >
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Visual (Editorial Ecosystem Diagram - Brand connected to channels) */}
             <div className="order-2 lg:order-1">
               <div
-                className="relative rounded-[26px] p-6 sm:p-8 bg-white border border-[rgba(8,112,58,0.12)] flex flex-col items-center justify-center"
+                className="relative rounded-[26px] p-4 xs:p-6 sm:p-8 bg-white border border-[rgba(8,112,58,0.12)] flex flex-col items-center justify-center overflow-hidden"
                 style={{
                   boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
-                  minHeight: "440px",
+                  minHeight: "380px",
                 }}
               >
                 {/* Ecosystem Header */}
-                <div className="w-full flex items-center justify-between pb-4 border-b border-[rgba(8,112,58,0.08)] mb-6">
+                <div className="w-full flex items-center justify-between pb-4 border-b border-[rgba(8,112,58,0.08)] mb-4 sm:mb-6">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#08703A]" />
                     <span className="text-[12px] font-bold text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>
@@ -927,14 +927,14 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 </div>
 
                 {/* Ecosystem Visualization */}
-                <div className="relative w-full max-w-[380px] aspect-square flex items-center justify-center my-2">
+                <div className="relative w-full max-w-[340px] sm:max-w-[380px] aspect-square flex items-center justify-center my-2">
                   {/* Subtle connecting concentric rings */}
                   <div className="absolute inset-0 rounded-full border border-dashed border-[rgba(8,112,58,0.15)] pointer-events-none" />
                   <div className="absolute inset-8 rounded-full border border-[rgba(8,112,58,0.08)] pointer-events-none" />
 
                   {/* Central Core: BRAND */}
                   <div
-                    className="relative z-10 w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-lg"
+                    className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full flex flex-col items-center justify-center text-center shadow-lg"
                     style={{
                       background: "#08703A",
                       color: "#FFFFFF",
@@ -942,46 +942,46 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                       boxShadow: "0 10px 30px rgba(8, 112, 58, 0.30)",
                     }}
                   >
-                    <span className="text-[10px] tracking-widest uppercase opacity-75 font-semibold">CORE</span>
-                    <span className="text-[14px] font-extrabold tracking-wider" style={{ fontFamily: "Manrope, sans-serif" }}>
+                    <span className="text-[9px] sm:text-[10px] tracking-widest uppercase opacity-75 font-semibold">CORE</span>
+                    <span className="text-[13px] sm:text-[14px] font-extrabold tracking-wider" style={{ fontFamily: "Manrope, sans-serif" }}>
                       BRAND
                     </span>
                   </div>
 
                   {/* Satellite Nodes */}
                   {/* Top: SEARCH */}
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[12px] font-bold text-[#15241B]">
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[11px] sm:text-[12px] font-bold text-[#15241B]">
                     SEARCH
                   </div>
 
                   {/* Right-Top: SOCIAL */}
-                  <div className="absolute top-16 right-0 px-3.5 py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[12px] font-bold text-[#15241B]">
+                  <div className="absolute top-14 sm:top-16 right-0 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[11px] sm:text-[12px] font-bold text-[#15241B]">
                     SOCIAL
                   </div>
 
                   {/* Right-Bottom: CONTENT */}
-                  <div className="absolute bottom-16 right-0 px-3.5 py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[12px] font-bold text-[#15241B]">
+                  <div className="absolute bottom-14 sm:bottom-16 right-0 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[11px] sm:text-[12px] font-bold text-[#15241B]">
                     CONTENT
                   </div>
 
                   {/* Left-Bottom: PAID MEDIA */}
-                  <div className="absolute bottom-16 left-0 px-3.5 py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[12px] font-bold text-[#15241B]">
+                  <div className="absolute bottom-14 sm:bottom-16 left-0 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[11px] sm:text-[12px] font-bold text-[#15241B]">
                     PAID ADS
                   </div>
 
                   {/* Left-Top: WEB DESIGN */}
-                  <div className="absolute top-16 left-0 px-3.5 py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[12px] font-bold text-[#15241B]">
+                  <div className="absolute top-14 sm:top-16 left-0 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#F4F8F5] border border-[rgba(8,112,58,0.20)] shadow-sm text-[11px] sm:text-[12px] font-bold text-[#15241B]">
                     WEB
                   </div>
 
                   {/* Bottom Anchor: SUSTAINABLE GROWTH */}
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#FFC21C] text-[#15241B] shadow-sm text-[12px] font-extrabold flex items-center gap-1.5">
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#FFC21C] text-[#15241B] shadow-sm text-[11px] sm:text-[12px] font-extrabold flex items-center gap-1.5">
                     <span>GROWTH</span>
                     <span>↗</span>
                   </div>
                 </div>
 
-                <div className="w-full text-center text-[11.5px] text-[#69736C] pt-4 mt-2 border-t border-[rgba(8,112,58,0.06)]">
+                <div className="w-full text-center text-[11px] sm:text-[11.5px] text-[#69736C] pt-3 sm:pt-4 mt-2 border-t border-[rgba(8,112,58,0.06)]">
                   Every touchpoint feeds into one synchronized growth engine.
                 </div>
               </div>
@@ -992,7 +992,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
                 <span
-                  className="text-[48px] sm:text-[64px] font-semibold leading-none select-none"
+                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
                   style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
                 >
                   06
@@ -1007,7 +1007,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Title */}
               <h2
-                className="text-[34px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
+                className="text-[30px] xs:text-[36px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 Everything Works Better When It Works Together.
@@ -1015,7 +1015,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Description */}
               <p
-                className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 Our integrated digital marketing approach connects content, search, social, paid
@@ -1065,10 +1065,10 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
       </section>
 
       {/* ─── 09. Section: How We Work (Our Approach) ───────────────────────────── */}
-      <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-white">
+      <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-white">
         <div className="max-w-[1380px] mx-auto">
           {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
               <span
@@ -1079,7 +1079,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
               </span>
             </div>
             <h2
-              className="text-[36px] sm:text-[46px] md:text-[52px] font-bold tracking-[-0.035em] leading-[1.08]"
+              className="text-[30px] sm:text-[42px] md:text-[52px] font-bold tracking-[-0.035em] leading-[1.08]"
               style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
             >
               One Strategy.
@@ -1088,8 +1088,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
             </h2>
           </div>
 
-          {/* Editorial Horizontal Timeline Grid */}
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-8">
+          {/* Editorial Horizontal / Vertical Timeline Grid */}
+          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
             {[
               {
                 num: "01",
@@ -1112,45 +1112,54 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 desc: "Measure, learn and continuously improve.",
               },
             ].map((step, idx) => (
-              <div key={step.num} className="relative flex flex-col items-center text-center group">
-                {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
-                {idx < 3 && (
-                  <div
-                    className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
-                    style={{ background: "rgba(8, 112, 58, 0.18)" }}
-                  />
-                )}
+              <Fragment key={step.num}>
+                <div className="relative flex flex-col items-center text-center group py-2 md:py-0">
+                  {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
+                  {idx < 3 && (
+                    <div
+                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
+                      style={{ background: "rgba(8, 112, 58, 0.18)" }}
+                    />
+                  )}
 
-                {/* Step Circle Badge */}
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-extrabold text-[17px] mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
-                  style={{
-                    background: "#08703A",
-                    color: "#FFFFFF",
-                    border: "2px solid #08703A",
-                    boxShadow: "0 6px 18px rgba(8, 112, 58, 0.14)",
-                    fontFamily: "Manrope, sans-serif",
-                  }}
-                >
-                  {step.num}
+                  {/* Step Circle Badge */}
+                  <div
+                    className="w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-extrabold text-[16px] sm:text-[17px] mb-4 sm:mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
+                    style={{
+                      background: "#08703A",
+                      color: "#FFFFFF",
+                      border: "2px solid #08703A",
+                      boxShadow: "0 6px 18px rgba(8, 112, 58, 0.14)",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                  >
+                    {step.num}
+                  </div>
+
+                  {/* Step Title */}
+                  <h3
+                    className="text-[19px] sm:text-[20px] font-bold mb-2 transition-colors duration-200 group-hover:text-[#08703A] text-[#15241B]"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    {step.title}
+                  </h3>
+
+                  {/* Step Description */}
+                  <p
+                    className="text-[13.5px] sm:text-[14px] leading-[1.6] max-w-[280px] mx-auto text-[#667069]"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    {step.desc}
+                  </p>
                 </div>
 
-                {/* Step Title */}
-                <h3
-                  className="text-[20px] font-bold mb-2 transition-colors duration-200 group-hover:text-[#08703A]"
-                  style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
-                >
-                  {step.title}
-                </h3>
-
-                {/* Step Description */}
-                <p
-                  className="text-[14px] leading-[1.6] max-w-[260px] mx-auto text-[#667069]"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
-                  {step.desc}
-                </p>
-              </div>
+                {/* Mobile Vertical Connector Line between Step i and Step i+1 */}
+                {idx < 3 && (
+                  <div className="flex md:hidden justify-center items-center py-2">
+                    <div className="w-[2px] h-6 bg-[#08703A]/25 rounded-full" />
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -1158,7 +1167,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
       {/* ─── 10. Final CTA ─────────────────────────────────────────────────────── */}
       <section
-        className="relative pt-[80px] sm:pt-[90px] pb-[90px] sm:pb-[100px] px-6 sm:px-8 lg:px-10 overflow-hidden"
+        className="relative pt-14 sm:pt-[80px] pb-14 sm:pb-[90px] px-4 sm:px-8 lg:px-10 overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #075C31 0%, #086B39 55%, #075C31 100%)",
         }}
@@ -1184,7 +1193,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow Pill */}
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6"
             style={{
               background: "rgba(255, 255, 255, 0.09)",
               border: "1px solid rgba(255, 255, 255, 0.12)",
@@ -1192,7 +1201,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
           >
             <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
             <span
-              className="text-[10px] font-bold tracking-[0.14em] uppercase"
+              className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.14em] uppercase"
               style={{ color: "rgba(255, 255, 255, 0.82)", fontFamily: "Manrope, sans-serif" }}
             >
               LET'S GROW
@@ -1201,7 +1210,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
           {/* Headline */}
           <h2
-            className="text-[38px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.03] max-w-[800px]"
+            className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.05] sm:leading-[1.03] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
             Not Sure Which Service
@@ -1211,7 +1220,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
           {/* Description */}
           <p
-            className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-[24px] sm:mt-[26px] mb-8 sm:mb-9"
+            className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
             style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
           >
             Tell us where you are and where you want to go. We'll help identify the right mix of
@@ -1219,11 +1228,11 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
             <a
               href="/contact"
               onClick={(e) => handleNav("/contact", e)}
-              className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
               style={{
                 background: "#FFC21C",
                 color: "#15241B",
@@ -1248,7 +1257,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
             <a
               href="/our-work"
               onClick={(e) => handleNav("/our-work", e)}
-              className="inline-flex items-center justify-center h-[54px] px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
+              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
               style={{
                 background: "transparent",
                 border: "1px solid rgba(255, 255, 255, 0.32)",

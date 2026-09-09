@@ -143,7 +143,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
   return (
     <main className="w-full bg-[#FBFCF8]">
       {/* ─── 01. Section: Contact Hero ──────────────────────────────────────────── */}
-      <section className="relative pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 px-6 sm:px-8 lg:px-10 overflow-hidden bg-white border-b border-[#08703A]/[0.06]">
+      <section className="relative pt-10 sm:pt-14 lg:pt-20 pb-14 sm:pb-18 lg:pb-24 px-4 sm:px-8 lg:px-10 overflow-hidden bg-white border-b border-[#08703A]/[0.06]">
         {/* Soft Ambient Glow */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -164,14 +164,14 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
         />
 
         <div className="max-w-[1380px] mx-auto w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 xl:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 xl:gap-20 items-center">
             {/* Left Content */}
             <div className="flex flex-col items-start">
               {/* Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-6">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-5 sm:mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#08703A]" />
                 <span
-                  className="text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
+                  className="text-[11px] sm:text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   GET IN TOUCH
@@ -180,9 +180,9 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
               {/* Headline H1 */}
               <h1
-                className="text-[#15241B] tracking-[-0.04em] leading-[1.05] mb-6 font-bold"
+                className="text-[#15241B] tracking-[-0.04em] leading-[1.05] mb-5 sm:mb-6 font-bold"
                 style={{
-                  fontSize: "clamp(42px, 5.2vw, 76px)",
+                  fontSize: "clamp(34px, 5.2vw, 76px)",
                   fontFamily: "Manrope, sans-serif",
                 }}
               >
@@ -193,7 +193,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
               {/* Description */}
               <p
-                className="text-[#56645A] text-[16px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-8 sm:mb-10 font-normal"
+                className="text-[#56645A] text-[15.5px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-7 sm:mb-10 font-normal"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 Whether you need a distinctive brand identity, a high-converting
@@ -202,11 +202,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={(e) => scrollToElement("contact-form", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] hover:bg-[#065A2E] transition-all duration-200 shadow-[0_8px_20px_rgba(8,112,58,0.20)] hover:-translate-y-0.5 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] hover:bg-[#065A2E] transition-all duration-200 shadow-[0_8px_20px_rgba(8,112,58,0.20)] hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   <span>Send a Message</span>
@@ -217,7 +217,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
                 <a
                   href="mailto:sales@suprabiz.co.in"
-                  className="group inline-flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   <span>sales@suprabiz.co.in</span>
@@ -231,7 +231,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
             {/* Right Hero Visual Showcase (Matching 4/4.2 Aspect Ratio) */}
             <div className="relative w-full flex justify-center lg:justify-end">
               <div
-                className="relative w-full max-w-[560px] aspect-[4/4.2] rounded-[28px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5] group"
+                className="relative w-full max-w-[560px] aspect-[4/4.2] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5] group"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.10)",
                   boxShadow: "0 30px 70px rgba(20, 55, 35, 0.12)",
@@ -247,7 +247,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
                 {/* Subtle Inner Highlight */}
                 <div
-                  className="absolute inset-0 pointer-events-none rounded-[28px] sm:rounded-[32px]"
+                  className="absolute inset-0 pointer-events-none rounded-[24px] sm:rounded-[32px]"
                   style={{
                     boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.6)",
                   }}
@@ -264,7 +264,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 >
                   <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
                   <span
-                    className="text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
+                    className="text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     STUDIO • AHMEDABAD, GUJARAT
@@ -292,7 +292,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
       </section>
 
       {/* ─── 02. Section: Direct Contact Channels ───────────────────────────────── */}
-      <section className="py-16 sm:py-20 px-6 sm:px-8 lg:px-10 bg-[#FAFBF9] border-b border-[rgba(8,112,58,0.08)]">
+      <section className="py-14 sm:py-20 px-4 sm:px-8 lg:px-10 bg-[#FAFBF9] border-b border-[rgba(8,112,58,0.08)]">
         <div className="max-w-[1380px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* 1. Email Inquiries */}
@@ -491,11 +491,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
       {/* ─── 03. Section: Interactive Project Inquiry Form ─────────────────────── */}
       <section
         id="contact-form"
-        className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]"
+        className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]"
       >
         <div className="max-w-[1100px] mx-auto">
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
               <span
@@ -506,13 +506,13 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </span>
             </div>
             <h2
-              className="text-[32px] sm:text-[42px] font-extrabold tracking-[-0.035em] text-[#15241B] leading-[1.1]"
+              className="text-[28px] sm:text-[42px] font-extrabold tracking-[-0.035em] text-[#15241B] leading-[1.1]"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
               Tell Us About Your Project.
             </h2>
             <p
-              className="text-[16px] text-[#667069] mt-3"
+              className="text-[15px] sm:text-[16px] text-[#667069] mt-3"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               Fill in the brief below or email us directly. We review every
@@ -522,21 +522,21 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
           {/* Form Card */}
           <div
-            className="rounded-[28px] sm:rounded-[32px] p-8 sm:p-12 lg:p-14 bg-[#FAFBF9] border border-[rgba(8,112,58,0.10)] shadow-[0_20px_60px_rgba(20,55,35,0.06)]"
+            className="rounded-[24px] sm:rounded-[32px] p-5 sm:p-10 lg:p-14 bg-[#FAFBF9] border border-[rgba(8,112,58,0.10)] shadow-[0_20px_60px_rgba(20,55,35,0.06)]"
           >
             {isSubmitted ? (
-              <div className="text-center py-16 sm:py-20 flex flex-col items-center">
-                <div className="w-20 h-20 rounded-full bg-[#E8F4EC] text-[#08703A] text-3xl font-bold flex items-center justify-center mb-6 shadow-sm">
+              <div className="text-center py-12 sm:py-20 flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#E8F4EC] text-[#08703A] text-2xl sm:text-3xl font-bold flex items-center justify-center mb-6 shadow-sm">
                   ✓
                 </div>
                 <h3
-                  className="text-[28px] sm:text-[34px] font-bold text-[#15241B] tracking-[-0.03em] mb-3"
+                  className="text-[24px] sm:text-[34px] font-bold text-[#15241B] tracking-[-0.03em] mb-3"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   Thank You! Your Enquiry Has Been Sent.
                 </h3>
                 <p
-                  className="text-[16px] text-[#56645A] max-w-[500px] leading-[1.65] mb-8"
+                  className="text-[15px] sm:text-[16px] text-[#56645A] max-w-[500px] leading-[1.65] mb-8"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   We have received your brief regarding{" "}
@@ -556,16 +556,16 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8 sm:space-y-10">
+              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-10">
                 {/* 1. Service Selection Pills */}
                 <div>
                   <label
-                    className="block text-[13px] font-bold uppercase tracking-[0.10em] text-[#08703A] mb-3"
+                    className="block text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.10em] text-[#08703A] mb-3"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     1. What can we help you with? *
                   </label>
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3">
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
                     {servicesList.map((svc) => {
                       const isSelected = selectedService === svc;
                       return (
@@ -573,7 +573,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                           key={svc}
                           type="button"
                           onClick={() => setSelectedService(svc)}
-                          className={`px-4 sm:px-5 py-2.5 rounded-full text-[13.5px] sm:text-[14px] font-semibold transition-all duration-200 cursor-pointer ${
+                          className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-[13px] sm:text-[14px] font-semibold transition-all duration-200 cursor-pointer ${
                             isSelected
                               ? "bg-[#08703A] text-white shadow-[0_4px_14px_rgba(8,112,58,0.22)] scale-[1.02]"
                               : "bg-white text-[#56645A] hover:text-[#08703A] hover:bg-[#F2F7F4] border border-[#08703A]/15"
@@ -590,12 +590,12 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 {/* 2. Timeline Options */}
                 <div>
                   <label
-                    className="block text-[13px] font-bold uppercase tracking-[0.10em] text-[#08703A] mb-3"
+                    className="block text-[12px] sm:text-[13px] font-bold uppercase tracking-[0.10em] text-[#08703A] mb-3"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     2. Ideal Timeline
                   </label>
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3">
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
                     {timelineOptions.map((opt) => {
                       const isSelected = timeline === opt;
                       return (
@@ -603,7 +603,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                           key={opt}
                           type="button"
                           onClick={() => setTimeline(opt)}
-                          className={`px-4 sm:px-5 py-2 rounded-full text-[13px] sm:text-[13.5px] font-medium transition-all duration-200 cursor-pointer ${
+                          className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[12.5px] sm:text-[13.5px] font-medium transition-all duration-200 cursor-pointer ${
                             isSelected
                               ? "bg-[#E8F4EC] text-[#08703A] font-semibold border border-[#08703A]/25"
                               : "bg-white text-[#69736C] hover:text-[#15241B] border border-[#08703A]/10"
@@ -618,7 +618,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 </div>
 
                 {/* 3. Contact Input Fields */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label
                       htmlFor="fullName"
@@ -636,7 +636,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, fullName: e.target.value })
                       }
-                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
+                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[16px] sm:text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     />
                   </div>
@@ -658,7 +658,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
+                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[16px] sm:text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     />
                   </div>
@@ -680,7 +680,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
+                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[16px] sm:text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     />
                   </div>
@@ -701,7 +701,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, company: e.target.value })
                       }
-                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
+                      className="w-full h-[50px] px-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[16px] sm:text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     />
                   </div>
@@ -724,7 +724,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    className="w-full p-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D] resize-none"
+                    className="w-full p-4 rounded-xl bg-white border border-[#08703A]/15 text-[#15241B] text-[16px] sm:text-[14.5px] outline-none focus:border-[#08703A] focus:ring-2 focus:ring-[#08703A]/10 transition-all placeholder:text-[#9AA59D] resize-none"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   />
                 </div>
@@ -745,7 +745,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 {/* Submit Row */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                   <p
-                    className="text-[12.5px] text-[#6E7B73]"
+                    className="text-[12.5px] text-[#6E7B73] text-center sm:text-left"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     🔒 Your information is confidential and never shared.
@@ -754,7 +754,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-10 rounded-full font-bold text-[15px] text-white bg-[#08703A] hover:bg-[#065A2E] disabled:bg-[#08703A]/70 disabled:cursor-not-allowed transition-all duration-200 shadow-[0_8px_24px_rgba(8,112,58,0.22)] hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
+                    className="group inline-flex items-center justify-center gap-2.5 h-[52px] sm:h-[54px] px-8 sm:px-10 rounded-full font-bold text-[15px] text-white bg-[#08703A] hover:bg-[#065A2E] disabled:bg-[#08703A]/70 disabled:cursor-not-allowed transition-all duration-200 shadow-[0_8px_24px_rgba(8,112,58,0.22)] hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     {isSubmitting ? (
@@ -781,10 +781,10 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
       {/* ─── 04. Section: Studio Location & Visiting Info ──────────────────────── */}
       <section
         id="location-map"
-        className="py-20 sm:py-24 px-6 sm:px-8 lg:px-10 bg-[#FAFBF9] border-b border-[rgba(8,112,58,0.08)]"
+        className="py-14 sm:py-20 px-4 sm:px-8 lg:px-10 bg-[#FAFBF9] border-b border-[rgba(8,112,58,0.08)]"
       >
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-center">
             {/* Left Content */}
             <div>
               <div className="flex items-center gap-2 mb-3">
@@ -798,16 +798,14 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </div>
 
               <h2
-                className="text-[34px] sm:text-[44px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.1] mb-6"
+                className="text-[30px] sm:text-[44px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.1] mb-5 sm:mb-6"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Visit Our Studio
-                <br />
-                in Ahmedabad.
+                Visit SUPRA BIZ
               </h2>
 
               <p
-                className="text-[16px] text-[#69736C] leading-[1.65] mb-8 max-w-[500px]"
+                className="text-[15px] sm:text-[16px] text-[#69736C] leading-[1.65] mb-6 sm:mb-8 max-w-[500px]"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 We believe in face-to-face creative alignment. If you are based in
@@ -816,7 +814,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </p>
 
               {/* Office Details */}
-              <div className="space-y-4 mb-8">
+              <div className="space-y-4 mb-7 sm:mb-8">
                 <div className="flex items-start gap-3.5">
                   <div className="w-6 h-6 rounded-full bg-[#E8F4EC] text-[#08703A] flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">
                     ✓
@@ -829,7 +827,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       SUPRA BIZ Digital &amp; Creative Studio
                     </h4>
                     <p
-                      className="text-[14px] text-[#69736C] leading-relaxed"
+                      className="text-[13.5px] sm:text-[14px] text-[#69736C] leading-relaxed"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       C-1210, Titanium business park, Makarba, Ahmedabad, Gujarat 380015
@@ -849,7 +847,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       Direct Lines &amp; Inquiries
                     </h4>
                     <p
-                      className="text-[14px] text-[#69736C] leading-relaxed"
+                      className="text-[13.5px] sm:text-[14px] text-[#69736C] leading-relaxed"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       Sales: <a href="tel:+919313009073" className="font-semibold text-[#15241B] hover:text-[#08703A]">+91 93130 09073</a> &nbsp;|&nbsp; Admin: <a href="tel:+918980444498" className="font-semibold text-[#15241B] hover:text-[#08703A]">+91 89804 44498</a>
@@ -869,7 +867,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                       Studio Hours
                     </h4>
                     <p
-                      className="text-[14px] text-[#69736C]"
+                      className="text-[13.5px] sm:text-[14px] text-[#69736C]"
                       style={{ fontFamily: "Inter, sans-serif" }}
                     >
                       Monday – Saturday: 9:30 AM – 6:30 PM IST (Sundays Closed)
@@ -882,7 +880,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 href="https://share.google/XcnqzuVTT3DxUhJjg"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 h-[48px] px-6 rounded-full text-[14px] font-semibold text-[#08703A] bg-[#E8F4EC] hover:bg-[#D8ECD0] border border-[#08703A]/15 transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 h-[48px] px-6 rounded-full text-[14px] font-semibold text-[#08703A] bg-[#E8F4EC] hover:bg-[#D8ECD0] border border-[#08703A]/15 transition-all cursor-pointer w-full sm:w-auto"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 <span>Open in Google Maps</span>
@@ -892,14 +890,14 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
             {/* Right Live Google Map Card */}
             <div
-              className="relative w-full rounded-[28px] sm:rounded-[32px] overflow-hidden bg-white border border-[rgba(8,112,58,0.12)] shadow-[0_20px_50px_rgba(20,55,35,0.08)] flex flex-col"
+              className="relative w-full rounded-[24px] sm:rounded-[32px] overflow-hidden bg-white border border-[rgba(8,112,58,0.12)] shadow-[0_20px_50px_rgba(20,55,35,0.08)] flex flex-col"
             >
               {/* Map Header */}
-              <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-[#08703A]/10">
+              <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 sm:py-4 bg-white border-b border-[#08703A]/10">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#08703A] animate-pulse" />
                   <span
-                    className="text-[12px] font-bold tracking-wider uppercase text-[#15241B]"
+                    className="text-[11.5px] sm:text-[12px] font-bold tracking-wider uppercase text-[#15241B]"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     Ahmedabad Headquarters
@@ -917,7 +915,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </div>
 
               {/* Live Interactive Google Map */}
-              <div className="relative w-full aspect-[16/11] sm:aspect-[16/10] min-h-[350px] sm:min-h-[390px] bg-[#F4F8F5]">
+              <div className="relative w-full aspect-[16/11] sm:aspect-[16/10] min-h-[300px] sm:min-h-[390px] bg-[#F4F8F5]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586.9755216994283!2d72.50187580937867!3d22.99767832344428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b7eee8ca869%3A0xd31c25799d187694!2sSUPRABIZ%20ADS%20%26%20EVENTS%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1788948480425!5m2!1sen!2sin"
                   width="100%"
@@ -932,7 +930,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </div>
 
               {/* Map Footer Info */}
-              <div className="px-6 py-3.5 bg-white border-t border-[#08703A]/10 flex flex-wrap items-center justify-between text-[12px] text-[#69736C] gap-2">
+              <div className="px-5 sm:px-6 py-3.5 bg-white border-t border-[#08703A]/10 flex flex-wrap items-center justify-between text-[11.5px] sm:text-[12px] text-[#69736C] gap-2">
                 <div className="flex items-center gap-1.5 font-medium text-[#15241B]">
                   <span className="text-[#08703A]">📍</span>
                   <span>C-1210, Titanium Business Park, Makarba</span>
@@ -945,10 +943,10 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
       </section>
 
       {/* ─── 05. Section: Frequently Asked Questions ───────────────────────────── */}
-      <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]">
+      <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]">
         <div className="max-w-[900px] mx-auto">
           {/* Header */}
-          <div className="text-center mb-14 sm:mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
               <span
@@ -959,7 +957,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
               </span>
             </div>
             <h2
-              className="text-[32px] sm:text-[42px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.1]"
+              className="text-[28px] sm:text-[42px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.1]"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
               Clear Answers Before We Begin.
@@ -971,14 +969,14 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <div key={faq.q} className="py-5 sm:py-6">
+                <div key={faq.q} className="py-4 sm:py-6">
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
                     className="w-full flex items-center justify-between gap-4 text-left cursor-pointer group"
                   >
                     <h3
-                      className={`text-[17px] sm:text-[19px] font-bold transition-colors ${
+                      className={`text-[16px] sm:text-[19px] font-bold transition-colors ${
                         isOpen
                           ? "text-[#08703A]"
                           : "text-[#15241B] group-hover:text-[#08703A]"
@@ -999,9 +997,9 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                   </button>
 
                   {isOpen && (
-                    <div className="mt-3.5 pr-8">
+                    <div className="mt-3 pr-2 sm:pr-8">
                       <p
-                        className="text-[15px] sm:text-[15.5px] text-[#69736C] leading-[1.65]"
+                        className="text-[14px] sm:text-[15.5px] text-[#69736C] leading-[1.65]"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         {faq.a}
@@ -1017,7 +1015,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
       {/* ─── 06. Section: Final CTA ────────────────────────────────────────────── */}
       <section
-        className="relative pt-[80px] sm:pt-[90px] pb-[90px] sm:pb-[100px] px-6 sm:px-8 lg:px-10 overflow-hidden"
+        className="relative pt-14 sm:pt-[80px] pb-14 sm:pb-[90px] px-4 sm:px-8 lg:px-10 overflow-hidden"
         style={{
           background:
             "linear-gradient(135deg, #075C31 0%, #086B39 55%, #075C31 100%)",
@@ -1045,7 +1043,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow */}
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full mb-5 sm:mb-6"
             style={{
               background: "rgba(255, 255, 255, 0.09)",
               border: "1px solid rgba(255, 255, 255, 0.12)",
@@ -1062,7 +1060,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
           {/* Headline */}
           <h2
-            className="text-[38px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.03] max-w-[800px]"
+            className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.05] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
             We're Only an
@@ -1072,7 +1070,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
 
           {/* Description */}
           <p
-            className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-[24px] sm:mt-[26px] mb-8 sm:mb-9 text-white/70"
+            className="text-[15px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-5 sm:mt-[26px] mb-7 sm:mb-9 text-white/75"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
             Drop us a quick note or reach out directly to discuss how SUPRA BIZ
@@ -1080,10 +1078,10 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
             <a
               href="mailto:sales@suprabiz.co.in"
-              className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
               style={{
                 background: "#FFC21C",
                 color: "#15241B",
@@ -1110,7 +1108,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
             <button
               type="button"
               onClick={(e) => scrollToElement("contact-form", e)}
-              className="inline-flex items-center justify-center h-[54px] px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
+              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto cursor-pointer"
               style={{
                 background: "transparent",
                 border: "1px solid rgba(255, 255, 255, 0.32)",

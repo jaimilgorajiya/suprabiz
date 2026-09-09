@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import heroImg from "@/imports/suprabiz-courses-hero.jpg";
 import socialLearningImg from "@/imports/suprabiz-social-media-learning.jpg";
 import analyticsLearningImg from "@/imports/suprabiz-analytics-learning.jpg";
@@ -218,16 +218,16 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
   return (
     <main className="w-full overflow-hidden bg-white selection:bg-[#08703A] selection:text-white">
       {/* ─── 01. Courses Hero ─────────────────────────────────────────────────── */}
-      <section className="relative pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 px-6 sm:px-8 lg:px-10 bg-white border-b border-[#08703A]/[0.06]">
+      <section className="relative pt-8 sm:pt-14 lg:pt-20 pb-12 sm:pb-18 lg:pb-24 px-4 sm:px-8 lg:px-10 bg-white border-b border-[#08703A]/[0.06]">
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 xl:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 xl:gap-20 items-center">
             {/* Left Column (52%) */}
             <div className="flex flex-col items-start">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-6">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-5 sm:mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#08703A]" />
                 <span
-                  className="text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
+                  className="text-[11px] sm:text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   LEARN WITH SUPRA BIZ
@@ -236,9 +236,9 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
 
               {/* H1 Headline */}
               <h1
-                className="text-[#15241B] tracking-[-0.04em] leading-[1.05] mb-6 font-bold"
+                className="text-[#15241B] tracking-[-0.04em] leading-[1.05] mb-5 sm:mb-6 font-bold"
                 style={{
-                  fontSize: "clamp(42px, 5.2vw, 76px)",
+                  fontSize: "clamp(36px, 5.2vw, 76px)",
                   fontFamily: "Manrope, sans-serif",
                 }}
               >
@@ -249,7 +249,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
 
               {/* Description */}
               <p
-                className="text-[#56645A] text-[16px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-8 sm:mb-10 font-normal"
+                className="text-[#56645A] text-[15.5px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-7 sm:mb-10 font-normal"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 Build practical skills across social media, SEO, Google Ads,
@@ -258,11 +258,11 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={(e) => scrollToSection("social-media", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] hover:bg-[#065A2E] transition-all duration-200 shadow-[0_8px_20px_rgba(8,112,58,0.20)] hover:-translate-y-0.5 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] hover:bg-[#065A2E] transition-all duration-200 shadow-[0_8px_20px_rgba(8,112,58,0.20)] hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   <span>Explore Courses</span>
@@ -274,7 +274,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 <button
                   type="button"
                   onClick={(e) => handleNav("/contact", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   <span>Talk to an Advisor</span>
@@ -288,7 +288,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
             {/* Right Column (48%): Hero Image */}
             <div className="relative w-full flex justify-center lg:justify-end">
               <div
-                className="relative w-full max-w-[560px] aspect-[4/4.2] rounded-[28px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5]"
+                className="relative w-full max-w-[560px] aspect-[4/4.2] rounded-[22px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5]"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.10)",
                   boxShadow: "0 30px 70px rgba(20, 55, 35, 0.12)",
@@ -304,7 +304,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
 
                 {/* Subtle Editorial Label */}
                 <div
-                  className="absolute bottom-5 left-5 right-5 sm:left-6 sm:right-auto inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full backdrop-blur-md"
+                  className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-6 sm:right-auto inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-md"
                   style={{
                     background: "rgba(255, 255, 255, 0.88)",
                     border: "1px solid rgba(8, 112, 58, 0.12)",
@@ -313,7 +313,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 >
                   <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
                   <span
-                    className="text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
+                    className="text-[10.5px] sm:text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     SOCIAL • SEO • ADS • ANALYTICS
@@ -326,16 +326,16 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
       </section>
 
       {/* ─── 02. Quick Category Navigation ─────────────────────────────────────── */}
-      <section className="sticky top-[79px] min-[960px]:top-[83px] z-[900] bg-white/95 backdrop-blur-md border-b border-[#08703A]/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
-        <div className="max-w-[1380px] mx-auto px-6 sm:px-8 lg:px-10 py-3.5 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <section className="static md:sticky md:top-[80px] z-30 bg-white/95 backdrop-blur-md border-b border-[#08703A]/10 shadow-[0_4px_16px_rgba(0,0,0,0.02)]">
+        <div className="max-w-[1380px] mx-auto px-4 sm:px-8 lg:px-10 py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
           <span
-            className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#08703A]"
+            className="text-[10.5px] sm:text-[11px] font-extrabold uppercase tracking-[0.14em] text-[#08703A]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
             EXPLORE LEARNING PATHS
           </span>
 
-          <nav className="flex items-center gap-6 sm:gap-10 overflow-x-auto no-scrollbar py-1">
+          <nav className="flex items-center flex-wrap gap-4 sm:gap-10 py-1">
             {[
               { num: "01", name: "Social Media", id: "social-media" },
               { num: "02", name: "Search & Ads", id: "search-ads" },
@@ -347,13 +347,13 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   key={cat.id}
                   type="button"
                   onClick={(e) => scrollToSection(cat.id, e)}
-                  className={`group inline-flex items-center gap-2 text-[13.5px] sm:text-[14px] font-semibold transition-colors duration-200 cursor-pointer flex-shrink-0 ${
+                  className={`group inline-flex items-center gap-2 text-[13px] sm:text-[14px] font-semibold transition-colors duration-200 cursor-pointer flex-shrink-0 ${
                     isActive ? "text-[#08703A]" : "text-[#55645A] hover:text-[#08703A]"
                   }`}
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   <span
-                    className={`text-[12px] font-bold transition-colors duration-200 ${
+                    className={`text-[11.5px] sm:text-[12px] font-bold transition-colors duration-200 ${
                       isActive
                         ? "text-[#FFC21C]"
                         : "text-[#88978D] group-hover:text-[#FFC21C]"
@@ -372,7 +372,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
       </section>
 
       {/* ─── 03. Featured Learning Overview ────────────────────────────────────── */}
-      <section className="py-20 sm:py-24 px-6 sm:px-8 lg:px-10 bg-[#FAFBF9]">
+      <section className="py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-10 bg-[#FAFBF9]">
         <div className="max-w-[1380px] mx-auto">
           {/* Header */}
           <div className="max-w-[820px] mb-14 sm:mb-16">
@@ -504,11 +504,11 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
       {/* ─── 04. Section 01: Social Media Courses ─────────────────────────────── */}
       <section
         id="social-media"
-        className="scroll-mt-32 py-20 sm:py-24 px-6 sm:px-8 lg:px-10 bg-white border-t border-[#08703A]/10"
+        className="scroll-mt-32 py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-10 bg-white border-t border-[#08703A]/10"
       >
         <div className="max-w-[1380px] mx-auto">
           {/* Category Intro: 2-column (Text Left, Compact Visual Right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-[70px] items-center mb-12 sm:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-[70px] items-center mb-10 sm:mb-16">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span
@@ -526,7 +526,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 </span>
               </div>
               <h2
-                className="text-[34px] sm:text-[44px] lg:text-[50px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.06] mb-4 sm:mb-5"
+                className="text-[30px] xs:text-[36px] sm:text-[44px] lg:text-[50px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.06] mb-4 sm:mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 Create Attention.
@@ -536,7 +536,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 <span className="text-[#08703A]">Grow Brands.</span>
               </h2>
               <p
-                className="text-[16px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
+                className="text-[15.5px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 Build an integrated social strategy across channels, content and community to develop sustainable organic reach and loyal brand advocacy.
@@ -546,7 +546,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
             {/* Compact Category Visual */}
             <div className="w-full">
               <div
-                className="relative w-full h-[320px] sm:h-[360px] rounded-[24px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
+                className="relative w-full h-[260px] xs:h-[300px] sm:h-[360px] rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.08)",
                   boxShadow: "0 22px 55px rgba(20, 55, 35, 0.08)",
@@ -841,11 +841,11 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
       {/* ─── 06. Section 03: Data & Analytics Courses ─────────────────────────── */}
       <section
         id="data-analytics"
-        className="scroll-mt-32 py-20 sm:py-24 px-6 sm:px-8 lg:px-10 bg-white border-t border-[#08703A]/10"
+        className="scroll-mt-32 py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-10 bg-white border-t border-[#08703A]/10"
       >
         <div className="max-w-[1380px] mx-auto">
           {/* Category Intro: 2-column (Text Left, Compact Visual Right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-[70px] items-center mb-12 sm:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-[70px] items-center mb-10 sm:mb-16">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span
@@ -863,7 +863,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 </span>
               </div>
               <h2
-                className="text-[34px] sm:text-[44px] lg:text-[50px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.06] mb-4 sm:mb-5"
+                className="text-[30px] xs:text-[36px] sm:text-[44px] lg:text-[50px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.06] mb-4 sm:mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 Understand Performance.
@@ -871,7 +871,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 <span className="text-[#08703A]">Make Smarter Decisions.</span>
               </h2>
               <p
-                className="text-[16px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
+                className="text-[15.5px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 Learn how website and campaign telemetry can be interpreted to understand traffic attribution, user behaviour and data-backed business growth.
@@ -881,7 +881,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
             {/* Compact Category Visual */}
             <div className="w-full">
               <div
-                className="relative w-full h-[320px] sm:h-[360px] rounded-[24px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
+                className="relative w-full h-[260px] xs:h-[300px] sm:h-[360px] rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.08)",
                   boxShadow: "0 22px 55px rgba(20, 55, 35, 0.08)",
@@ -1147,44 +1147,50 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 desc: "Build stronger confidence across digital marketing channels.",
               },
             ].map((st, i) => (
-              <div
-                key={st.step}
-                className="relative flex flex-col items-center text-center group"
-              >
-                {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
-                {i < 3 && (
-                  <div
-                    className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
-                    style={{ background: "rgba(8, 112, 58, 0.18)" }}
-                  />
-                )}
+              <Fragment key={st.step}>
+                <div className="relative flex flex-col items-center text-center group py-2 md:py-0">
+                  {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
+                  {i < 3 && (
+                    <div
+                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
+                      style={{ background: "rgba(8, 112, 58, 0.18)" }}
+                    />
+                  )}
 
-                {/* Step Circle */}
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-extrabold text-[17px] mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
-                  style={{
-                    background: "#08703A",
-                    color: "#FFFFFF",
-                    border: "2px solid #08703A",
-                    boxShadow: "0 6px 18px rgba(8, 112, 58, 0.14)",
-                    fontFamily: "Manrope, sans-serif",
-                  }}
-                >
-                  {st.step}
+                  {/* Step Circle */}
+                  <div
+                    className="w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-extrabold text-[16px] sm:text-[17px] mb-4 sm:mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
+                    style={{
+                      background: "#08703A",
+                      color: "#FFFFFF",
+                      border: "2px solid #08703A",
+                      boxShadow: "0 6px 18px rgba(8, 112, 58, 0.14)",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                  >
+                    {st.step}
+                  </div>
+                  <h3
+                    className="text-[19px] sm:text-[20px] font-bold mb-2 transition-colors duration-200 group-hover:text-[#08703A]"
+                    style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    {st.title}
+                  </h3>
+                  <p
+                    className="text-[14px] leading-[1.6] max-w-[280px] mx-auto"
+                    style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
+                  >
+                    {st.desc}
+                  </p>
                 </div>
-                <h3
-                  className="text-[20px] font-bold mb-2.5 transition-colors duration-200 group-hover:text-[#08703A]"
-                  style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
-                >
-                  {st.title}
-                </h3>
-                <p
-                  className="text-[14px] leading-[1.6] max-w-[280px] mx-auto"
-                  style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-                >
-                  {st.desc}
-                </p>
-              </div>
+
+                {/* Mobile Vertical Connecting Line */}
+                {i < 3 && (
+                  <div className="flex md:hidden justify-center items-center py-1">
+                    <div className="w-[2px] h-6 bg-[#08703A]/25 rounded-full" />
+                  </div>
+                )}
+              </Fragment>
             ))}
           </div>
         </div>
@@ -1192,7 +1198,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
 
       {/* ─── 09. Section: Course Guidance CTA ─────────────────────────────────── */}
       <section
-        className="relative pt-[80px] sm:pt-[90px] pb-[90px] sm:pb-[100px] px-6 sm:px-8 lg:px-10 overflow-hidden border-b border-[rgba(255,255,255,0.08)]"
+        className="relative pt-14 sm:pt-[80px] pb-14 sm:pb-[90px] px-4 sm:px-8 lg:px-10 overflow-hidden border-b border-[rgba(255,255,255,0.08)]"
         style={{
           background: "linear-gradient(135deg, #075C31 0%, #086B39 55%, #075C31 100%)",
         }}
@@ -1218,7 +1224,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow Pill */}
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6"
             style={{
               background: "rgba(255, 255, 255, 0.09)",
               border: "1px solid rgba(255, 255, 255, 0.12)",
@@ -1226,7 +1232,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
           >
             <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
             <span
-              className="text-[10px] font-bold tracking-[0.14em] uppercase"
+              className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.14em] uppercase"
               style={{ color: "rgba(255, 255, 255, 0.82)", fontFamily: "Manrope, sans-serif" }}
             >
               FIND YOUR PATH
@@ -1235,7 +1241,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
 
           {/* Headline */}
           <h2
-            className="text-[38px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.03] max-w-[800px]"
+            className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.05] sm:leading-[1.03] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
             Not Sure Which Course
@@ -1245,18 +1251,18 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
 
           {/* Description */}
           <p
-            className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-[24px] sm:mt-[26px] mb-8 sm:mb-9"
+            className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
             style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
           >
             Explore the learning path that best matches the skills you want to build and the area of digital marketing you want to understand better.
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
             <button
               type="button"
               onClick={(e) => scrollToSection("social-media", e)}
-              className="inline-flex items-center justify-center h-[54px] px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
+              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
               style={{
                 background: "transparent",
                 border: "1px solid rgba(255, 255, 255, 0.32)",
@@ -1278,7 +1284,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
             <a
               href="/contact"
               onClick={(e) => handleNav("/contact", e)}
-              className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
               style={{
                 background: "#FFC21C",
                 color: "#15241B",

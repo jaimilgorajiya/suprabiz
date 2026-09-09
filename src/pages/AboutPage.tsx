@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Fragment } from "react";
 import aboutTeamImg from "@/imports/suprabiz-about-team.jpg";
 import aboutStrategyImg from "@/imports/suprabiz-about-strategy.jpg";
 
@@ -86,7 +86,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
     <main className="w-full bg-[#FBFCF8]">
       {/* ─── 1. About Hero ──────────────────────────────────────────────────────── */}
       <section
-        className="relative pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 px-6 sm:px-8 lg:px-10 overflow-hidden"
+        className="relative pt-8 sm:pt-14 lg:pt-20 pb-12 sm:pb-18 lg:pb-24 px-4 sm:px-8 lg:px-10 overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #FBFCF8 0%, #F6F9F5 60%, #F8FAF6 100%)",
         }}
@@ -110,12 +110,12 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
         />
 
         <div className="max-w-[1380px] mx-auto w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-14 xl:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 xl:gap-16 items-center">
             {/* Left Content */}
             <div className="flex flex-col items-start">
               {/* Eyebrow */}
               <div
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6 sm:mb-8"
+                className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-8"
                 style={{
                   background: "#EEF5F0",
                   border: "1px solid rgba(8, 112, 58, 0.14)",
@@ -123,7 +123,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               >
                 <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
                 <span
-                  className="text-[11px] sm:text-[12px] font-bold tracking-[0.14em] uppercase"
+                  className="text-[10.5px] sm:text-[12px] font-bold tracking-[0.14em] uppercase"
                   style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
                 >
                   ABOUT SUPRA BIZ
@@ -132,7 +132,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
 
               {/* Headline */}
               <h1
-                className="text-[42px] sm:text-[54px] md:text-[62px] lg:text-[66px] xl:text-[72px] font-extrabold tracking-[-0.04em] leading-[1.02] mb-6"
+                className="text-[38px] xs:text-[44px] sm:text-[54px] md:text-[62px] lg:text-[66px] xl:text-[72px] font-extrabold tracking-[-0.04em] leading-[1.04] sm:leading-[1.02] mb-5 sm:mb-6"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 <span className="block" style={{ color: "#15241B" }}>
@@ -166,7 +166,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
 
               {/* Description */}
               <p
-                className="text-[17px] sm:text-[19px] max-w-[580px] leading-[1.65] mb-8 sm:mb-10"
+                className="text-[15.5px] sm:text-[18px] md:text-[19px] max-w-[580px] leading-[1.65] mb-7 sm:mb-10"
                 style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
               >
                 SUPRA BIZ is a creative branding and digital marketing agency helping ambitious
@@ -174,11 +174,11 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               </p>
 
               {/* CTA */}
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <a
                   href="/services"
                   onClick={(e) => handleNav("/services", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200"
+                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
                   style={{
                     background: "#FFC21C",
                     color: "#15241B",
@@ -202,7 +202,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 <a
                   href="/contact"
                   onClick={(e) => handleNav("/contact", e)}
-                  className="inline-flex items-center justify-center h-[54px] px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200"
+                  className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
                   style={{
                     background: "transparent",
                     border: "1.5px solid #08703A",
@@ -226,10 +226,10 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             {/* Right Hero Image */}
             <div className="w-full flex justify-center lg:justify-end">
               <div
-                className="relative w-full max-w-[540px] rounded-[28px] overflow-hidden transition-transform duration-500 hover:scale-[1.015]"
+                className="relative w-full max-w-[540px] rounded-[20px] sm:rounded-[28px] overflow-hidden transition-transform duration-500 hover:scale-[1.015]"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 30px 70px rgba(20, 55, 35, 0.10)",
+                  boxShadow: "0 24px 60px rgba(20, 55, 35, 0.10)",
                   background: "#FFFFFF",
                   aspectRatio: "4 / 4.5",
                 }}
@@ -978,9 +978,9 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       </section>
 
       {/* ─── 7. Our Approach / Process ──────────────────────────────────────────── */}
-      <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-[#F5F9F6]">
+      <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-[#F5F9F6]">
         <div className="max-w-[1380px] mx-auto">
-          <div className="text-center max-w-xl mx-auto mb-14 sm:mb-16">
+          <div className="text-center max-w-xl mx-auto mb-10 sm:mb-16">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
               <span
@@ -991,13 +991,13 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               </span>
             </div>
             <h2
-              className="text-[32px] sm:text-[42px] font-extrabold tracking-[-0.03em]"
+              className="text-[30px] sm:text-[42px] font-extrabold tracking-[-0.03em]"
               style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
             >
               From Idea to Impact
             </h2>
             <p
-              className="text-[16px] mt-3"
+              className="text-[15px] sm:text-[16px] mt-2.5 sm:mt-3"
               style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
             >
               A structured 4-step framework designed to deliver predictability and creative excellence.
@@ -1005,7 +1005,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           </div>
 
           {/* Connected Steps Grid */}
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-8">
+          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
             {[
               {
                 step: "01",
@@ -1028,44 +1028,52 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 desc: "Launch campaigns, measure performance, iterate quickly, and continuously scale client success.",
               },
             ].map((st, i) => (
-              <div
-                key={st.step}
-                className="relative flex flex-col items-center text-center group"
-              >
-                {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
-                {i < 3 && (
-                  <div
-                    className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
-                    style={{ background: "rgba(8, 112, 58, 0.18)" }}
-                  />
-                )}
-
-                {/* Step Circle */}
+              <Fragment key={st.step}>
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-extrabold text-[17px] mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
-                  style={{
-                    background: "#08703A",
-                    color: "#FFFFFF",
-                    border: "2px solid #08703A",
-                    boxShadow: "0 6px 18px rgba(8, 112, 58, 0.14)",
-                    fontFamily: "Manrope, sans-serif",
-                  }}
+                  className="relative flex flex-col items-center text-center group py-2 md:py-0"
                 >
-                  {st.step}
+                  {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
+                  {i < 3 && (
+                    <div
+                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
+                      style={{ background: "rgba(8, 112, 58, 0.18)" }}
+                    />
+                  )}
+
+                  {/* Step Circle */}
+                  <div
+                    className="w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-extrabold text-[16px] sm:text-[17px] mb-4 sm:mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
+                    style={{
+                      background: "#08703A",
+                      color: "#FFFFFF",
+                      border: "2px solid #08703A",
+                      boxShadow: "0 6px 18px rgba(8, 112, 58, 0.14)",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                  >
+                    {st.step}
+                  </div>
+                  <h3
+                    className="text-[19px] sm:text-[20px] font-bold mb-2 transition-colors duration-200 group-hover:text-[#08703A]"
+                    style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    {st.title}
+                  </h3>
+                  <p
+                    className="text-[14px] leading-[1.6] max-w-[280px] mx-auto"
+                    style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
+                  >
+                    {st.desc}
+                  </p>
                 </div>
-                <h3
-                  className="text-[20px] font-bold mb-2.5 transition-colors duration-200 group-hover:text-[#08703A]"
-                  style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
-                >
-                  {st.title}
-                </h3>
-                <p
-                  className="text-[14px] leading-[1.6] max-w-[280px] mx-auto"
-                  style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-                >
-                  {st.desc}
-                </p>
-              </div>
+
+                {/* Mobile Vertical Connecting Line between steps */}
+                {i < 3 && (
+                  <div className="flex md:hidden justify-center items-center py-1">
+                    <div className="w-[2px] h-6 bg-[#08703A]/25 rounded-full" />
+                  </div>
+                )}
+              </Fragment>
             ))}
           </div>
         </div>
@@ -1073,7 +1081,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
 
       {/* ─── 8. Final CTA ───────────────────────────────────────────────────────── */}
       <section
-        className="relative pt-[80px] sm:pt-[90px] pb-[90px] sm:pb-[100px] px-6 sm:px-8 lg:px-10 overflow-hidden"
+        className="relative pt-14 sm:pt-[80px] pb-14 sm:pb-[90px] px-4 sm:px-8 lg:px-10 overflow-hidden"
         style={{
           background: "linear-gradient(135deg, #075C31 0%, #086B39 55%, #075C31 100%)",
         }}
@@ -1096,12 +1104,10 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           }}
         />
 
-
-
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow Pill */}
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6"
             style={{
               background: "rgba(255, 255, 255, 0.09)",
               border: "1px solid rgba(255, 255, 255, 0.12)",
@@ -1109,7 +1115,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           >
             <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
             <span
-              className="text-[10px] font-bold tracking-[0.14em] uppercase"
+              className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.14em] uppercase"
               style={{ color: "rgba(255, 255, 255, 0.82)", fontFamily: "Manrope, sans-serif" }}
             >
               START YOUR PROJECT
@@ -1118,7 +1124,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
 
           {/* Headline with Editorial Underline on 'Remember.' */}
           <h2
-            className="text-[38px] sm:text-[48px] md:text-[56px] lg:text-[clamp(52px,5vw,68px)] font-bold text-white tracking-[-0.04em] leading-[1.03] max-w-[800px]"
+            className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(52px,5vw,68px)] font-bold text-white tracking-[-0.04em] leading-[1.05] sm:leading-[1.03] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
             Let's Build Something
@@ -1127,7 +1133,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             <span className="relative inline-block">
               Remember.
               <svg
-                className="absolute left-0 -bottom-1.5 sm:-bottom-2 w-full h-[6px] sm:h-[8px] text-[#FFC21C]"
+                className="absolute left-0 -bottom-1 sm:-bottom-2 w-full h-[6px] sm:h-[8px] text-[#FFC21C]"
                 viewBox="0 0 100 8"
                 fill="none"
                 preserveAspectRatio="none"
@@ -1144,7 +1150,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
 
           {/* Description */}
           <p
-            className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-[24px] sm:mt-[26px] mb-8 sm:mb-9"
+            className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
             style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
           >
             Whether you're building a brand from scratch or ready to scale an existing one, let's
@@ -1152,11 +1158,11 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
             <a
               href="/contact"
               onClick={(e) => handleNav("/contact", e)}
-              className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
               style={{
                 background: "#FFC21C",
                 color: "#15241B",
@@ -1181,7 +1187,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             <a
               href="/services"
               onClick={(e) => handleNav("/services", e)}
-              className="inline-flex items-center justify-center h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
+              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
               style={{
                 background: "transparent",
                 border: "1px solid rgba(255, 255, 255, 0.32)",

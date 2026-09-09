@@ -136,7 +136,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
   return (
     <main className="w-full bg-[#FBFCF8]">
       {/* ─── 01. Section: Our Work Hero ─────────────────────────────────────────── */}
-      <section className="relative pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 px-6 sm:px-8 lg:px-10 overflow-hidden bg-white border-b border-[#08703A]/[0.06]">
+      <section className="relative pt-10 sm:pt-14 lg:pt-20 pb-14 sm:pb-18 lg:pb-24 px-4 sm:px-8 lg:px-10 overflow-hidden bg-white border-b border-[#08703A]/[0.06]">
         {/* Soft Radial Ambient Glow */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -157,14 +157,14 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
         />
 
         <div className="max-w-[1380px] mx-auto w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 xl:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 xl:gap-20 items-center">
             {/* Left Content */}
             <div className="flex flex-col items-start">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-6">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-5 sm:mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#08703A]" />
                 <span
-                  className="text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
+                  className="text-[11px] sm:text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   OUR PORTFOLIO
@@ -173,9 +173,9 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
 
               {/* Headline H1 */}
               <h1
-                className="text-[#15241B] tracking-[-0.04em] leading-[1.05] mb-6 font-bold"
+                className="text-[#15241B] tracking-[-0.04em] leading-[1.05] mb-5 sm:mb-6 font-bold"
                 style={{
-                  fontSize: "clamp(42px, 5.2vw, 76px)",
+                  fontSize: "clamp(34px, 5.2vw, 76px)",
                   fontFamily: "Manrope, sans-serif",
                 }}
               >
@@ -186,7 +186,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
 
               {/* Description */}
               <p
-                className="text-[#56645A] text-[16px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-8 sm:mb-10 font-normal"
+                className="text-[#56645A] text-[15.5px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-7 sm:mb-10 font-normal"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
                 Explore selected branding, digital, campaign and web work designed
@@ -195,11 +195,11 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={(e) => scrollToElement("featured-project", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] hover:bg-[#065A2E] transition-all duration-200 shadow-[0_8px_20px_rgba(8,112,58,0.20)] hover:-translate-y-0.5 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] hover:bg-[#065A2E] transition-all duration-200 shadow-[0_8px_20px_rgba(8,112,58,0.20)] hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   <span>Explore Projects</span>
@@ -211,7 +211,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                 <button
                   type="button"
                   onClick={(e) => handleNav("/contact", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   <span>Start a Project</span>
@@ -225,7 +225,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
             {/* Right Hero Visual Showcase */}
             <div className="relative w-full flex justify-center lg:justify-end">
               <div
-                className="relative w-full max-w-[560px] aspect-[4/4.2] rounded-[28px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5] group"
+                className="relative w-full max-w-[560px] aspect-[4/4.2] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5] group"
                 style={{
                   border: "1px solid rgba(8, 112, 58, 0.10)",
                   boxShadow: "0 30px 70px rgba(20, 55, 35, 0.12)",
@@ -241,7 +241,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
 
                 {/* Subtle Inner Highlight */}
                 <div
-                  className="absolute inset-0 pointer-events-none rounded-[28px] sm:rounded-[32px]"
+                  className="absolute inset-0 pointer-events-none rounded-[24px] sm:rounded-[32px]"
                   style={{
                     boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.6)",
                   }}
@@ -258,7 +258,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                 >
                   <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
                   <span
-                    className="text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
+                    className="text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     BRANDING • WEB • CAMPAIGNS • DIGITAL
@@ -287,7 +287,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
       {/* ─── 02. Section: Featured Project ─────────────────────────────────────── */}
       <section
         id="featured-project"
-        className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]"
+        className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]"
       >
         <div className="max-w-[1380px] mx-auto">
           {/* Section Eyebrow */}
@@ -422,11 +422,11 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
       {/* ─── 04. Section: Selected Work Grid (6 Projects) ──────────────────────── */}
       <section
         id="projects"
-        className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-[#FAFBF9] border-b border-[rgba(8,112,58,0.08)]"
+        className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-[#FAFBF9] border-b border-[rgba(8,112,58,0.08)]"
       >
         <div className="max-w-[1380px] mx-auto">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 sm:mb-16 gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-6">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
@@ -438,7 +438,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                 </span>
               </div>
               <h2
-                className="text-[34px] sm:text-[44px] lg:text-[48px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.08]"
+                className="text-[30px] sm:text-[44px] lg:text-[48px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.08]"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 Selected Work.
@@ -455,7 +455,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
           </div>
 
           {/* Editorial Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             {PROJECTS.map((project) => {
               return (
                 <article
@@ -527,7 +527,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                     )}
 
                     {/* Content Block */}
-                    <div className="p-6 sm:p-7">
+                    <div className="p-5 sm:p-7">
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span
                           className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#08703A]"
@@ -538,14 +538,14 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                       </div>
 
                       <h3
-                        className="text-[22px] sm:text-[24px] font-bold text-[#15241B] group-hover:text-[#08703A] transition-colors leading-[1.2] tracking-[-0.02em] mb-3"
+                        className="text-[20px] sm:text-[24px] font-bold text-[#15241B] group-hover:text-[#08703A] transition-colors leading-[1.2] tracking-[-0.02em] mb-2.5 sm:mb-3"
                         style={{ fontFamily: "Manrope, sans-serif" }}
                       >
                         {project.title}
                       </h3>
 
                       <p
-                        className="text-[14px] text-[#69736C] leading-[1.65] mb-5 line-clamp-2"
+                        className="text-[13.5px] sm:text-[14px] text-[#69736C] leading-[1.65] mb-5 line-clamp-2"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         {project.description}
@@ -566,7 +566,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                   </div>
 
                   {/* CTA Footer */}
-                  <div className="px-6 sm:px-7 pb-6 pt-3 border-t border-[rgba(8,112,58,0.06)] flex items-center justify-between mt-auto">
+                  <div className="px-5 sm:px-7 pb-5 sm:pb-6 pt-3 border-t border-[rgba(8,112,58,0.06)] flex items-center justify-between mt-auto">
                     <a
                       href="/contact"
                       onClick={(e) => handleNav("/contact", e)}
@@ -590,9 +590,9 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
       </section>
 
       {/* ─── 05. Section: Project Spotlight / Mini Case Study ─────────────────── */}
-      <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]">
+      <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]">
         <div className="max-w-[1380px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-16 items-center">
             {/* Left Content */}
             <div>
               <div className="flex items-center gap-2 mb-3">
@@ -606,7 +606,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
               </div>
 
               <h2
-                className="text-[34px] sm:text-[44px] lg:text-[48px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.08] mb-6"
+                className="text-[30px] sm:text-[44px] lg:text-[48px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 From Strategy
@@ -712,10 +712,10 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
       </section>
 
       {/* ─── 06. Section: Creative Process / How We Approach Work ──────────────── */}
-      <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-[#F5F9F6] border-b border-[rgba(8,112,58,0.08)]">
+      <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-[#F5F9F6] border-b border-[rgba(8,112,58,0.08)]">
         <div className="max-w-[1380px] mx-auto">
           {/* Centered Section Header */}
-          <div className="text-center max-w-xl mx-auto mb-14 sm:mb-16">
+          <div className="text-center max-w-xl mx-auto mb-10 sm:mb-16">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
               <span
@@ -726,7 +726,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
               </span>
             </div>
             <h2
-              className="text-[32px] sm:text-[42px] font-extrabold tracking-[-0.03em] text-[#15241B]"
+              className="text-[28px] sm:text-[42px] font-extrabold tracking-[-0.03em] text-[#15241B]"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
               Good Work Starts
@@ -734,7 +734,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
               Before Design Begins.
             </h2>
             <p
-              className="text-[16px] text-[#667069] mt-3"
+              className="text-[15px] sm:text-[16px] text-[#667069] mt-3"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               A structured 4-step framework designed to deliver predictability,
@@ -743,7 +743,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
           </div>
 
           {/* Connected Steps Grid */}
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-8">
+          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
             {[
               {
                 step: "01",
@@ -780,7 +780,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
 
                 {/* Step Circle */}
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-extrabold text-[17px] mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
+                  className="w-14 h-14 rounded-full flex items-center justify-center font-extrabold text-[17px] mb-4 sm:mb-5 transition-all duration-200 group-hover:scale-110 relative z-10 mx-auto"
                   style={{
                     background: "#08703A",
                     color: "#FFFFFF",
@@ -792,17 +792,24 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                   {st.step}
                 </div>
                 <h3
-                  className="text-[20px] font-bold mb-2.5 transition-colors duration-200 group-hover:text-[#08703A] text-[#15241B]"
+                  className="text-[19px] sm:text-[20px] font-bold mb-2 transition-colors duration-200 group-hover:text-[#08703A] text-[#15241B]"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   {st.title}
                 </h3>
                 <p
-                  className="text-[14px] leading-[1.6] max-w-[280px] mx-auto text-[#667069]"
+                  className="text-[13.5px] sm:text-[14px] leading-[1.6] max-w-[280px] mx-auto text-[#667069]"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   {st.desc}
                 </p>
+
+                {/* Mobile Vertical Connector Line */}
+                {i < 3 && (
+                  <div className="flex md:hidden justify-center items-center py-2">
+                    <div className="w-[2px] h-6 bg-[#08703A]/25 rounded-full" />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -810,9 +817,9 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
       </section>
 
       {/* ─── 07. Section: Capabilities in Action ───────────────────────────────── */}
-      <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]">
+      <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]">
         <div className="max-w-[1380px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 sm:mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-6">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
@@ -824,7 +831,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                 </span>
               </div>
               <h2
-                className="text-[34px] sm:text-[44px] lg:text-[48px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.08]"
+                className="text-[30px] sm:text-[44px] lg:text-[48px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.08]"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 Different Disciplines.
@@ -879,24 +886,24 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
                 key={cap.name}
                 href={cap.link}
                 onClick={(e) => handleNav(cap.link, e)}
-                className="group py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors duration-200 hover:bg-[#F9FAF8] px-3 sm:px-4 rounded-xl cursor-pointer"
+                className="group py-5 sm:py-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors duration-200 hover:bg-[#F9FAF8] px-3 sm:px-4 rounded-xl cursor-pointer"
               >
                 <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8">
                   <h3
-                    className="text-[20px] sm:text-[23px] font-bold text-[#15241B] group-hover:text-[#08703A] transition-colors min-w-[240px]"
+                    className="text-[18px] sm:text-[23px] font-bold text-[#15241B] group-hover:text-[#08703A] transition-colors min-w-[240px]"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
                     {cap.name}
                   </h3>
                   <p
-                    className="text-[14px] sm:text-[15px] text-[#69736C] max-w-[560px]"
+                    className="text-[13.5px] sm:text-[15px] text-[#69736C] max-w-[560px]"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     {cap.desc}
                   </p>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 text-[13.5px] font-[650] text-[#08703A] group-hover:text-[#065A2E] shrink-0">
+                <div className="inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] font-[650] text-[#08703A] group-hover:text-[#065A2E] shrink-0">
                   <span>Explore Service</span>
                   <span className="transition-transform duration-200 group-hover:translate-x-1">
                     →
@@ -910,7 +917,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
 
       {/* ─── 08. Section: Final CTA ────────────────────────────────────────────── */}
       <section
-        className="relative pt-[80px] sm:pt-[90px] pb-[90px] sm:pb-[100px] px-6 sm:px-8 lg:px-10 overflow-hidden border-b border-[rgba(255,255,255,0.08)]"
+        className="relative pt-14 sm:pt-[80px] pb-14 sm:pb-[90px] px-4 sm:px-8 lg:px-10 overflow-hidden border-b border-[rgba(255,255,255,0.08)]"
         style={{
           background:
             "linear-gradient(135deg, #075C31 0%, #086B39 55%, #075C31 100%)",
@@ -938,7 +945,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow Pill */}
           <div
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full mb-5 sm:mb-6"
             style={{
               background: "rgba(255, 255, 255, 0.09)",
               border: "1px solid rgba(255, 255, 255, 0.12)",
@@ -955,7 +962,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
 
           {/* Headline */}
           <h2
-            className="text-[38px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.03] max-w-[800px]"
+            className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.05] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
             Have Something
@@ -965,7 +972,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
 
           {/* Description */}
           <p
-            className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-[24px] sm:mt-[26px] mb-8 sm:mb-9 text-white/70"
+            className="text-[15px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-5 sm:mt-[26px] mb-7 sm:mb-9 text-white/75"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
             Whether you need a stronger brand, a better digital presence or a
@@ -974,11 +981,11 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
             <a
               href="/contact"
               onClick={(e) => handleNav("/contact", e)}
-              className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
               style={{
                 background: "#FFC21C",
                 color: "#15241B",
@@ -1005,7 +1012,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
             <a
               href="/services"
               onClick={(e) => handleNav("/services", e)}
-              className="inline-flex items-center justify-center h-[54px] px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
+              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
               style={{
                 background: "transparent",
                 border: "1px solid rgba(255, 255, 255, 0.32)",

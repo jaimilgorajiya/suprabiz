@@ -4,7 +4,23 @@
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #FAFBF7;
+  color: #17211B;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
 }
 
 :root {
@@ -20,24 +36,70 @@ body,
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--offwhite);
-  color: var(--dark);
-  -webkit-font-smoothing: antialiased;
+/* Ensure images never stretch or burst parents */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure section anchors respect sticky header on mobile and desktop */
+[id] {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  [id] {
+    scroll-margin-top: 84px;
+  }
+}
+
+/* Prevent auto-zoom on iOS when tapping inputs */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Global Responsive Container Utility */
+.site-container {
+  width: 100%;
+  max-width: 1380px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+@media (min-width: 480px) {
+  .site-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Manrope', sans-serif;
+  overflow-wrap: break-word;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--green-mid); border-radius: 3px; }
-
-/* Smooth scroll */
-html { scroll-behavior: smooth; }
 
 /* Animations */
 @keyframes float {

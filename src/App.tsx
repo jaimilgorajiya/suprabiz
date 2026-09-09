@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logoImg from "@/imports/WhatsApp_Image_2026-09-07_at_3.33.34_PM.jpeg";
 import headerLogoImg from "@/imports/suprabiz-logo-header.png";
 import heroMarketingImg from "@/imports/suprabiz-hero-digital-marketing.jpg";
@@ -548,31 +548,32 @@ function TopAnnouncementBar() {
       style={{
         background: "#075C31",
         color: "#FFFFFF",
-        height: "36px",
+        minHeight: "32px",
+        height: "auto",
       }}
     >
-      <div className="max-w-[1380px] mx-auto h-full px-7 lg:px-10 flex items-center justify-between text-[11px] sm:text-xs font-medium tracking-[0.02em]">
+      <div className="max-w-[1380px] mx-auto py-1 sm:py-0 sm:h-[34px] px-4 sm:px-7 lg:px-10 flex items-center justify-between text-[11px] sm:text-xs font-medium tracking-[0.02em]">
         {/* Left */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 truncate max-w-full">
           <span
             className="w-2 h-2 rounded-full flex-shrink-0"
             style={{ background: "#FFC21C" }}
           />
-          <span className="font-semibold text-white/95">
+          <span className="font-semibold text-white/95 whitespace-nowrap">
             Grow Your Brand With SUPRA BIZ
           </span>
           <span className="hidden md:inline text-white/40">•</span>
-          <span className="hidden md:inline text-white/80 text-[11px] font-normal">
+          <span className="hidden md:inline text-white/80 text-[11px] font-normal truncate">
             Ahmedabad's Leading Branding &amp; Digital Marketing Agency
           </span>
         </div>
 
         {/* Right */}
-        <div className="hidden sm:flex items-center gap-5">
-          <span className="tracking-wider text-[11px] font-semibold uppercase text-white/70">
+        <div className="hidden sm:flex items-center gap-4 lg:gap-5 flex-shrink-0">
+          <span className="hidden lg:inline tracking-wider text-[11px] font-semibold uppercase text-white/70">
             CREATIVE • STRATEGIC • DIGITAL
           </span>
-          <span className="text-white/30">|</span>
+          <span className="hidden lg:inline text-white/30">|</span>
           <a
             href="tel:+919313009073"
             className="hover:underline flex items-center gap-1 text-[11px] font-semibold text-white/90 hover:text-white transition-colors"
@@ -606,6 +607,18 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
   const [activeSection, setActiveSection] = useState("home");
   const courseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const headerRef = useRef<HTMLElement | null>(null);
+
+  // Lock body scroll while mobile drawer is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   const isAboutRoute =
     currentPath === "/about" ||
@@ -693,6 +706,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
     const handleClickOutside = (e: MouseEvent) => {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
         setCourseOpen(false);
+        setMobileOpen(false);
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -747,8 +761,8 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
         aria-label="Main Navigation"
       >
         <div
-          className="max-w-[1380px] mx-auto px-7 lg:px-10 flex items-center justify-between min-[960px]:block transition-all duration-300"
-          style={{ height: scrolled ? "80px" : "84px" }}
+          className="max-w-[1380px] mx-auto px-4 sm:px-7 lg:px-10 flex items-center justify-between min-[960px]:block transition-all duration-300"
+          style={{ height: scrolled ? "70px" : "76px" }}
         >
           {/* Desktop 3-Column Grid Layout: 180px Logo | 1fr Nav | 180px CTA */}
           <div className="hidden min-[960px]:grid grid-cols-[180px_1fr_180px] items-center w-full h-full">
@@ -766,13 +780,13 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
               >
                 <SuprabizLogo
                   isHeader
-                  className="w-[96px] xl:w-[100px] h-auto max-h-[60px] xl:max-h-[62px] object-contain object-left block"
+                  className="w-[96px] xl:w-[100px] h-auto max-h-[58px] xl:max-h-[62px] object-contain object-left block"
                 />
               </a>
             </div>
 
             {/* 2. Centered Navigation (Middle) */}
-            <div className="justify-self-center flex items-center gap-9 lg:gap-10">
+            <div className="justify-self-center flex items-center gap-8 lg:gap-10">
               {navLinks.map((item) => {
                 if (item.isDropdown) {
                   const isActive = isCoursesRoute;
@@ -869,7 +883,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                   e.preventDefault();
                   if (onNavigate) onNavigate("/contact");
                 }}
-                className="group inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-semibold text-white cursor-pointer transition-all duration-200"
+                className="group inline-flex items-center gap-2 h-[44px] px-6 rounded-full text-[14px] font-semibold text-white cursor-pointer transition-all duration-200"
                 style={{
                   background: "#08703A",
                   fontFamily: "Manrope, sans-serif",
@@ -909,36 +923,36 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
             >
               <SuprabizLogo
                 isHeader
-                className="w-[76px] sm:w-[82px] md:w-[88px] h-auto max-h-[52px] md:max-h-[56px] object-contain object-left block"
+                className="w-[78px] sm:w-[84px] h-auto max-h-[50px] object-contain object-left block"
               />
             </a>
 
             <button
               type="button"
-              className="flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-emerald-950/5 transition-colors focus:outline-none"
+              className="flex flex-col justify-center items-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl hover:bg-emerald-950/5 active:bg-emerald-950/10 transition-colors focus:outline-none"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={mobileOpen}
             >
               <span
-                className="block h-[2px] w-5 rounded-full transition-all duration-300"
+                className="block h-[2.5px] w-6 rounded-full transition-all duration-300"
                 style={{
                   background: "#08703A",
-                  transform: mobileOpen ? "rotate(45deg) translateY(6px)" : "",
+                  transform: mobileOpen ? "rotate(45deg) translateY(6.5px)" : "",
                 }}
               />
               <span
-                className="block h-[2px] w-5 rounded-full my-1 transition-all duration-300"
+                className="block h-[2.5px] w-6 rounded-full my-1.5 transition-all duration-300"
                 style={{
                   background: "#08703A",
                   opacity: mobileOpen ? 0 : 1,
                 }}
               />
               <span
-                className="block h-[2px] w-5 rounded-full transition-all duration-300"
+                className="block h-[2.5px] w-6 rounded-full transition-all duration-300"
                 style={{
                   background: "#08703A",
-                  transform: mobileOpen ? "rotate(-45deg) translateY(-6px)" : "",
+                  transform: mobileOpen ? "rotate(-45deg) translateY(-6.5px)" : "",
                 }}
               />
             </button>
@@ -948,7 +962,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
         {/* Mobile Navigation Drawer / Panel */}
         {mobileOpen && (
           <div
-            className="min-[960px]:hidden border-t bg-white px-6 py-5 max-h-[80vh] overflow-y-auto shadow-2xl transition-all"
+            className="min-[960px]:hidden border-t bg-white px-5 sm:px-7 py-5 max-h-[calc(100vh-100px)] overflow-y-auto shadow-2xl transition-all"
             style={{ borderColor: "rgba(10, 60, 35, 0.08)" }}
           >
             <div className="flex flex-col gap-1">
@@ -962,31 +976,31 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       <button
                         type="button"
                         onClick={() => setMobileCourseOpen(!mobileCourseOpen)}
-                        className="w-full flex items-center justify-between py-2.5 text-base font-semibold text-[#16251C] hover:text-[#08703A] transition-colors"
+                        className="w-full min-h-[48px] flex items-center justify-between py-2.5 text-[17px] font-semibold text-[#16251C] hover:text-[#08703A] transition-colors"
                         aria-expanded={mobileCourseOpen}
                       >
-                        <span className="flex items-center gap-2">
+                        <span className="flex items-center gap-2.5">
                           <span>{item.name}</span>
                           <span
-                            className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
+                            className="text-[10.5px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
                             style={{ background: "rgba(8, 112, 58, 0.1)", color: "#08703A" }}
                           >
                             9 Courses
                           </span>
                         </span>
-                        <ChevronDownIcon isOpen={mobileCourseOpen} className="w-4 h-4 text-emerald-800" />
+                        <ChevronDownIcon isOpen={mobileCourseOpen} className="w-4 h-4 text-[#08703A]" />
                       </button>
 
                       {/* Mobile Course Accordion Content */}
                       {mobileCourseOpen && (
-                        <div className="pl-2 pr-1 pb-4 pt-2 space-y-4">
+                        <div className="pl-3 pr-2 pb-4 pt-2 space-y-4 bg-[#F8FAF7] rounded-xl my-1 p-3">
                           {/* SOCIAL MEDIA */}
                           <div>
-                            <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
                               Social Media
                             </p>
-                            <div className="space-y-1 pl-2.5">
+                            <div className="space-y-1.5 pl-2.5">
                               <a
                                 href="/courses#social-media"
                                 onClick={(e) => {
@@ -994,7 +1008,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#social-media");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Social Media Marketing Course
                               </a>
@@ -1005,7 +1019,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#social-media");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Instagram Marketing Course
                               </a>
@@ -1016,7 +1030,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#social-media");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Facebook Marketing Course
                               </a>
@@ -1027,7 +1041,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#social-media");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Linkedin Marketing Course
                               </a>
@@ -1036,11 +1050,11 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
                           {/* SEARCH & ADS */}
                           <div>
-                            <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
                               Search &amp; Ads
                             </p>
-                            <div className="space-y-1 pl-2.5">
+                            <div className="space-y-1.5 pl-2.5">
                               <a
                                 href="/courses#search-ads"
                                 onClick={(e) => {
@@ -1048,7 +1062,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#search-ads");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 SEO Specialist Course
                               </a>
@@ -1059,7 +1073,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#search-ads");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Google Ads Course
                               </a>
@@ -1070,7 +1084,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#search-ads");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Performance Marketing Course
                               </a>
@@ -1079,11 +1093,11 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
                           {/* DATA & ANALYTICS */}
                           <div>
-                            <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
                               Data &amp; Analytics
                             </p>
-                            <div className="space-y-1 pl-2.5">
+                            <div className="space-y-1.5 pl-2.5">
                               <a
                                 href="/courses#data-analytics"
                                 onClick={(e) => {
@@ -1091,7 +1105,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#data-analytics");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Google Analytics Course
                               </a>
@@ -1102,7 +1116,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                                   setMobileOpen(false);
                                   if (onNavigate) onNavigate("/courses#data-analytics");
                                 }}
-                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Digital Marketing &amp; Data Analytics Course
                               </a>
@@ -1110,7 +1124,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                           </div>
 
                           {/* Bottom Explore CTAs */}
-                          <div className="pt-2 pl-2.5 flex flex-col gap-2">
+                          <div className="pt-2 pl-2.5 flex flex-col gap-2 border-t border-[#08703A]/10">
                             <a
                               href="/courses"
                               onClick={(e) => {
@@ -1120,7 +1134,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                               }}
                               className="inline-flex items-center gap-1.5 text-xs font-bold text-[#08703A]"
                             >
-                              <span>Explore All Courses</span>
+                              <span>Explore All 9 Courses</span>
                               <span>→</span>
                             </a>
                             <a
@@ -1153,12 +1167,13 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                   : isContactRoute
                   ? item.id === "contact"
                   : item.id === "home";
+
                 return (
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`py-3 text-base font-semibold border-b border-emerald-950/5 transition-colors ${
-                      isActive ? "text-[#08703A]" : "text-[#16251C] hover:text-[#08703A]"
+                    className={`min-h-[48px] flex items-center py-2.5 text-[17px] font-semibold border-b border-emerald-950/5 transition-colors ${
+                      isActive ? "text-[#08703A] font-bold" : "text-[#16251C] hover:text-[#08703A]"
                     }`}
                     onClick={(e) => {
                       setMobileOpen(false);
@@ -1191,10 +1206,10 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
               })}
 
               {/* Mobile "Let's Talk →" Button */}
-              <div className="pt-5 pb-2">
+              <div className="pt-6 pb-2">
                 <a
                   href="/contact"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-base font-semibold text-white shadow-md transition-transform active:scale-98"
+                  className="w-full flex items-center justify-center gap-2 h-[50px] min-h-[48px] rounded-full text-[15px] font-semibold text-white shadow-md transition-transform active:scale-98"
                   style={{ background: "#08703A" }}
                   onClick={(e) => {
                     e.preventDefault();
@@ -1271,7 +1286,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
   return (
     <section
       id="home"
-      className="relative min-h-[680px] lg:min-h-[740px] flex items-center pt-8 sm:pt-12 lg:pt-14 pb-14 sm:pb-18 px-6 sm:px-8 lg:px-10 overflow-hidden"
+      className="relative min-h-[640px] lg:min-h-[740px] flex items-center pt-6 sm:pt-12 lg:pt-14 pb-12 sm:pb-18 px-4 sm:px-8 lg:px-10 overflow-hidden"
       style={{
         background:
           "linear-gradient(135deg, #FBFCF8 0%, #F6F9F5 60%, #F8FAF6 100%)",
@@ -1297,23 +1312,23 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
       />
 
       <div className="max-w-[1380px] mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-12 lg:gap-14 xl:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-14 xl:gap-16 items-center">
           {/* Left Content Column */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start w-full">
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6 sm:mb-8 transition-transform duration-200 hover:scale-[1.02]"
+              className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-8 transition-transform duration-200 hover:scale-[1.02]"
               style={{
                 background: "#EEF5F0",
                 border: "1px solid rgba(8, 112, 58, 0.14)",
               }}
             >
               <span
-                className="w-2 h-2 rounded-full"
+                className="w-2 h-2 rounded-full flex-shrink-0"
                 style={{ background: "#FFC21C" }}
               />
               <span
-                className="text-[11px] sm:text-[12px] font-bold tracking-[0.12em] uppercase"
+                className="text-[10.5px] sm:text-[12px] font-bold tracking-[0.12em] uppercase"
                 style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
               >
                 CREATIVE • STRATEGIC • DIGITAL
@@ -1322,7 +1337,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
             {/* Headline */}
             <h1
-              className="text-[44px] sm:text-[56px] md:text-[62px] lg:text-[66px] xl:text-[76px] font-extrabold tracking-[-0.04em] leading-[0.98] sm:leading-[1.0] mb-6"
+              className="text-[38px] xs:text-[44px] sm:text-[56px] md:text-[62px] lg:text-[66px] xl:text-[76px] font-extrabold tracking-[-0.04em] leading-[1.02] sm:leading-[1.0] mb-5 sm:mb-6"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
               <span className="block" style={{ color: "#15241B" }}>
@@ -1353,7 +1368,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
             {/* Description */}
             <p
-              className="text-[17px] sm:text-[19px] max-w-[580px] leading-[1.65] mb-8 sm:mb-9"
+              className="text-[15.5px] sm:text-[18px] md:text-[19px] max-w-[580px] leading-[1.65] mb-8 sm:mb-9"
               style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
             >
               SUPRABIZ helps ambitious businesses build powerful brands, create
@@ -1361,7 +1376,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-9 sm:mb-10 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 sm:mb-10 w-full sm:w-auto">
               <a
                 href="/contact"
                 onClick={(e) => {
@@ -1369,7 +1384,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/contact");
                   else window.location.pathname = "/contact";
                 }}
-                className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+                className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
                 style={{
                   background: "#FFC21C",
                   color: "#15241B",
@@ -1398,7 +1413,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/services");
                   else window.location.pathname = "/services";
                 }}
-                className="inline-flex items-center justify-center h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+                className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
                 style={{
                   background: "transparent",
                   border: "1.5px solid #08703A",
@@ -1486,10 +1501,9 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
             {/* Mobile-only trust strip directly below image with Increasing Numbers */}
             <div
-              className="flex sm:hidden items-center justify-between pt-7 mt-8 border-t w-full"
-              style={{ borderColor: "rgba(8, 112, 58, 0.12)" }}
+              className="grid grid-cols-3 divide-x divide-[#08703A]/15 pt-6 mt-7 border-t border-[#08703A]/12 w-full text-center sm:hidden"
             >
-              <div>
+              <div className="px-1">
                 <div
                   className="text-[22px] font-bold leading-tight"
                   style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
@@ -1497,19 +1511,14 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   <AnimatedCounter target={50} suffix="+" />
                 </div>
                 <div
-                  className="text-[11px] font-medium mt-0.5"
+                  className="text-[10.5px] font-medium mt-0.5"
                   style={{ color: "#7A827D", fontFamily: "Inter, sans-serif" }}
                 >
                   Brands Built
                 </div>
               </div>
 
-              <div
-                className="h-8 w-[1px]"
-                style={{ background: "rgba(8, 112, 58, 0.12)" }}
-              />
-
-              <div>
+              <div className="px-1">
                 <div
                   className="text-[22px] font-bold leading-tight"
                   style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
@@ -1517,19 +1526,14 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   <AnimatedCounter target={100} suffix="+" />
                 </div>
                 <div
-                  className="text-[11px] font-medium mt-0.5"
+                  className="text-[10.5px] font-medium mt-0.5"
                   style={{ color: "#7A827D", fontFamily: "Inter, sans-serif" }}
                 >
                   Projects
                 </div>
               </div>
 
-              <div
-                className="h-8 w-[1px]"
-                style={{ background: "rgba(8, 112, 58, 0.12)" }}
-              />
-
-              <div>
+              <div className="px-1">
                 <div
                   className="text-[22px] font-bold leading-tight"
                   style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
@@ -1537,7 +1541,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   <AnimatedCounter target={95} suffix="%" />
                 </div>
                 <div
-                  className="text-[11px] font-medium mt-0.5"
+                  className="text-[10.5px] font-medium mt-0.5"
                   style={{ color: "#7A827D", fontFamily: "Inter, sans-serif" }}
                 >
                   Satisfaction
@@ -1565,10 +1569,10 @@ function HeroVisual() {
 
       {/* Main Image Container */}
       <div
-        className="relative w-full h-[440px] sm:h-[510px] lg:h-[550px] xl:h-[580px] rounded-[28px] lg:rounded-[32px] overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.01]"
+        className="relative w-full h-[340px] xs:h-[400px] sm:h-[500px] lg:h-[550px] xl:h-[580px] rounded-[22px] sm:rounded-[28px] lg:rounded-[32px] overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.01]"
         style={{
           border: "1px solid rgba(8, 112, 58, 0.08)",
-          boxShadow: "0 30px 70px rgba(20, 55, 35, 0.12)",
+          boxShadow: "0 24px 60px rgba(20, 55, 35, 0.10)",
           background: "#FFFFFF",
         }}
       >
@@ -1581,15 +1585,14 @@ function HeroVisual() {
 
         {/* Subtle Top Inner Edge Highlight */}
         <div
-          className="absolute inset-0 pointer-events-none rounded-[28px] lg:rounded-[32px]"
+          className="absolute inset-0 pointer-events-none rounded-[22px] sm:rounded-[28px] lg:rounded-[32px]"
           style={{
             boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.5)",
           }}
         />
-
       </div>
 
-      {/* Floating Card 1: SEO & Performance (Top Right) */}
+      {/* Floating Card 1: SEO & Performance (Top Right - Desktop/Tablet Only) */}
       <div
         className="hidden sm:block absolute -top-4 sm:-top-5 -right-2 sm:-right-5 z-20 transition-all duration-300 group-hover:-translate-y-[2px]"
         style={{
@@ -1651,9 +1654,9 @@ function HeroVisual() {
         </div>
       </div>
 
-      {/* Floating Card 2: Social Media (Bottom Left) */}
+      {/* Floating Card 2: Social Media (Repositioned safely on mobile so it never spills over) */}
       <div
-        className="absolute -bottom-4 sm:-bottom-5 -left-2 sm:-left-5 z-20 transition-all duration-300 group-hover:-translate-y-[2px]"
+        className="absolute bottom-3 left-3 sm:-bottom-5 sm:-left-5 z-20 transition-all duration-300 group-hover:-translate-y-[2px] max-w-[calc(100%-24px)]"
         style={{
           background: "rgba(255, 255, 255, 0.95)",
           backdropFilter: "blur(14px)",
@@ -1661,11 +1664,11 @@ function HeroVisual() {
           border: "1px solid rgba(8, 112, 58, 0.08)",
           borderRadius: "16px",
           boxShadow: "0 14px 35px rgba(20, 55, 35, 0.12)",
-          padding: "14px 18px",
-          minWidth: "185px",
+          padding: "10px 14px sm:14px sm:18px",
+          minWidth: "165px",
         }}
       >
-        <div className="flex items-center justify-between gap-3 mb-1.5">
+        <div className="flex items-center justify-between gap-3 mb-1">
           <div className="flex items-center gap-1.5">
             <span
               className="w-1.5 h-1.5 rounded-full"
@@ -1698,14 +1701,14 @@ function HeroVisual() {
         </div>
 
         <div
-          className="text-[15px] sm:text-[16px] font-bold leading-tight mb-1"
+          className="text-[14px] sm:text-[16px] font-bold leading-tight mb-0.5 sm:mb-1"
           style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
         >
           Social Media
         </div>
 
         <div
-          className="text-[10px] sm:text-[11px] font-medium"
+          className="text-[9.5px] sm:text-[11px] font-medium"
           style={{ color: "#69736C", fontFamily: "Inter, sans-serif" }}
         >
           Content • Creative • Growth
@@ -1828,13 +1831,13 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
 
   return (
-    <section id="about" className="py-24 sm:py-28 px-6 sm:px-8 lg:px-10" style={{ background: "var(--offwhite)" }}>
+    <section id="about" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "var(--offwhite)" }}>
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start w-full">
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-6">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-5 sm:mb-6">
               <span className="w-2 h-2 rounded-full bg-[#08703A]" />
               <span
                 className="text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
@@ -1846,7 +1849,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
             {/* Headline */}
             <h2
-              className="text-[34px] sm:text-[42px] lg:text-[46px] font-extrabold mb-6 leading-[1.14] text-[#15241B]"
+              className="text-[28px] xs:text-[34px] sm:text-[42px] lg:text-[46px] font-extrabold mb-5 sm:mb-6 leading-[1.14] text-[#15241B]"
               style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "-0.03em" }}
             >
               We turn ideas into brands people remember.
@@ -1854,7 +1857,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
             {/* Paragraphs */}
             <p
-              className="text-[16px] sm:text-[17px] mb-5 leading-[1.68] text-[#526056]"
+              className="text-[15.5px] sm:text-[17px] mb-4 sm:mb-5 leading-[1.68] text-[#526056]"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               SUPRABIZ is a full-service branding and digital marketing agency based in Ahmedabad, Gujarat.
@@ -1863,7 +1866,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
             </p>
 
             <p
-              className="text-[15px] sm:text-[16px] leading-[1.68] mb-8 text-[#66736A]"
+              className="text-[14.5px] sm:text-[16px] leading-[1.68] mb-7 sm:mb-8 text-[#66736A]"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               From startups finding their voice to established companies ready to evolve — we bring
@@ -1871,7 +1874,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
             </p>
 
             {/* Value Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-9 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 sm:mb-9 w-full">
               {[
                 { title: "Strategic Clarity", desc: "Positioning built to cut through market noise" },
                 { title: "Creative Craft", desc: "Design systems tailored to inspire trust" },
@@ -1898,7 +1901,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
             </div>
 
             {/* CTAs */}
-            <div className="flex items-center gap-4 flex-wrap">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <a
                 href="/about"
                 onClick={(e) => {
@@ -1906,7 +1909,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/about");
                   else window.location.pathname = "/about";
                 }}
-                className="inline-flex items-center gap-2.5 h-[50px] px-7 rounded-full text-[14.5px] font-semibold text-white transition-all duration-200 cursor-pointer shadow-[0_6px_20px_rgba(8,112,58,0.20)] hover:bg-[#065A2E] hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2.5 h-[50px] px-7 rounded-full text-[14.5px] font-semibold text-white transition-all duration-200 cursor-pointer shadow-[0_6px_20px_rgba(8,112,58,0.20)] hover:bg-[#065A2E] hover:-translate-y-0.5 w-full sm:w-auto text-center"
                 style={{ background: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
                 <span>Discover Our Story</span>
@@ -1919,7 +1922,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/services");
                   else window.location.pathname = "/services";
                 }}
-                className="inline-flex items-center gap-2 h-[50px] px-6 rounded-full text-[14.5px] font-semibold text-[#15241B] bg-white border border-[#08703A]/20 hover:border-[#08703A] hover:bg-[#F2F7F4] transition-all duration-200 cursor-pointer hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 h-[50px] px-6 rounded-full text-[14.5px] font-semibold text-[#15241B] bg-white border border-[#08703A]/20 hover:border-[#08703A] hover:bg-[#F2F7F4] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 w-full sm:w-auto text-center"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 <span>See what we do</span>
@@ -2064,25 +2067,25 @@ const services = [
 function Services({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
-    <section id="services" className="py-28 px-6" style={{ background: "#fff" }}>
+    <section id="services" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "#fff" }}>
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-5">
+        <div ref={ref} className="reveal text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4 sm:mb-5">
             <span className="gold-dot" />
             <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>WHAT WE DO</span>
           </div>
           <h2
-            className="text-4xl md:text-5xl font-extrabold mb-4 mx-auto max-w-2xl leading-tight"
+            className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold mb-3 sm:mb-4 mx-auto max-w-2xl leading-[1.15]"
             style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
           >
             Everything your brand needs to grow.
           </h2>
-          <p className="text-lg mx-auto max-w-xl" style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>
+          <p className="text-[15.5px] sm:text-lg mx-auto max-w-xl text-[#66736A]" style={{ fontFamily: "Inter" }}>
             From identity to performance — we handle it all under one roof.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {services.map((s) => (
             <div
               key={s.title}
@@ -2090,19 +2093,19 @@ function Services({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 if (onNavigate) onNavigate(s.href);
                 else window.location.href = s.href;
               }}
-              className="service-card rounded-2xl p-7 cursor-pointer group hover:-translate-y-1 hover:shadow-lg transition-all"
+              className="service-card rounded-2xl p-6 sm:p-7 cursor-pointer group hover:-translate-y-1 hover:shadow-lg transition-all"
               style={{ background: "var(--offwhite)", border: "1.5px solid var(--border-light)" }}
             >
               <div
-                className="text-2xl mb-5 w-12 h-12 flex items-center justify-center rounded-xl transition-colors group-hover:bg-[#08703A] group-hover:text-white"
+                className="text-2xl mb-4 sm:mb-5 w-12 h-12 flex items-center justify-center rounded-xl transition-colors group-hover:bg-[#08703A] group-hover:text-white"
                 style={{ background: "rgba(7,92,42,0.08)", color: "var(--green-dark)" }}
               >
                 {s.icon}
               </div>
-              <h3 className="text-lg font-bold mb-3 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>
+              <h3 className="text-lg font-bold mb-2.5 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>
                 {s.title}
               </h3>
-              <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>
+              <p className="text-[13.5px] sm:text-sm leading-relaxed mb-5 text-[#66736A]" style={{ fontFamily: "Inter" }}>
                 {s.desc}
               </p>
               <span className="text-sm font-semibold flex items-center gap-1 transition-all group-hover:gap-2 group-hover:text-[#08703A]" style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}>
@@ -2112,7 +2115,7 @@ function Services({ onNavigate }: { onNavigate?: (path: string) => void }) {
           ))}
         </div>
 
-        <div className="mt-14 text-center">
+        <div className="mt-10 sm:mt-14 text-center">
           <a
             href="/services"
             onClick={(e) => {
@@ -2120,7 +2123,7 @@ function Services({ onNavigate }: { onNavigate?: (path: string) => void }) {
               if (onNavigate) onNavigate("/services");
               else window.location.pathname = "/services";
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-bold text-white transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto text-center"
             style={{ background: "#08703A", fontFamily: "Manrope, sans-serif" }}
           >
             <span>Explore All Services &amp; Capabilities</span>
@@ -2145,7 +2148,7 @@ const courseModules = [
 function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
-    <section id="course" className="py-28 px-6 relative overflow-hidden" style={{ background: "var(--offwhite)" }}>
+    <section id="course" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 relative overflow-hidden" style={{ background: "var(--offwhite)" }}>
       {/* Decorative bg element */}
       <div
         className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none"
@@ -2154,37 +2157,37 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-14 items-center mb-16">
+        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-12 sm:mb-16">
           <div>
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-3 mb-4 sm:mb-5">
               <span className="gold-dot" />
               <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>LEARN WITH SUPRABIZ</span>
             </div>
             <h2
-              className="text-4xl md:text-5xl font-extrabold mb-5 leading-tight"
+              className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold mb-4 sm:mb-5 leading-[1.12]"
               style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
             >
               Master Digital Marketing.
               <br />
               <span style={{ color: "var(--green-dark)" }}>From Zero to Pro.</span>
             </h2>
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: "rgba(23,33,27,0.65)", fontFamily: "Inter" }}>
+            <p className="text-[15.5px] sm:text-lg mb-7 sm:mb-8 leading-relaxed text-[#5A665E]" style={{ fontFamily: "Inter" }}>
               Our hands-on Digital Marketing Course is built by practitioners, not professors.
               Learn the exact strategies, tools and frameworks we use every day to grow real brands —
               and apply them to your own career or business.
             </p>
-            <div className="flex flex-wrap gap-4 mb-8">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style={{ background: "#fff", border: "1px solid var(--border-light)", color: "var(--dark)" }}>
+            <div className="flex flex-wrap gap-2.5 sm:gap-4 mb-7 sm:mb-8">
+              <div className="flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-white border border-[#08703A]/15 text-[#15241B]">
                 <span style={{ color: "#FFC515" }}>✦</span> Live + Recorded Sessions
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style={{ background: "#fff", border: "1px solid var(--border-light)", color: "var(--dark)" }}>
+              <div className="flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-white border border-[#08703A]/15 text-[#15241B]">
                 <span style={{ color: "#FFC515" }}>✦</span> Certificate of Completion
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium" style={{ background: "#fff", border: "1px solid var(--border-light)", color: "var(--dark)" }}>
+              <div className="flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium bg-white border border-[#08703A]/15 text-[#15241B]">
                 <span style={{ color: "#FFC515" }}>✦</span> Placement Support
               </div>
             </div>
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href="/courses"
                 onClick={(e) => {
@@ -2192,10 +2195,11 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/courses");
                   else window.location.pathname = "/courses";
                 }}
-                className="btn-arrow inline-flex items-center px-7 py-4 rounded-full font-bold text-sm cursor-pointer hover:shadow-lg transition-all"
+                className="btn-arrow inline-flex items-center justify-center px-7 py-3.5 sm:py-4 rounded-full font-bold text-sm cursor-pointer hover:shadow-lg transition-all w-full sm:w-auto text-center"
                 style={{ background: "var(--gold)", color: "var(--dark)", fontFamily: "Manrope" }}
               >
-                Explore All 9 Courses →
+                <span>Explore All 9 Courses</span>
+                <span>→</span>
               </a>
               <a
                 href="/contact"
@@ -2204,7 +2208,7 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/contact");
                   else window.location.pathname = "/contact";
                 }}
-                className="btn-arrow inline-flex items-center px-7 py-4 rounded-full font-semibold text-sm border-2 cursor-pointer hover:bg-[#08703A] hover:text-white transition-all"
+                className="btn-arrow inline-flex items-center justify-center px-7 py-3.5 sm:py-4 rounded-full font-semibold text-sm border-2 cursor-pointer hover:bg-[#08703A] hover:text-white transition-all w-full sm:w-auto text-center"
                 style={{ borderColor: "var(--green-dark)", color: "var(--green-dark)", fontFamily: "Manrope" }}
               >
                 Get Syllabus &amp; Enroll
@@ -2214,7 +2218,7 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
           {/* Course highlight card */}
           <div
-            className="rounded-3xl p-8 relative overflow-hidden"
+            className="rounded-3xl p-6 sm:p-8 relative overflow-hidden"
             style={{ background: "var(--green-dark)", minHeight: "320px" }}
           >
             {/* Decorative squares */}
@@ -2234,14 +2238,14 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
               🎓 DIGITAL MARKETING ACADEMY
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
               {[
                 { v: "9", l: "Courses" },
                 { v: "3 mo", l: "Duration" },
                 { v: "Live", l: "Mentorship" },
                 { v: "100%", l: "Practical Projects" },
               ].map(({ v, l }) => (
-                <div key={l} className="rounded-xl p-4" style={{ background: "rgba(250,251,247,0.07)" }}>
+                <div key={l} className="rounded-xl p-3.5 sm:p-4" style={{ background: "rgba(250,251,247,0.07)" }}>
                   <div className="text-xl font-extrabold mb-0.5" style={{ color: "#FFC515", fontFamily: "Manrope" }}>{v}</div>
                   <div className="text-xs" style={{ color: "rgba(250,251,247,0.6)", fontFamily: "Inter" }}>{l}</div>
                 </div>
@@ -2267,7 +2271,7 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
         </div>
 
         {/* Modules grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
           {courseModules.map((m) => (
             <div
               key={m.n}
@@ -2275,7 +2279,7 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 if (onNavigate) onNavigate("/courses");
                 else window.location.pathname = "/courses";
               }}
-              className="rounded-2xl p-6 flex gap-4 items-start cursor-pointer hover:border-[#08703A] hover:-translate-y-0.5 transition-all hover:shadow-md group"
+              className="rounded-2xl p-5 sm:p-6 flex gap-4 items-start cursor-pointer hover:border-[#08703A] hover:-translate-y-0.5 transition-all hover:shadow-md group"
               style={{ background: "#fff", border: "1.5px solid var(--border-light)" }}
             >
               <div
@@ -2286,7 +2290,7 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
               </div>
               <div>
                 <h4 className="text-sm font-bold mb-1 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>{m.t}</h4>
-                <p className="text-xs leading-relaxed" style={{ color: "rgba(23,33,27,0.55)", fontFamily: "Inter" }}>{m.d}</p>
+                <p className="text-xs leading-relaxed text-[#69736C]" style={{ fontFamily: "Inter" }}>{m.d}</p>
               </div>
             </div>
           ))}
@@ -2307,29 +2311,29 @@ const whyPoints = [
 function WhyUs() {
   const ref = useReveal();
   return (
-    <section className="py-28 px-6" style={{ background: "var(--green-dark)" }}>
+    <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "var(--green-dark)" }}>
       <div className="max-w-7xl mx-auto">
         <div ref={ref} className="reveal">
-          <div className="flex items-center gap-3 mb-5">
-            <span style={{ width: 8, height: 8, background: "#FFC515", borderRadius: "50%", display: "inline-block" }} />
+          <div className="flex items-center gap-3 mb-4 sm:mb-5">
+            <span style={{ width: 8, height: 8, background: "#FFC21C", borderRadius: "50%", display: "inline-block" }} />
             <span className="text-xs font-bold tracking-widest" style={{ color: "rgba(250,251,247,0.5)", fontFamily: "Inter" }}>WHY SUPRABIZ</span>
           </div>
           <h2
-            className="text-4xl md:text-5xl font-extrabold mb-16 max-w-xl leading-tight"
+            className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[50px] font-extrabold mb-10 sm:mb-16 max-w-xl leading-[1.12]"
             style={{ color: "#FAFBF7", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
           >
             Creativity backed by strategy.
           </h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {whyPoints.map((p) => (
               <div
                 key={p.n}
-                className="rounded-2xl p-7"
+                className="rounded-2xl p-6 sm:p-7"
                 style={{ background: "rgba(250,251,247,0.06)", border: "1px solid rgba(250,251,247,0.1)" }}
               >
-                <div className="text-xs font-bold mb-4" style={{ color: "#FFC515", fontFamily: "Manrope" }}>{p.n}</div>
-                <h3 className="text-lg font-bold mb-3" style={{ color: "#FAFBF7", fontFamily: "Manrope" }}>{p.t}</h3>
+                <div className="text-xs font-bold mb-3.5 sm:mb-4" style={{ color: "#FFC515", fontFamily: "Manrope" }}>{p.n}</div>
+                <h3 className="text-lg font-bold mb-2.5 sm:mb-3" style={{ color: "#FAFBF7", fontFamily: "Manrope" }}>{p.t}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(250,251,247,0.6)", fontFamily: "Inter" }}>{p.d}</p>
               </div>
             ))}
@@ -2379,22 +2383,22 @@ const projects = [
 function Portfolio({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
-    <section id="our-work" className="py-28 px-6" style={{ background: "var(--offwhite)" }}>
+    <section id="our-work" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "var(--offwhite)" }}>
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div ref={ref} className="reveal flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 gap-6">
           <div>
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-3 mb-4 sm:mb-5">
               <span className="gold-dot" />
               <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>SELECTED WORK</span>
             </div>
             <h2
-              className="text-4xl md:text-5xl font-extrabold leading-tight"
+              className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold leading-[1.14]"
               style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
             >
               Work we're proud of.
             </h2>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <a
               href="/our-work"
               onClick={(e) => {
@@ -2421,7 +2425,7 @@ function Portfolio({ onNavigate }: { onNavigate?: (path: string) => void }) {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
           {projects.map((p) => (
             <div
               key={p.name}
@@ -2429,7 +2433,7 @@ function Portfolio({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 if (onNavigate) onNavigate("/our-work");
               }}
               className="portfolio-card rounded-3xl overflow-hidden relative cursor-pointer"
-              style={{ height: "320px", background: p.bg }}
+              style={{ height: "300px", background: p.bg }}
             >
               <img
                 src={p.imgUrl}
@@ -2440,7 +2444,7 @@ function Portfolio({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 className="portfolio-overlay absolute inset-0"
                 style={{ background: `linear-gradient(135deg, ${p.bg}e0 0%, ${p.bg}80 100%)` }}
               />
-              <div className="absolute inset-0 p-8 flex flex-col justify-between">
+              <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
                 <span
                   className="self-start px-3 py-1.5 rounded-full text-xs font-semibold"
                   style={{ background: p.accent, color: "#17211B" }}
@@ -2448,7 +2452,7 @@ function Portfolio({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   {p.tag}
                 </span>
                 <div>
-                  <h3 className="text-2xl font-extrabold mb-1" style={{ color: "#FAFBF7", fontFamily: "Manrope" }}>{p.name}</h3>
+                  <h3 className="text-xl sm:text-2xl font-extrabold mb-1" style={{ color: "#FAFBF7", fontFamily: "Manrope" }}>{p.name}</h3>
                   <p className="text-sm" style={{ color: "rgba(250,251,247,0.7)", fontFamily: "Inter" }}>{p.category}</p>
                 </div>
               </div>
@@ -2471,15 +2475,15 @@ const steps = [
 function Process() {
   const ref = useReveal();
   return (
-    <section className="py-28 px-6" style={{ background: "#fff" }}>
+    <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "#fff" }}>
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-5">
+        <div ref={ref} className="reveal text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4 sm:mb-5">
             <span className="gold-dot" />
             <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>HOW WE WORK</span>
           </div>
           <h2
-            className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight"
+            className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold mb-4 leading-tight"
             style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
           >
             From an idea to an impactful brand.
@@ -2489,16 +2493,16 @@ function Process() {
         <div className="relative">
           {/* Connector line (desktop) */}
           <div
-            className="hidden md:block absolute top-8 left-0 right-0 h-0.5"
+            className="hidden md:block absolute top-8 left-0 right-0 h-0.5 pointer-events-none"
             style={{ background: "linear-gradient(90deg, transparent 0%, var(--green-dark) 15%, var(--green-mid) 85%, transparent 100%)", top: "32px" }}
           />
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {steps.map((s, i) => (
-              <div key={s.n} className="relative">
+              <div key={s.n} className="relative flex flex-col items-center sm:items-start text-center sm:text-left">
                 {/* Step dot */}
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center mb-6 relative z-10 font-extrabold text-sm"
+                  className="w-13 h-13 sm:w-14 sm:h-14 rounded-full flex items-center justify-center mb-4 sm:mb-6 relative z-10 font-extrabold text-sm shadow-sm"
                   style={{ background: i % 2 === 0 ? "var(--green-dark)" : "#FFC515", color: i % 2 === 0 ? "#FAFBF7" : "var(--dark)", fontFamily: "Manrope" }}
                 >
                   {s.n}
@@ -2513,7 +2517,12 @@ function Process() {
                   </div>
                 )}
                 <h3 className="text-lg font-bold mb-2" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>{s.t}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>{s.d}</p>
+                <p className="text-sm leading-relaxed text-[#69736C]" style={{ fontFamily: "Inter" }}>{s.d}</p>
+
+                {/* Mobile vertical connector between steps */}
+                {i < 3 && (
+                  <div className="block sm:hidden w-[2px] h-6 my-3 bg-[#08703A]/20" />
+                )}
               </div>
             ))}
           </div>
@@ -2550,31 +2559,31 @@ function Testimonials() {
   const ref = useReveal();
   return (
     <section
-      className="py-28 px-6 border-t"
+      className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 border-t"
       style={{
         background: "var(--offwhite)",
         borderColor: "rgba(8, 112, 58, 0.09)",
       }}
     >
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-5">
+        <div ref={ref} className="reveal text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4 sm:mb-5">
             <span className="gold-dot" />
             <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>TESTIMONIALS</span>
           </div>
           <h2
-            className="text-4xl md:text-5xl font-extrabold leading-tight"
+            className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold leading-[1.12]"
             style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
           >
             What our clients say.
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {testimonials.map((t, i) => (
             <div
               key={t.name}
-              className="testimonial-card rounded-2xl p-8 flex flex-col transition-transform duration-200 hover:-translate-y-1"
+              className="testimonial-card rounded-2xl p-6 sm:p-8 flex flex-col transition-transform duration-200 hover:-translate-y-1"
               style={{
                 background: "#FFFFFF",
                 border: "1.5px solid var(--border-light)",
@@ -2582,14 +2591,14 @@ function Testimonials() {
               }}
             >
               {/* Stars */}
-              <div className="flex gap-1 mb-5">
+              <div className="flex gap-1 mb-4 sm:mb-5">
                 {[1,2,3,4,5].map(s => (
                   <span key={s} style={{ color: "#FFC515", fontSize: "14px" }}>★</span>
                 ))}
               </div>
               <p
-                className="text-base leading-relaxed flex-1 mb-6"
-                style={{ color: "rgba(23,33,27,0.75)", fontFamily: "Inter", fontStyle: "italic" }}
+                className="text-[14.5px] sm:text-base leading-relaxed flex-1 mb-6 text-[#55645A]"
+                style={{ fontFamily: "Inter", fontStyle: "italic" }}
               >
                 "{t.quote}"
               </p>
@@ -2602,7 +2611,7 @@ function Testimonials() {
                 </div>
                 <div>
                   <div className="text-sm font-bold" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>{t.name}</div>
-                  <div className="text-xs" style={{ color: "rgba(23,33,27,0.5)", fontFamily: "Inter" }}>{t.role}</div>
+                  <div className="text-xs text-[#7A827D]" style={{ fontFamily: "Inter" }}>{t.role}</div>
                 </div>
               </div>
             </div>
@@ -2617,9 +2626,9 @@ function Testimonials() {
 function CTA({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
-    <section className="py-28 px-6 relative overflow-hidden" style={{ background: "var(--green-dark)" }}>
+    <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 relative overflow-hidden" style={{ background: "var(--green-dark)" }}>
       {/* Decorative */}
-      <div className="absolute top-8 right-12 opacity-20">
+      <div className="absolute top-8 right-12 opacity-20 pointer-events-none">
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
           <rect x="60" y="80" width="30" height="30" rx="6" fill="#FFC515" />
           <rect x="40" y="55" width="24" height="24" rx="5" fill="#138A3D" />
@@ -2628,7 +2637,7 @@ function CTA({ onNavigate }: { onNavigate?: (path: string) => void }) {
           <polygon points="75,25 85,38 65,35" fill="#FFC515" />
         </svg>
       </div>
-      <div className="absolute bottom-8 left-12 opacity-10">
+      <div className="absolute bottom-8 left-12 opacity-10 pointer-events-none">
         <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
           <circle cx="40" cy="40" r="38" stroke="#FFC515" strokeWidth="2" />
           <circle cx="40" cy="40" r="20" stroke="#138A3D" strokeWidth="2" />
@@ -2637,18 +2646,18 @@ function CTA({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <div ref={ref} className="reveal">
-          <p className="text-xs font-bold tracking-widest mb-5" style={{ color: "rgba(250,251,247,0.4)", fontFamily: "Inter" }}>
+          <p className="text-xs font-bold tracking-widest mb-4 sm:mb-5" style={{ color: "rgba(250,251,247,0.5)", fontFamily: "Inter" }}>
             READY TO GROW?
           </p>
           <h2
-            className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight"
+            className="text-[30px] xs:text-[36px] sm:text-[46px] md:text-[56px] font-extrabold mb-5 sm:mb-6 leading-[1.08]"
             style={{ color: "#FAFBF7", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
           >
             Have a brand in mind?
             <br />
             <span style={{ color: "#FFC515" }}>Let's make it unforgettable.</span>
           </h2>
-          <p className="text-lg mb-10" style={{ color: "rgba(250,251,247,0.6)", fontFamily: "Inter" }}>
+          <p className="text-[15.5px] sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto" style={{ color: "rgba(250,251,247,0.7)", fontFamily: "Inter" }}>
             Book a free strategy call and let's figure out exactly how SUPRABIZ can help your brand grow.
           </p>
           <a
@@ -2658,7 +2667,7 @@ function CTA({ onNavigate }: { onNavigate?: (path: string) => void }) {
               if (onNavigate) onNavigate("/contact");
               else window.location.pathname = "/contact";
             }}
-            className="btn-arrow inline-flex items-center px-10 py-5 rounded-full text-base font-bold transition-all hover:scale-105 cursor-pointer shadow-lg"
+            className="btn-arrow inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 rounded-full text-[15px] sm:text-base font-bold transition-all hover:scale-105 cursor-pointer shadow-lg w-full sm:w-auto text-center"
             style={{ background: "#FFC21C", color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.01em" }}
           >
             Let's Build Together →
@@ -2919,9 +2928,9 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
         SUPRA BIZ
       </div>
 
-      <div className="max-w-[1380px] mx-auto px-6 sm:px-8 lg:px-10 pt-[72px] pb-[32px] relative z-10">
+      <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-10 pt-14 sm:pt-[72px] pb-6 sm:pb-[32px] relative z-10">
         {/* Top Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] gap-10 lg:gap-[60px] mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-[60px] mb-10 sm:mb-14">
           {/* 1. Brand Column */}
           <div>
             <a
@@ -2936,24 +2945,24 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
               <img
                 src={headerLogoImg}
                 alt="SUPRA BIZ"
-                className="w-[125px] h-auto object-contain block"
+                className="w-[120px] sm:w-[125px] h-auto object-contain block"
               />
             </a>
             <p
-              className="text-[13.5px] leading-[1.7] mt-4 mb-6 max-w-[280px]"
+              className="text-[14px] leading-[1.7] mt-4 mb-6 max-w-[280px]"
               style={{ color: "rgba(255, 255, 255, 0.55)", fontFamily: "Inter, sans-serif" }}
             >
               Building brands that stand out and grow. Your strategic creative partner.
             </p>
 
-            {/* Social Links with SVG Icons */}
-            <div className="flex items-center gap-2.5">
+            {/* Social Links with SVG Icons — 44px touch targets */}
+            <div className="flex items-center gap-3">
               <a
                 href="https://www.instagram.com/suprabiz/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="SUPRA BIZ on Instagram"
-                className="w-[38px] h-[38px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
                 style={{
                   background: "rgba(255, 255, 255, 0.07)",
                   border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -2970,7 +2979,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -2982,7 +2991,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="SUPRA BIZ on LinkedIn"
-                className="w-[38px] h-[38px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
                 style={{
                   background: "rgba(255, 255, 255, 0.07)",
                   border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -2999,7 +3008,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                   <rect width="4" height="12" x="2" y="9" />
                   <circle cx="4" cy="4" r="2" />
@@ -3011,7 +3020,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="SUPRA BIZ on Facebook"
-                className="w-[38px] h-[38px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
                 style={{
                   background: "rgba(255, 255, 255, 0.07)",
                   border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -3028,7 +3037,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
               </a>
@@ -3044,7 +3053,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
               QUICK LINKS
             </h4>
             <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-2">
               {quickLinks.map((l) => (
                 <a
                   key={l.name}
@@ -3075,9 +3084,9 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                       }
                     }
                   }}
-                  className="text-[13.5px] leading-[2] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
+                  className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
                   style={{
-                    color: "rgba(255, 255, 255, 0.58)",
+                    color: "rgba(255, 255, 255, 0.65)",
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
@@ -3096,7 +3105,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
               SERVICES
             </h4>
             <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-2">
               {serviceLinks.map((l) => (
                 <a
                   key={l.name}
@@ -3105,9 +3114,9 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     e.preventDefault();
                     if (onNavigate) onNavigate(l.href);
                   }}
-                  className="text-[13.5px] leading-[2] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
+                  className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
                   style={{
-                    color: "rgba(255, 255, 255, 0.58)",
+                    color: "rgba(255, 255, 255, 0.65)",
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
@@ -3127,11 +3136,11 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
             </h4>
             <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
             <div
-              className="flex flex-col gap-2.5 text-[13px] leading-relaxed"
-              style={{ color: "rgba(255, 255, 255, 0.58)", fontFamily: "Inter, sans-serif" }}
+              className="flex flex-col gap-3 text-[13.5px] leading-relaxed"
+              style={{ color: "rgba(255, 255, 255, 0.65)", fontFamily: "Inter, sans-serif" }}
             >
               <div className="flex items-center gap-2.5">
-                <svg className="w-3.5 h-3.5 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
@@ -3140,7 +3149,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <svg className="w-3.5 h-3.5 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
                 <span className="text-white/40 text-xs">Sales:</span>
@@ -3149,7 +3158,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <svg className="w-3.5 h-3.5 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
                 <span className="text-white/40 text-xs">Admin:</span>
@@ -3158,7 +3167,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 </a>
               </div>
               <div className="flex items-start gap-2.5 pt-0.5">
-                <svg className="w-3.5 h-3.5 shrink-0 text-white/50 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-4 h-4 shrink-0 text-white/50 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
@@ -3166,7 +3175,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   href="https://share.google/XcnqzuVTT3DxUhJjg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors text-xs leading-relaxed"
+                  className="hover:text-white transition-colors text-[13px] leading-relaxed"
                 >
                   C-1210, Titanium business park, Makarba, Ahmedabad, Gujarat 380015
                 </a>
@@ -3180,7 +3189,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 if (onNavigate) onNavigate("/contact");
                 else window.location.pathname = "/contact";
               }}
-              className="inline-flex items-center gap-1.5 h-[40px] px-[18px] rounded-full text-[12px] font-[650] mt-[18px] transition-all duration-200 hover:translate-y-[-1px] shadow-sm cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 h-[44px] px-[20px] rounded-full text-[13px] font-[650] mt-[20px] transition-all duration-200 hover:translate-y-[-1px] shadow-sm cursor-pointer w-full sm:w-auto"
               style={{
                 background: "#FFC21C",
                 color: "#15241B",
@@ -3195,19 +3204,19 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
         {/* Bottom Bar */}
         <div
-          className="pt-6 mt-14 flex flex-col sm:flex-row items-center justify-between gap-3 border-t"
+          className="pt-6 mt-8 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-t text-center sm:text-left"
           style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}
         >
           <p
-            className="text-[11.5px]"
-            style={{ color: "rgba(255, 255, 255, 0.42)", fontFamily: "Inter, sans-serif" }}
+            className="text-[12px]"
+            style={{ color: "rgba(255, 255, 255, 0.5)", fontFamily: "Inter, sans-serif" }}
           >
             © 2026 SUPRA BIZ. All rights reserved.
           </p>
 
           <div
-            className="flex items-center gap-4 text-[11.5px]"
-            style={{ color: "rgba(255, 255, 255, 0.42)", fontFamily: "Inter, sans-serif" }}
+            className="flex items-center gap-4 text-[12px]"
+            style={{ color: "rgba(255, 255, 255, 0.5)", fontFamily: "Inter, sans-serif" }}
           >
             <a
               href="/contact"
@@ -3215,20 +3224,20 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                 e.preventDefault();
                 if (onNavigate) onNavigate("/contact");
               }}
-              className="hover:text-white/80 transition-colors"
+              className="hover:text-white transition-colors"
             >
               Privacy Policy
             </a>
-            <span className="text-white/20">•</span>
+            <span className="opacity-40">•</span>
             <a
               href="/contact"
               onClick={(e) => {
                 e.preventDefault();
                 if (onNavigate) onNavigate("/contact");
               }}
-              className="hover:text-white/80 transition-colors"
+              className="hover:text-white transition-colors"
             >
-              Terms
+              Terms of Service
             </a>
           </div>
         </div>
