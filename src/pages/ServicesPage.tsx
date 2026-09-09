@@ -1159,7 +1159,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     <div className="w-[2px] h-6 bg-[#08703A]/25 rounded-full" />
                   </div>
                 )}
-              </React.Fragment>
+              </Fragment>
             ))}
           </div>
         </div>
