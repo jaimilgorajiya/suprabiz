@@ -3,6 +3,7 @@ import logoImg from "@/imports/WhatsApp_Image_2026-09-07_at_3.33.34_PM.jpeg";
 import headerLogoImg from "@/imports/suprabiz-logo-header.png";
 import heroMarketingImg from "@/imports/suprabiz-hero-digital-marketing.jpg";
 import AboutPage from "./pages/AboutPage";
+import ServicesPage from "./pages/ServicesPage";
 
 // ─── Logo ────────────────────────────────────────────────────────────────────
 // Light bg: use the real photo logo; dark bg: SVG wordmark
@@ -678,12 +679,25 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
     (typeof window !== "undefined" &&
       (window.location.pathname === "/about" || window.location.pathname === "/about/"));
 
+  const isServicesRoute =
+    currentPath === "/services" ||
+    currentPath === "/services/" ||
+    currentPath.startsWith("/services#") ||
+    (typeof window !== "undefined" &&
+      (window.location.pathname === "/services" ||
+        window.location.pathname === "/services/" ||
+        window.location.pathname.startsWith("/services#")));
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
       if (isAboutRoute) {
         setActiveSection("about");
+        return;
+      }
+      if (isServicesRoute) {
+        setActiveSection("services");
         return;
       }
 
@@ -701,7 +715,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentPath, isAboutRoute]);
+  }, [currentPath, isAboutRoute, isServicesRoute]);
 
   // Keyboard accessibility and click outside handling
   useEffect(() => {
@@ -741,7 +755,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
   const navLinks = [
     { name: "Home", href: "/", id: "home" },
     { name: "About", href: "/about", id: "about" },
-    { name: "Services", href: "#services", id: "services" },
+    { name: "Services", href: "/services", id: "services" },
     { name: "Course", href: "#course", id: "course", isDropdown: true },
     { name: "Our Work", href: "#our-work", id: "our-work" },
     { name: "Contact", href: "#contact", id: "contact" },
@@ -846,6 +860,8 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
                 const isActive = isAboutRoute
                   ? item.id === "about"
+                  : isServicesRoute
+                  ? item.id === "services"
                   : activeSection === item.id;
 
                 return (
@@ -856,6 +872,9 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       if (item.id === "about") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/about");
+                      } else if (item.id === "services") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/services");
                       } else if (item.id === "home") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/");
@@ -1150,6 +1169,8 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
                 const isActive = isAboutRoute
                   ? item.id === "about"
+                  : isServicesRoute
+                  ? item.id === "services"
                   : activeSection === item.id;
                 return (
                   <a
@@ -1163,6 +1184,9 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       if (item.id === "about") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/about");
+                      } else if (item.id === "services") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/services");
                       } else if (item.id === "home") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/");
@@ -2701,18 +2725,18 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Services", href: "#services" },
+    { name: "Services", href: "/services" },
     { name: "Course", href: "#course" },
     { name: "Our Work", href: "#our-work" },
     { name: "Contact", href: "#contact" },
   ];
   const serviceLinks = [
-    "Branding",
-    "Social Media Marketing",
-    "SEO",
-    "Web Design",
-    "Performance Marketing",
-    "Digital Marketing",
+    { name: "Branding", href: "/services#branding" },
+    { name: "Social Media Marketing", href: "/services#social-media" },
+    { name: "SEO", href: "/services#seo" },
+    { name: "Web Design", href: "/services#web-design" },
+    { name: "Performance Marketing", href: "/services#performance-marketing" },
+    { name: "Digital Marketing", href: "/services#digital-marketing" },
   ];
 
   return (
@@ -2865,6 +2889,9 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     if (l.href === "/about") {
                       e.preventDefault();
                       if (onNavigate) onNavigate("/about");
+                    } else if (l.href === "/services") {
+                      e.preventDefault();
+                      if (onNavigate) onNavigate("/services");
                     } else if (l.href === "/") {
                       e.preventDefault();
                       if (onNavigate) onNavigate("/");
@@ -2899,13 +2926,11 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
             <div className="flex flex-col gap-1.5">
               {serviceLinks.map((l) => (
                 <a
-                  key={l}
-                  href="#services"
+                  key={l.name}
+                  href={l.href}
                   onClick={(e) => {
-                    if (window.location.pathname !== "/") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/#services");
-                    }
+                    e.preventDefault();
+                    if (onNavigate) onNavigate(l.href);
                   }}
                   className="text-[13.5px] leading-[2] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
                   style={{
@@ -2913,7 +2938,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  {l}
+                  {l.name}
                 </a>
               ))}
             </div>
@@ -3052,18 +3077,41 @@ export default function App() {
       return;
     }
 
+    if (path.startsWith("/services#")) {
+      const hash = path.replace("/services", "");
+      if (currentPath !== "/services") {
+        window.history.pushState(null, "", path);
+        setCurrentPath("/services");
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+      } else {
+        window.history.pushState(null, "", path);
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
     window.history.pushState(null, "", path);
     setCurrentPath(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const isAbout = currentPath === "/about";
+  const isAbout = currentPath === "/about" || currentPath === "/about/";
+  const isServices =
+    currentPath === "/services" ||
+    currentPath === "/services/" ||
+    currentPath.startsWith("/services#");
 
   return (
     <div className="min-h-screen">
       <Navbar currentPath={currentPath} onNavigate={navigateTo} />
       {isAbout ? (
         <AboutPage onNavigate={navigateTo} />
+      ) : isServices ? (
+        <ServicesPage onNavigate={navigateTo} />
       ) : (
         <>
           <Hero />
