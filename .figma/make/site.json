@@ -1,0 +1,17 @@
+{
+  "title": "SUPRA BIZ",
+  "description": "A premium agency website showcasing branding and digital marketing services with a modern, responsive design to attract and convert ambitious businesses.",
+  "icons": {
+    "icon": "/favicon.png?v=3"
+  },
+  "openGraph": {
+    "image": "/logo-full.png"
+  },
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
