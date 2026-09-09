@@ -176,7 +176,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               {/* CTA */}
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href="#services"
+                  href="/services"
                   onClick={(e) => handleNav("/services", e)}
                   className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200"
                   style={{
@@ -200,7 +200,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 </a>
 
                 <a
-                  href="#contact"
+                  href="/contact"
                   onClick={(e) => handleNav("/contact", e)}
                   className="inline-flex items-center justify-center h-[54px] px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200"
                   style={{
@@ -1154,7 +1154,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
             <a
-              href="#contact"
+              href="/contact"
               onClick={(e) => handleNav("/contact", e)}
               className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
               style={{
@@ -1179,7 +1179,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             </a>
 
             <a
-              href="#services"
+              href="/services"
               onClick={(e) => handleNav("/services", e)}
               className="inline-flex items-center justify-center h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
               style={{

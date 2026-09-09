@@ -119,8 +119,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 </button>
 
                 <a
-                  href="#contact"
-                  onClick={(e) => handleNav("/#contact", e)}
+                  href="/contact"
+                  onClick={(e) => handleNav("/contact", e)}
                   className="inline-flex items-center justify-center gap-2 h-[52px] px-8 rounded-full font-bold text-[15px] cursor-pointer transition-all duration-250"
                   style={{
                     background: "transparent",
@@ -302,8 +302,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Text CTA */}
               <a
-                href="#contact"
-                onClick={(e) => handleNav("/#contact", e)}
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
                 className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
                 style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
@@ -422,8 +422,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Text CTA */}
               <a
-                href="#contact"
-                onClick={(e) => handleNav("/#contact", e)}
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
                 className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
                 style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
@@ -506,8 +506,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Text CTA */}
               <a
-                href="#contact"
-                onClick={(e) => handleNav("/#contact", e)}
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
                 className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
                 style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
@@ -716,8 +716,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Text CTA */}
               <a
-                href="#contact"
-                onClick={(e) => handleNav("/#contact", e)}
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
                 className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
                 style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
@@ -800,8 +800,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Text CTA */}
               <a
-                href="#contact"
-                onClick={(e) => handleNav("/#contact", e)}
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
                 className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
                 style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
@@ -1051,8 +1051,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
               {/* Text CTA */}
               <a
-                href="#contact"
-                onClick={(e) => handleNav("/#contact", e)}
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
                 className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
                 style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
@@ -1221,8 +1221,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
             <a
-              href="#contact"
-              onClick={(e) => handleNav("/#contact", e)}
+              href="/contact"
+              onClick={(e) => handleNav("/contact", e)}
               className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
               style={{
                 background: "#FFC21C",
@@ -1246,8 +1246,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
             </a>
 
             <a
-              href="#our-work"
-              onClick={(e) => handleNav("/#our-work", e)}
+              href="/our-work"
+              onClick={(e) => handleNav("/our-work", e)}
               className="inline-flex items-center justify-center h-[54px] px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
               style={{
                 background: "transparent",

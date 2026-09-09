@@ -4,6 +4,14 @@ import headerLogoImg from "@/imports/suprabiz-logo-header.png";
 import heroMarketingImg from "@/imports/suprabiz-hero-digital-marketing.jpg";
 import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
+import CoursesPage from "./pages/CoursesPage";
+import OurWorkPage from "./pages/OurWorkPage";
+import ContactPage from "./pages/ContactPage";
+import aboutStrategyImg from "@/imports/suprabiz-about-strategy.jpg";
+import brandingImg from "@/imports/suprabiz-branding-service.jpg";
+import socialMarketingImg from "@/imports/suprabiz-social-media-marketing.jpg";
+import webDesignImg from "@/imports/suprabiz-web-design-service.jpg";
+import digitalAgencyImg from "@/imports/suprabiz-services-digital-agency.jpg";
 
 // ─── Logo ────────────────────────────────────────────────────────────────────
 // Light bg: use the real photo logo; dark bg: SVG wordmark
@@ -133,61 +141,76 @@ function BookOpenIcon({ className = "w-4 h-4" }: { className?: string }) {
 interface CourseItem {
   name: string;
   href: string;
+  description: string;
 }
 
-interface CourseCategory {
-  title: string;
+interface CourseGroup {
+  category: string;
   courses: CourseItem[];
 }
 
-const COURSE_FEATURED = {
-  exclusive: {
-    title: "Exclusive Courses",
-    description: "Enroll in 5 months digital marketing course in Ahmedabad",
-    badge: "Masterclass",
+const COURSE_GROUPS: CourseGroup[] = [
+  {
+    category: "Social Media Marketing",
+    courses: [
+      {
+        name: "Social Media Marketing Course",
+        description: "Full-funnel organic strategy, community & brand virality",
+        href: "/courses#social-media",
+      },
+      {
+        name: "Instagram Marketing Course",
+        description: "Reels virality, aesthetics & influencer growth",
+        href: "/courses#social-media",
+      },
+      {
+        name: "Facebook Marketing Course",
+        description: "Meta Ads, precision retargeting & ROAS scaling",
+        href: "/courses#social-media",
+      },
+      {
+        name: "Linkedin Marketing Course",
+        description: "B2B lead generation & executive thought leadership",
+        href: "/courses#social-media",
+      },
+    ],
   },
-  free: {
-    title: "Free Courses",
-    description: "Free learning resources for skill development.",
-    badge: "Free Access",
+  {
+    category: "Search & Performance",
+    courses: [
+      {
+        name: "SEO Specialist Course",
+        description: "Technical SEO, indexing & high-intent keyword ranking",
+        href: "/courses#search-ads",
+      },
+      {
+        name: "Google Ads Course",
+        description: "Search, Display, Shopping & high-conversion bidding",
+        href: "/courses#search-ads",
+      },
+      {
+        name: "Performance Marketing Course",
+        description: "Full-funnel media buying, CPA & CAC optimization",
+        href: "/courses#search-ads",
+      },
+    ],
   },
-};
-
-const COURSE_CATEGORIES: { col1: CourseCategory[]; col2: CourseCategory[] } = {
-  col1: [
-    {
-      title: "SEO",
-      courses: [
-        { name: "SEO Specialist Course", href: "#course" },
-      ],
-    },
-    {
-      title: "SOCIAL MEDIA",
-      courses: [
-        { name: "Facebook Marketing Course", href: "#course" },
-        { name: "Instagram marketing Course", href: "#course" },
-        { name: "Linkedin Marketing Course", href: "#course" },
-        { name: "Social Media Marketing Course", href: "#course" },
-      ],
-    },
-  ],
-  col2: [
-    {
-      title: "GOOGLE",
-      courses: [
-        { name: "Google Ads Course", href: "#course" },
-        { name: "Google Analytics Course", href: "#course" },
-      ],
-    },
-    {
-      title: "DATA",
-      courses: [
-        { name: "Digital Marketing & Data Analytics Course", href: "#course" },
-        { name: "Performance Marketing Course", href: "#course" },
-      ],
-    },
-  ],
-};
+  {
+    category: "Data & Analytics",
+    courses: [
+      {
+        name: "Google Analytics Course",
+        description: "GA4 setup, custom event telemetry & funnel reports",
+        href: "/courses#data-analytics",
+      },
+      {
+        name: "Digital Marketing & Data Analytics Course",
+        description: "Multi-channel attribution, metrics & business BI",
+        href: "/courses#data-analytics",
+      },
+    ],
+  },
+];
 
 // ─── Course Mega Menu (Desktop) ──────────────────────────────────────────────
 function CourseMegaMenu({
@@ -205,11 +228,13 @@ function CourseMegaMenu({
 }) {
   if (!isOpen) return null;
 
-  const handleLinkClick = (e: React.MouseEvent) => {
+  const handleLinkClick = (e: React.MouseEvent, href = "/courses") => {
     onClose();
-    if (window.location.pathname !== "/") {
+    if (onNavigate) {
       e.preventDefault();
-      if (onNavigate) onNavigate("/#course");
+      onNavigate(href);
+    } else {
+      window.location.href = href;
     }
   };
 
@@ -218,51 +243,68 @@ function CourseMegaMenu({
       id="course-mega-menu"
       role="region"
       aria-label="Courses Mega Menu"
-      className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-[1200] w-[980px] max-w-[96vw]"
+      className="absolute left-1/2 -translate-x-1/2 top-full pt-3 z-[1200] w-[880px] max-w-[96vw]"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       <div
-        className="bg-white rounded-[20px] overflow-hidden relative animate-megaMenuOpen"
+        className="bg-white rounded-[22px] overflow-hidden relative animate-megaMenuOpen"
         style={{
-          border: "1px solid rgba(8, 112, 58, 0.08)",
-          boxShadow: "0 30px 80px rgba(18, 58, 35, 0.18), 0 8px 30px rgba(18, 58, 35, 0.08)",
+          border: "1px solid rgba(8, 112, 58, 0.12)",
+          boxShadow:
+            "0 24px 70px -10px rgba(18, 58, 35, 0.18), 0 10px 30px -5px rgba(18, 58, 35, 0.08)",
         }}
       >
-        {/* Subtle Warm Amber Glow in Top-Right Corner */}
+        {/* Subtle warm accent glow */}
         <div
           aria-hidden="true"
-          className="absolute -top-10 -right-8 w-36 h-36 rounded-full pointer-events-none"
+          className="absolute -top-12 -right-12 w-44 h-44 rounded-full pointer-events-none"
           style={{
-            background: "rgba(255, 194, 28, 0.10)",
-            filter: "blur(32px)",
+            background: "rgba(255, 194, 28, 0.08)",
+            filter: "blur(36px)",
           }}
         />
 
-        {/* 1. Top Header Inside Dropdown */}
-        <div
-          className="px-7 py-5 flex items-center justify-between border-b relative z-10"
-          style={{
-            background: "linear-gradient(135deg, #F8FCF9 0%, #F2F8F4 100%)",
-            borderColor: "rgba(8, 112, 58, 0.08)",
-          }}
-        >
-          <div>
-            <h3
-              className="text-[20px] font-bold text-[#12351F] tracking-tight"
-              style={{ fontFamily: "Manrope, sans-serif" }}
+        {/* 1. Header Bar */}
+          {/* <div
+            className="px-7 py-4 flex items-center justify-between border-b relative z-10"
+            style={{
+              background: "linear-gradient(135deg, #F8FCF9 0%, #F1F7F3 100%)",
+              borderColor: "rgba(8, 112, 58, 0.08)",
+            }}
+          > */}
+          {/* <div className="flex items-center gap-3">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{ background: "#E5F4E9", color: "#08703A" }}
             >
-              Explore Our Courses
-            </h3>
-            <p className="text-[13px] text-[#6B756E] mt-0.5">
-              Build practical digital marketing skills with career-focused learning paths.
-            </p>
-          </div>
+              <GraduationCapIcon className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3
+                  className="text-[16px] font-bold text-[#12351F] tracking-tight"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  Professional Marketing Courses
+                </h3>
+                <span
+                  className="text-[10.5px] font-semibold px-2 py-0.5 rounded-full"
+                  style={{ background: "#E3F2E7", color: "#08703A" }}
+                >
+                  Agency-Led
+                </span>
+              </div>
+              <p className="text-[12.5px] text-[#607064] mt-0.5">
+                Hands-on career tracks with real client campaigns &amp; live mentorship
+              </p>
+            </div>
+          </div> */}
 
-          <a
+          {/* <a
             href="#course"
-            onClick={handleLinkClick}
-            className="group inline-flex items-center gap-1.5 text-[13px] font-semibold px-4 py-2 rounded-full transition-all duration-200 cursor-pointer"
+            onClick={(e) => handleLinkClick(e, "#course")}
+            className="group inline-flex items-center gap-1.5 text-[12.5px] font-semibold px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer"
             style={{
               background: "#EAF5ED",
               color: "#08703A",
@@ -278,334 +320,219 @@ function CourseMegaMenu({
           >
             <span>View All Courses</span>
             <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-          </a>
-        </div>
+          </a> */}
+        {/* </div> */}
 
-        {/* 2. Main 3-Column Content Area */}
-        <div className="grid grid-cols-[260px_1fr_1fr] max-[1100px]:grid-cols-[230px_1fr_1fr] relative z-10">
-          {/* Left Feature Column */}
-          <div
-            className="p-6 flex flex-col justify-between border-r"
-            style={{
-              background: "linear-gradient(180deg, #F0F7F2 0%, #F8FBF8 100%)",
-              borderColor: "rgba(8, 112, 58, 0.08)",
-            }}
-          >
-            <div className="flex flex-col gap-4">
-              {/* Exclusive Courses Card */}
-              <a
-                href="#course"
-                onClick={handleLinkClick}
-                className="group block p-5 rounded-2xl bg-white transition-all duration-200 hover:-translate-y-0.5"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.10)",
-                  boxShadow: "0 8px 24px rgba(20, 70, 40, 0.06)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(8, 112, 58, 0.20)";
-                  e.currentTarget.style.boxShadow = "0 12px 30px rgba(8, 112, 58, 0.10)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(8, 112, 58, 0.10)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(20, 70, 40, 0.06)";
-                }}
+        {/* 2. 3-Column Course Layout */}
+        <div
+          className="grid grid-cols-3 divide-x p-6 gap-6 relative z-10"
+          style={{ borderColor: "rgba(8, 112, 58, 0.07)" }}
+        >
+          {/* Column 1: Social Media Marketing */}
+          <div className="pr-1 flex flex-col justify-between">
+            <div>
+              <div
+                className="flex items-center justify-between pb-2.5 mb-3 border-b"
+                style={{ borderColor: "rgba(8, 112, 58, 0.08)" }}
               >
-                <div className="flex items-center justify-between mb-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
                   <span
-                    className="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-[0.08em]"
-                    style={{ background: "#E7F4EA", color: "#08703A" }}
-                  >
-                    MASTERCLASS
-                  </span>
-                  <SparkleIcon className="w-4 h-4 text-amber-500" />
-                </div>
-                <h4
-                  className="text-[17px] font-bold text-[#12351F] group-hover:text-[#08703A] transition-colors mb-1.5"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  Exclusive Courses
-                </h4>
-                <p className="text-[13px] text-[#526357] leading-[1.6]">
-                  Enroll in 5 months digital marketing course in Ahmedabad
-                </p>
-                <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-[#08703A]">
-                  <span>View Details</span>
-                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-                </div>
-              </a>
-
-              {/* Free Courses Card */}
-              <a
-                href="#course"
-                onClick={handleLinkClick}
-                className="group block p-4 rounded-[14px] transition-all duration-200"
-                style={{
-                  border: "1px dashed rgba(8, 112, 58, 0.22)",
-                  background: "rgba(255, 255, 255, 0.65)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#FFFFFF";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.65)";
-                }}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <span
-                    className="w-2 h-2 rounded-full flex-shrink-0"
-                    style={{ background: "#FFC21C" }}
-                  />
-                  <h4
-                    className="text-[14px] font-bold text-[#12351F] group-hover:text-[#08703A] transition-colors"
+                    className="text-[11.5px] font-bold tracking-[0.06em] uppercase text-[#08703A]"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
-                    Free Courses
-                  </h4>
+                    Social Media
+                  </span>
                 </div>
-                <p className="text-xs text-[#526357] leading-relaxed pl-4">
-                  Free learning resources for skill development.
-                </p>
-              </a>
-            </div>
-
-            {/* Trust Detail */}
-            <div className="pt-4 mt-3 border-t border-emerald-900/10 text-[11px] font-medium text-[#67736B] flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#08703A] animate-pulse" />
-              <span>Certified Mentorship &amp; Live Projects</span>
-            </div>
-          </div>
-
-          {/* Center Column: SEO & SOCIAL MEDIA */}
-          <div className="p-7 flex flex-col justify-between">
-            {/* Category: SEO */}
-            <div>
-              <div
-                className="flex items-center gap-2 pb-2.5 mb-2 border-b"
-                style={{ borderColor: "rgba(8, 112, 58, 0.08)" }}
-              >
-                <span
-                  className="w-2 h-2 rounded-full inline-block flex-shrink-0"
-                  style={{ background: "#FFC21C" }}
-                />
-                <span
-                  className="text-[12px] font-bold tracking-[0.05em] uppercase text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  SEO
-                </span>
+                <span className="text-[11px] font-semibold text-[#8B988F]">4 Courses</span>
               </div>
-              <ul className="space-y-1">
-                <li>
+
+              <div className="space-y-1">
+                {COURSE_GROUPS[0].courses.map((c) => (
                   <a
-                    href="#course"
-                    onClick={handleLinkClick}
-                    className="group flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] font-medium text-[#1C2A21] hover:text-[#08703A] hover:bg-[#F2F8F4] transition-all duration-180"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateX(3px)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "translateX(0)";
-                    }}
+                    key={c.name}
+                    href={c.href}
+                    onClick={(e) => handleLinkClick(e, c.href)}
+                    className="group block p-2.5 rounded-xl transition-all duration-180 hover:bg-[#F2F8F4] border border-transparent hover:border-[#DFEEE4]"
                   >
-                    <span>SEO Specialist Course</span>
-                    <span className="opacity-0 group-hover:opacity-100 transition-all duration-180 text-[#08703A] text-xs transform translate-x-[-2px] group-hover:translate-x-0">
-                      →
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Category: SOCIAL MEDIA */}
-            <div className="mt-6">
-              <div
-                className="flex items-center gap-2 pb-2.5 mb-2 border-b"
-                style={{ borderColor: "rgba(8, 112, 58, 0.08)" }}
-              >
-                <span
-                  className="w-2 h-2 rounded-full inline-block flex-shrink-0"
-                  style={{ background: "#FFC21C" }}
-                />
-                <span
-                  className="text-[12px] font-bold tracking-[0.05em] uppercase text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  SOCIAL MEDIA
-                </span>
-              </div>
-              <ul className="space-y-1">
-                {[
-                  "Facebook Marketing Course",
-                  "Instagram marketing Course",
-                  "Linkedin Marketing Course",
-                  "Social Media Marketing Course",
-                ].map((courseName) => (
-                  <li key={courseName}>
-                    <a
-                      href="#course"
-                      onClick={handleLinkClick}
-                      className="group flex items-center justify-between px-3 py-2 rounded-lg text-[14px] font-medium text-[#1C2A21] hover:text-[#08703A] hover:bg-[#F2F8F4] transition-all duration-180"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateX(3px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translateX(0)";
-                      }}
-                    >
-                      <span>{courseName}</span>
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-180 text-[#08703A] text-xs transform translate-x-[-2px] group-hover:translate-x-0">
+                    <div className="flex items-center justify-between gap-1">
+                      <p
+                        className="text-[13.5px] font-bold text-[#14271C] group-hover:text-[#08703A] transition-colors"
+                        style={{ fontFamily: "Manrope, sans-serif" }}
+                      >
+                        {c.name}
+                      </p>
+                      <span className="text-[#08703A] text-xs font-bold opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-180">
                         →
                       </span>
-                    </a>
-                  </li>
+                    </div>
+                    <p className="text-[11.5px] text-[#607164] mt-0.5 line-clamp-1">
+                      {c.description}
+                    </p>
+                  </a>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: GOOGLE & DATA */}
-          <div className="p-7 flex flex-col justify-between">
-            {/* Category: GOOGLE */}
+          {/* Column 2: Search & Performance */}
+          <div className="px-3 flex flex-col justify-between">
             <div>
               <div
-                className="flex items-center gap-2 pb-2.5 mb-2 border-b"
+                className="flex items-center justify-between pb-2.5 mb-3 border-b"
                 style={{ borderColor: "rgba(8, 112, 58, 0.08)" }}
               >
-                <span
-                  className="w-2 h-2 rounded-full inline-block flex-shrink-0"
-                  style={{ background: "#FFC21C" }}
-                />
-                <span
-                  className="text-[12px] font-bold tracking-[0.05em] uppercase text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  GOOGLE
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#08703A" }} />
+                  <span
+                    className="text-[11.5px] font-bold tracking-[0.06em] uppercase text-[#08703A]"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    Search &amp; Ads
+                  </span>
+                </div>
+                <span className="text-[11px] font-semibold text-[#8B988F]">3 Courses</span>
               </div>
-              <ul className="space-y-1">
-                {[
-                  "Google Ads Course",
-                  "Google Analytics Course",
-                ].map((courseName) => (
-                  <li key={courseName}>
-                    <a
-                      href="#course"
-                      onClick={handleLinkClick}
-                      className="group flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] font-medium text-[#1C2A21] hover:text-[#08703A] hover:bg-[#F2F8F4] transition-all duration-180"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateX(3px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translateX(0)";
-                      }}
-                    >
-                      <span>{courseName}</span>
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-180 text-[#08703A] text-xs transform translate-x-[-2px] group-hover:translate-x-0">
-                        →
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
 
-            {/* Category: DATA */}
-            <div className="mt-6">
-              <div
-                className="flex items-center gap-2 pb-2.5 mb-2 border-b"
-                style={{ borderColor: "rgba(8, 112, 58, 0.08)" }}
-              >
-                <span
-                  className="w-2 h-2 rounded-full inline-block flex-shrink-0"
-                  style={{ background: "#FFC21C" }}
-                />
-                <span
-                  className="text-[12px] font-bold tracking-[0.05em] uppercase text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  DATA
-                </span>
-              </div>
-              <ul className="space-y-1">
-                {[
-                  "Digital Marketing & Data Analytics Course",
-                  "Performance Marketing Course",
-                ].map((courseName) => (
-                  <li key={courseName}>
-                    <a
-                      href="#course"
-                      onClick={handleLinkClick}
-                      className="group flex items-center justify-between px-3 py-2.5 rounded-lg text-[14px] font-medium text-[#1C2A21] hover:text-[#08703A] hover:bg-[#F2F8F4] transition-all duration-180"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = "translateX(3px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = "translateX(0)";
-                      }}
-                    >
-                      <span>{courseName}</span>
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-180 text-[#08703A] text-xs transform translate-x-[-2px] group-hover:translate-x-0">
+              <div className="space-y-1">
+                {COURSE_GROUPS[1].courses.map((c) => (
+                  <a
+                    key={c.name}
+                    href={c.href}
+                    onClick={(e) => handleLinkClick(e, c.href)}
+                    className="group block p-2.5 rounded-xl transition-all duration-180 hover:bg-[#F2F8F4] border border-transparent hover:border-[#DFEEE4]"
+                  >
+                    <div className="flex items-center justify-between gap-1">
+                      <p
+                        className="text-[13.5px] font-bold text-[#14271C] group-hover:text-[#08703A] transition-colors"
+                        style={{ fontFamily: "Manrope, sans-serif" }}
+                      >
+                        {c.name}
+                      </p>
+                      <span className="text-[#08703A] text-xs font-bold opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-180">
                         →
                       </span>
-                    </a>
-                  </li>
+                    </div>
+                    <p className="text-[11.5px] text-[#607164] mt-0.5 line-clamp-1">
+                      {c.description}
+                    </p>
+                  </a>
                 ))}
-              </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Column 3: Data & Analytics + Consultation Card */}
+          <div className="pl-3 flex flex-col justify-between">
+            <div>
+              <div
+                className="flex items-center justify-between pb-2.5 mb-3 border-b"
+                style={{ borderColor: "rgba(8, 112, 58, 0.08)" }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
+                  <span
+                    className="text-[11.5px] font-bold tracking-[0.06em] uppercase text-[#08703A]"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    Data &amp; Analytics
+                  </span>
+                </div>
+                <span className="text-[11px] font-semibold text-[#8B988F]">2 Courses</span>
+              </div>
+
+              <div className="space-y-1">
+                {COURSE_GROUPS[2].courses.map((c) => (
+                  <a
+                    key={c.name}
+                    href={c.href}
+                    onClick={(e) => handleLinkClick(e, c.href)}
+                    className="group block p-2.5 rounded-xl transition-all duration-180 hover:bg-[#F2F8F4] border border-transparent hover:border-[#DFEEE4]"
+                  >
+                    <div className="flex items-center justify-between gap-1">
+                      <p
+                        className="text-[13.5px] font-bold text-[#14271C] group-hover:text-[#08703A] transition-colors"
+                        style={{ fontFamily: "Manrope, sans-serif" }}
+                      >
+                        {c.name}
+                      </p>
+                      <span className="text-[#08703A] text-xs font-bold opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-180">
+                        →
+                      </span>
+                    </div>
+                    <p className="text-[11.5px] text-[#607164] mt-0.5 line-clamp-1">
+                      {c.description}
+                    </p>
+                  </a>
+                ))}
+              </div>
+
+              {/* Consultation Card */}
+              <div
+                className="mt-3 p-3.5 rounded-xl border relative"
+                style={{
+                  background: "linear-gradient(145deg, #F3F9F5 0%, #E9F5ED 100%)",
+                  borderColor: "rgba(8, 112, 58, 0.15)",
+                }}
+              >
+                <div className="flex items-center gap-1.5 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#08703A]">
+                    Need Course Guidance?
+                  </span>
+                </div>
+                <p
+                  className="text-[12.5px] font-bold text-[#12351F] leading-snug"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  Confused which path to choose?
+                </p>
+                <p className="text-[11px] text-[#55695C] mt-0.5 leading-relaxed">
+                  Get free 1-on-1 mentorship to pick the curriculum that matches your career goals.
+                </p>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleLinkClick(e, "/contact")}
+                  className="mt-2.5 inline-flex items-center gap-1.5 text-[11.5px] font-bold text-[#08703A] hover:text-[#065A2E] transition-colors cursor-pointer"
+                >
+                  <span>Talk with Advisor</span>
+                  <span>→</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 3. Bottom CTA Strip */}
+        {/* 3. Bottom Trust Bar */}
         <div
-          className="px-7 py-4 flex items-center justify-between border-t relative z-10"
+          className="px-7 py-3 flex items-center justify-between border-t relative z-10"
           style={{
-            background: "#F6F9F4",
+            background: "#F7FAF8",
             borderColor: "rgba(8, 112, 58, 0.08)",
           }}
         >
-          <div className="flex items-center gap-3.5">
-            <div
-              className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: "#E4F2E8", color: "#08703A" }}
-            >
-              <GraduationCapIcon className="w-4 h-4" />
-            </div>
-            <div>
-              <p
-                className="text-sm font-bold text-[#12351F]"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                Ready to Grow Your Digital Skills?
-              </p>
-              <p className="text-xs text-[#6B756F]">
-                Explore practical digital marketing courses designed to build real-world skills.
-              </p>
-            </div>
+          <div className="flex items-center gap-5 text-[11.5px] font-medium text-[#506356]">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
+              Live Campaign Practice
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
+              Industry Certification
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
+              1-on-1 Mentorship
+            </span>
           </div>
+
           <a
-            href="#course"
-            onClick={handleLinkClick}
-            className="group inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all duration-200 cursor-pointer"
-            style={{
-              background: "#E7F2E8",
-              color: "#08703A",
-              fontFamily: "Manrope, sans-serif",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#08703A";
-              e.currentTarget.style.color = "#FFFFFF";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#E7F2E8";
-              e.currentTarget.style.color = "#08703A";
-            }}
+            href="/courses"
+            onClick={(e) => handleLinkClick(e, "/courses")}
+            className="text-[11.5px] font-bold text-[#08703A] hover:underline inline-flex items-center gap-1"
           >
             <span>Explore All Courses</span>
-            <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+            <span>→</span>
           </a>
         </div>
       </div>
@@ -647,10 +574,17 @@ function TopAnnouncementBar() {
           </span>
           <span className="text-white/30">|</span>
           <a
-            href="mailto:hello@suprabiz.com"
+            href="tel:+919313009073"
+            className="hover:underline flex items-center gap-1 text-[11px] font-semibold text-white/90 hover:text-white transition-colors"
+          >
+            <span>Sales: +91 93130 09073</span>
+          </a>
+          <span className="text-white/30">|</span>
+          <a
+            href="mailto:sales@suprabiz.co.in"
             className="hover:underline flex items-center gap-1 text-[11px] font-semibold text-white transition-colors"
           >
-            hello@suprabiz.com
+            sales@suprabiz.co.in
           </a>
         </div>
       </div>
@@ -688,6 +622,33 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
         window.location.pathname === "/services/" ||
         window.location.pathname.startsWith("/services#")));
 
+  const isCoursesRoute =
+    currentPath === "/courses" ||
+    currentPath === "/courses/" ||
+    currentPath.startsWith("/courses#") ||
+    (typeof window !== "undefined" &&
+      (window.location.pathname === "/courses" ||
+        window.location.pathname === "/courses/" ||
+        window.location.pathname.startsWith("/courses#")));
+
+  const isOurWorkRoute =
+    currentPath === "/our-work" ||
+    currentPath === "/our-work/" ||
+    currentPath.startsWith("/our-work#") ||
+    (typeof window !== "undefined" &&
+      (window.location.pathname === "/our-work" ||
+        window.location.pathname === "/our-work/" ||
+        window.location.pathname.startsWith("/our-work#")));
+
+  const isContactRoute =
+    currentPath === "/contact" ||
+    currentPath === "/contact/" ||
+    currentPath.startsWith("/contact#") ||
+    (typeof window !== "undefined" &&
+      (window.location.pathname === "/contact" ||
+        window.location.pathname === "/contact/" ||
+        window.location.pathname.startsWith("/contact#")));
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -700,22 +661,26 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
         setActiveSection("services");
         return;
       }
-
-      // Active section detection
-      const sectionIds = ["home", "about", "services", "course", "our-work", "contact"];
-      const scrollPos = window.scrollY + 140;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sectionIds[i]);
-          break;
-        }
+      if (isCoursesRoute) {
+        setActiveSection("course");
+        return;
       }
+      if (isOurWorkRoute) {
+        setActiveSection("our-work");
+        return;
+      }
+      if (isContactRoute) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // On home page, active section remains "home"
+      setActiveSection("home");
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentPath, isAboutRoute, isServicesRoute]);
+  }, [currentPath, isAboutRoute, isServicesRoute, isCoursesRoute, isOurWorkRoute, isContactRoute]);
 
   // Keyboard accessibility and click outside handling
   useEffect(() => {
@@ -756,9 +721,9 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
     { name: "Home", href: "/", id: "home" },
     { name: "About", href: "/about", id: "about" },
     { name: "Services", href: "/services", id: "services" },
-    { name: "Course", href: "#course", id: "course", isDropdown: true },
-    { name: "Our Work", href: "#our-work", id: "our-work" },
-    { name: "Contact", href: "#contact", id: "contact" },
+    { name: "Course", href: "/courses", id: "course", isDropdown: true },
+    { name: "Our Work", href: "/our-work", id: "our-work" },
+    { name: "Contact", href: "/contact", id: "contact" },
   ];
 
   return (
@@ -810,43 +775,32 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
             <div className="justify-self-center flex items-center gap-9 lg:gap-10">
               {navLinks.map((item) => {
                 if (item.isDropdown) {
-                  const isActive = !isAboutRoute && activeSection === "course";
+                  const isActive = isCoursesRoute;
+
                   return (
                     <div
                       key={item.name}
-                      className="relative py-2 group"
+                      className="relative h-full flex items-center"
                       onMouseEnter={handleCourseMouseEnter}
                       onMouseLeave={handleCourseMouseLeave}
                     >
-                      <div
-                        className="inline-flex items-center cursor-pointer"
-                        onClick={() => setCourseOpen(!courseOpen)}
+                      <a
+                        href="/courses"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/courses");
+                        }}
+                        className={`nav-link inline-flex items-center gap-1.5 cursor-pointer select-none ${
+                          isActive ? "active" : ""
+                        }`}
+                        aria-expanded={courseOpen}
+                        aria-haspopup="true"
                       >
-                        <a
-                          href={item.href}
-                          onClick={(e) => {
-                            if (currentPath !== "/") {
-                              e.preventDefault();
-                              if (onNavigate) onNavigate("/#course");
-                            }
-                          }}
-                          className={`nav-link ${
-                            isActive ? "active" : ""
-                          }`}
-                        >
-                          <span>{item.name}</span>
-                          <span
-                            className="ml-[5px] inline-flex items-center transition-transform duration-200"
-                            style={{
-                              transform: courseOpen ? "rotate(180deg)" : "rotate(0deg)",
-                            }}
-                          >
-                            <ChevronDownIcon className="w-[14px] h-[14px] text-current" />
-                          </span>
-                        </a>
-                      </div>
+                        <span>{item.name}</span>
+                        <ChevronDownIcon isOpen={courseOpen} />
+                      </a>
 
-                      {/* Course Mega Menu Dropdown */}
+                      {/* Course Mega Menu */}
                       <CourseMegaMenu
                         isOpen={courseOpen}
                         onClose={() => setCourseOpen(false)}
@@ -862,7 +816,13 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                   ? item.id === "about"
                   : isServicesRoute
                   ? item.id === "services"
-                  : activeSection === item.id;
+                  : isCoursesRoute
+                  ? item.id === "course"
+                  : isOurWorkRoute
+                  ? item.id === "our-work"
+                  : isContactRoute
+                  ? item.id === "contact"
+                  : item.id === "home";
 
                 return (
                   <a
@@ -875,6 +835,12 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       } else if (item.id === "services") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/services");
+                      } else if (item.id === "our-work") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/our-work");
+                      } else if (item.id === "contact") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/contact");
                       } else if (item.id === "home") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/");
@@ -898,12 +864,10 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
             {/* 3. CTA Button (Right) */}
             <div className="justify-self-end flex items-center">
               <a
-                href="#contact"
+                href="/contact"
                 onClick={(e) => {
-                  if (currentPath !== "/") {
-                    e.preventDefault();
-                    if (onNavigate) onNavigate("/#contact");
-                  }
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/contact");
                 }}
                 className="group inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-semibold text-white cursor-pointer transition-all duration-200"
                 style={{
@@ -1007,7 +971,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                             className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
                             style={{ background: "rgba(8, 112, 58, 0.1)", color: "#08703A" }}
                           >
-                            Popular
+                            9 Courses
                           </span>
                         </span>
                         <ChevronDownIcon isOpen={mobileCourseOpen} className="w-4 h-4 text-emerald-800" />
@@ -1016,151 +980,162 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       {/* Mobile Course Accordion Content */}
                       {mobileCourseOpen && (
                         <div className="pl-2 pr-1 pb-4 pt-2 space-y-4">
-                          {/* Featured cards */}
-                          <div className="space-y-2">
-                            <a
-                              href="#course"
-                              onClick={() => setMobileOpen(false)}
-                              className="block p-3 rounded-xl bg-white border border-emerald-900/10 shadow-xs"
-                            >
-                              <div className="flex items-center justify-between mb-1">
-                                <span className="text-[10px] font-bold uppercase text-[#08703A]">
-                                  {COURSE_FEATURED.exclusive.badge}
-                                </span>
-                                <SparkleIcon className="w-3.5 h-3.5 text-amber-500" />
-                              </div>
-                              <p className="text-sm font-bold text-[#16251C]">
-                                {COURSE_FEATURED.exclusive.title}
-                              </p>
-                              <p className="text-xs text-[#526357] mt-0.5">
-                                {COURSE_FEATURED.exclusive.description}
-                              </p>
-                            </a>
-
-                            <a
-                              href="#course"
-                              onClick={() => setMobileOpen(false)}
-                              className="block p-3 rounded-xl border border-dashed border-emerald-900/20 bg-emerald-50/40"
-                            >
-                              <p className="text-sm font-bold text-[#16251C]">
-                                {COURSE_FEATURED.free.title}
-                              </p>
-                              <p className="text-xs text-[#526357] mt-0.5">
-                                {COURSE_FEATURED.free.description}
-                              </p>
-                            </a>
-                          </div>
-
-                          {/* SEO */}
-                          <div>
-                            <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
-                              SEO
-                            </p>
-                            <a
-                              href="#course"
-                              onClick={() => setMobileOpen(false)}
-                              className="block py-1.5 pl-3 text-sm text-[#1A261F] hover:text-[#08703A]"
-                            >
-                              SEO Specialist Course
-                            </a>
-                          </div>
-
                           {/* SOCIAL MEDIA */}
                           <div>
                             <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
-                              SOCIAL MEDIA
+                              Social Media
                             </p>
-                            <div className="space-y-1.5 pl-3">
+                            <div className="space-y-1 pl-2.5">
                               <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
+                                href="/courses#social-media"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#social-media");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                              >
+                                Social Media Marketing Course
+                              </a>
+                              <a
+                                href="/courses#social-media"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#social-media");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                              >
+                                Instagram Marketing Course
+                              </a>
+                              <a
+                                href="/courses#social-media"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#social-media");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Facebook Marketing Course
                               </a>
                               <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Instagram marketing Course
-                              </a>
-                              <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
+                                href="/courses#social-media"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#social-media");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Linkedin Marketing Course
-                              </a>
-                              <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Social Media Marketing Course
                               </a>
                             </div>
                           </div>
 
-                          {/* GOOGLE */}
+                          {/* SEARCH & ADS */}
                           <div>
                             <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
-                              GOOGLE
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
+                              Search &amp; Ads
                             </p>
-                            <div className="space-y-1.5 pl-3">
+                            <div className="space-y-1 pl-2.5">
                               <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
+                                href="/courses#search-ads"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#search-ads");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                              >
+                                SEO Specialist Course
+                              </a>
+                              <a
+                                href="/courses#search-ads"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#search-ads");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Google Ads Course
                               </a>
                               <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Google Analytics Course
-                              </a>
-                            </div>
-                          </div>
-
-                          {/* DATA */}
-                          <div>
-                            <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
-                              DATA
-                            </p>
-                            <div className="space-y-1.5 pl-3">
-                              <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Digital Marketing &amp; Data Analytics Course
-                              </a>
-                              <a
-                                href="#course"
-                                onClick={() => setMobileOpen(false)}
-                                className="block text-sm text-[#1A261F] hover:text-[#08703A]"
+                                href="/courses#search-ads"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#search-ads");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
                               >
                                 Performance Marketing Course
                               </a>
                             </div>
                           </div>
 
-                          {/* Bottom Explore CTA */}
-                          <a
-                            href="#course"
-                            onClick={() => setMobileOpen(false)}
-                            className="inline-flex items-center gap-2 text-xs font-semibold text-[#08703A] pt-2"
-                          >
-                            <span>Explore All Courses</span>
-                            <span>→</span>
-                          </a>
+                          {/* DATA & ANALYTICS */}
+                          <div>
+                            <p className="text-xs font-bold text-[#0B5F32] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
+                              Data &amp; Analytics
+                            </p>
+                            <div className="space-y-1 pl-2.5">
+                              <a
+                                href="/courses#data-analytics"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#data-analytics");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                              >
+                                Google Analytics Course
+                              </a>
+                              <a
+                                href="/courses#data-analytics"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMobileOpen(false);
+                                  if (onNavigate) onNavigate("/courses#data-analytics");
+                                }}
+                                className="block py-1 text-sm text-[#1A261F] hover:text-[#08703A]"
+                              >
+                                Digital Marketing &amp; Data Analytics Course
+                              </a>
+                            </div>
+                          </div>
+
+                          {/* Bottom Explore CTAs */}
+                          <div className="pt-2 pl-2.5 flex flex-col gap-2">
+                            <a
+                              href="/courses"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setMobileOpen(false);
+                                if (onNavigate) onNavigate("/courses");
+                              }}
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#08703A]"
+                            >
+                              <span>Explore All Courses</span>
+                              <span>→</span>
+                            </a>
+                            <a
+                              href="/contact"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setMobileOpen(false);
+                                if (onNavigate) onNavigate("/contact");
+                              }}
+                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#55695C] hover:text-[#08703A] cursor-pointer"
+                            >
+                              <span>Book Free Career Guidance</span>
+                              <span>→</span>
+                            </a>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -1171,7 +1146,13 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                   ? item.id === "about"
                   : isServicesRoute
                   ? item.id === "services"
-                  : activeSection === item.id;
+                  : isCoursesRoute
+                  ? item.id === "course"
+                  : isOurWorkRoute
+                  ? item.id === "our-work"
+                  : isContactRoute
+                  ? item.id === "contact"
+                  : item.id === "home";
                 return (
                   <a
                     key={item.name}
@@ -1187,6 +1168,12 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       } else if (item.id === "services") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/services");
+                      } else if (item.id === "our-work") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/our-work");
+                      } else if (item.id === "contact") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/contact");
                       } else if (item.id === "home") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/");
@@ -1206,15 +1193,13 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
               {/* Mobile "Let's Talk →" Button */}
               <div className="pt-5 pb-2">
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-base font-semibold text-white shadow-md transition-transform active:scale-98"
                   style={{ background: "#08703A" }}
                   onClick={(e) => {
+                    e.preventDefault();
                     setMobileOpen(false);
-                    if (currentPath !== "/") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/#contact");
-                    }
+                    if (onNavigate) onNavigate("/contact");
                   }}
                 >
                   <span>Let's Talk</span>
@@ -1282,7 +1267,7 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 }
 
 // ─── Hero Section ────────────────────────────────────────────────────────────
-function Hero() {
+function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
   return (
     <section
       id="home"
@@ -1378,7 +1363,12 @@ function Hero() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-9 sm:mb-10 w-full sm:w-auto">
               <a
-                href="#contact"
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/contact");
+                  else window.location.pathname = "/contact";
+                }}
                 className="group inline-flex items-center justify-center gap-2.5 h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
                 style={{
                   background: "#FFC21C",
@@ -1402,7 +1392,12 @@ function Hero() {
               </a>
 
               <a
-                href="#services"
+                href="/services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/services");
+                  else window.location.pathname = "/services";
+                }}
                 className="inline-flex items-center justify-center h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
                 style={{
                   background: "transparent",
@@ -1831,37 +1826,78 @@ function TrustBar() {
 // ─── About ───────────────────────────────────────────────────────────────────
 function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
-  const stats = [
-    { n: "50+", l: "Brands Built" },
-    { n: "100+", l: "Projects" },
-    { n: "5+", l: "Years" },
-    { n: "95%", l: "Client Satisfaction" },
-  ];
+
   return (
-    <section id="about" className="py-28 px-6" style={{ background: "var(--offwhite)" }}>
+    <section id="about" className="py-24 sm:py-28 px-6 sm:px-8 lg:px-10" style={{ background: "var(--offwhite)" }}>
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="gold-dot" />
-              <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>WHO WE ARE</span>
+        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content */}
+          <div className="flex flex-col items-start">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#08703A]" />
+              <span
+                className="text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
+                style={{ fontFamily: "Manrope, sans-serif" }}
+              >
+                WHO WE ARE
+              </span>
             </div>
+
+            {/* Headline */}
             <h2
-              className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight"
-              style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
+              className="text-[34px] sm:text-[42px] lg:text-[46px] font-extrabold mb-6 leading-[1.14] text-[#15241B]"
+              style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "-0.03em" }}
             >
               We turn ideas into brands people remember.
             </h2>
-            <p className="text-lg mb-6 leading-relaxed" style={{ color: "rgba(23,33,27,0.65)", fontFamily: "Inter" }}>
+
+            {/* Paragraphs */}
+            <p
+              className="text-[16px] sm:text-[17px] mb-5 leading-[1.68] text-[#526056]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
               SUPRABIZ is a full-service branding and digital marketing agency based in Ahmedabad, Gujarat.
               We partner with ambitious businesses to build brand identities that resonate, marketing systems
               that convert, and digital experiences that leave lasting impressions.
             </p>
-            <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(23,33,27,0.55)", fontFamily: "Inter" }}>
+
+            <p
+              className="text-[15px] sm:text-[16px] leading-[1.68] mb-8 text-[#66736A]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
               From startups finding their voice to established companies ready to evolve — we bring
               strategy, creativity and execution together in one focused partnership.
             </p>
+
+            {/* Value Pillars */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-9 w-full">
+              {[
+                { title: "Strategic Clarity", desc: "Positioning built to cut through market noise" },
+                { title: "Creative Craft", desc: "Design systems tailored to inspire trust" },
+                { title: "Performance Drive", desc: "ROI-led execution on every campaign" },
+                { title: "Local Presence", desc: "Direct studio access in Ahmedabad" },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="flex items-start gap-2.5 p-3 rounded-xl bg-white/80 border border-[#08703A]/10 shadow-[0_2px_8px_rgba(20,55,35,0.02)]"
+                >
+                  <span className="w-5 h-5 rounded-full bg-[#E8F4EC] text-[#08703A] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                    ✓
+                  </span>
+                  <div>
+                    <h4 className="text-[13.5px] font-bold text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-[12px] text-[#69746D]" style={{ fontFamily: "Inter, sans-serif" }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTAs */}
             <div className="flex items-center gap-4 flex-wrap">
               <a
                 href="/about"
@@ -1870,39 +1906,114 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/about");
                   else window.location.pathname = "/about";
                 }}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-white transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2.5 h-[50px] px-7 rounded-full text-[14.5px] font-semibold text-white transition-all duration-200 cursor-pointer shadow-[0_6px_20px_rgba(8,112,58,0.20)] hover:bg-[#065A2E] hover:-translate-y-0.5"
                 style={{ background: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
                 <span>Discover Our Story</span>
                 <span className="transition-transform duration-200 hover:translate-x-1">→</span>
               </a>
               <a
-                href="#services"
-                className="btn-arrow inline-flex items-center font-semibold text-sm"
-                style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}
+                href="/services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/services");
+                  else window.location.pathname = "/services";
+                }}
+                className="inline-flex items-center gap-2 h-[50px] px-6 rounded-full text-[14.5px] font-semibold text-[#15241B] bg-white border border-[#08703A]/20 hover:border-[#08703A] hover:bg-[#F2F7F4] transition-all duration-200 cursor-pointer hover:-translate-y-0.5"
+                style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                See what we do →
+                <span>See what we do</span>
+                <span>→</span>
               </a>
             </div>
           </div>
 
-          {/* Right — stats grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {stats.map(({ n, l }) => (
-              <div
-                key={l}
-                className="rounded-2xl p-8 flex flex-col justify-between"
-                style={{ background: "#fff", border: "1px solid var(--border-light)", minHeight: "140px" }}
-              >
-                <div
-                  className="text-4xl font-extrabold mb-2"
-                  style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}
-                >
-                  {n}
+          {/* Right — Refined Visual Showcase without bottom number tiles */}
+          <div className="relative w-full flex justify-center lg:justify-end">
+            {/* Ambient Glow */}
+            <div
+              className="absolute -inset-4 rounded-[40px] pointer-events-none opacity-50 filter blur-2xl"
+              style={{
+                background:
+                  "radial-gradient(circle at 60% 40%, rgba(8, 112, 58, 0.15) 0%, rgba(255, 194, 28, 0.08) 50%, transparent 70%)",
+              }}
+            />
+
+            <div
+              className="relative w-full max-w-[560px] rounded-[32px] overflow-hidden bg-white border border-[rgba(8,112,58,0.12)] shadow-[0_20px_50px_rgba(20,55,35,0.08)] group"
+            >
+              {/* Main Workspace Image */}
+              <div className="relative aspect-[4/3.6] sm:aspect-[4/3.8] overflow-hidden">
+                <img
+                  src={aboutStrategyImg}
+                  alt="SUPRA BIZ Strategy & Creative Agency Workspace"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+
+                {/* Subtle gradient scrim */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#15241B]/85 via-[#15241B]/25 to-transparent pointer-events-none" />
+
+                {/* Top Floating Glass Badge */}
+                <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-[#08703A] animate-pulse" />
+                    <span
+                      className="text-[11.5px] font-bold tracking-wide uppercase text-[#15241B]"
+                      style={{ fontFamily: "Manrope, sans-serif" }}
+                    >
+                      Studio HQ • Ahmedabad
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-semibold text-white/90 bg-[#15241B]/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                    Gujarat, IN
+                  </span>
                 </div>
-                <div className="text-sm font-medium" style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>{l}</div>
+
+                {/* In-Image Caption Bottom */}
+                <div className="absolute bottom-5 left-5 right-5 text-white">
+                  <div className="inline-block px-2.5 py-1 rounded-md text-[10.5px] font-bold bg-[#FFC21C] text-[#15241B] uppercase tracking-wider mb-2">
+                    Creative &amp; Strategic Hub
+                  </div>
+                  <p
+                    className="text-white text-[15px] sm:text-[16.5px] font-semibold leading-snug drop-shadow-sm"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    Strategic thinking meets high-performance execution.
+                  </p>
+                </div>
               </div>
-            ))}
+
+              {/* Bottom Editorial Trust Bar */}
+              <div className="p-5 sm:p-6 bg-white border-t border-[#08703A]/[0.08] flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#E8F4EC] flex items-center justify-center text-[#08703A] font-bold text-sm shrink-0">
+                    ★
+                  </div>
+                  <div>
+                    <p className="text-[13.5px] font-bold text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>
+                      Dedicated Agency Team
+                    </p>
+                    <p className="text-[11.5px] text-[#69746D]" style={{ fontFamily: "Inter, sans-serif" }}>
+                      Branding, campaigns &amp; web experiences
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigate) onNavigate("/about");
+                    else window.location.pathname = "/about";
+                  }}
+                  className="inline-flex items-center gap-1 text-[12.5px] font-bold text-[#08703A] hover:text-[#065A2E] transition-colors shrink-0 group/link"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  <span>Learn More</span>
+                  <span className="transition-transform duration-200 group-hover/link:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1916,40 +2027,41 @@ const services = [
     icon: "◈",
     title: "Branding",
     desc: "Logo, identity systems, brand guidelines and visual language that makes your brand unmistakable.",
+    href: "/services#branding",
   },
   {
     icon: "◉",
     title: "Social Media Marketing",
     desc: "Content strategy, creative production and community management that builds real audiences.",
+    href: "/services#social-media",
   },
   {
     icon: "◎",
     title: "SEO",
     desc: "Technical SEO, content strategy and link building to rank higher and drive organic growth.",
+    href: "/services#seo",
   },
   {
     icon: "⬡",
     title: "Web Design & Development",
     desc: "Fast, conversion-optimized websites and landing pages built to perform and impress.",
+    href: "/services#web-design",
   },
   {
     icon: "◐",
     title: "Performance Marketing",
     desc: "Data-driven paid campaigns on Meta, Google and more — every rupee tracked for ROI.",
+    href: "/services#performance-marketing",
   },
   {
     icon: "◑",
     title: "Digital Marketing",
     desc: "Integrated digital strategy combining multiple channels into one cohesive growth engine.",
-  },
-  {
-    icon: "◭",
-    title: "Digital Marketing Course",
-    desc: "Hands-on training for individuals and teams — learn the skills agencies use to grow brands online.",
+    href: "/services#digital-marketing",
   },
 ];
 
-function Services() {
+function Services({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
     <section id="services" className="py-28 px-6" style={{ background: "#fff" }}>
@@ -1970,30 +2082,50 @@ function Services() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s) => (
             <div
               key={s.title}
-              className="service-card rounded-2xl p-7 cursor-default group"
+              onClick={() => {
+                if (onNavigate) onNavigate(s.href);
+                else window.location.href = s.href;
+              }}
+              className="service-card rounded-2xl p-7 cursor-pointer group hover:-translate-y-1 hover:shadow-lg transition-all"
               style={{ background: "var(--offwhite)", border: "1.5px solid var(--border-light)" }}
             >
               <div
-                className="text-2xl mb-5 w-12 h-12 flex items-center justify-center rounded-xl"
+                className="text-2xl mb-5 w-12 h-12 flex items-center justify-center rounded-xl transition-colors group-hover:bg-[#08703A] group-hover:text-white"
                 style={{ background: "rgba(7,92,42,0.08)", color: "var(--green-dark)" }}
               >
                 {s.icon}
               </div>
-              <h3 className="text-lg font-bold mb-3" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>
+              <h3 className="text-lg font-bold mb-3 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>
                 {s.title}
               </h3>
               <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>
                 {s.desc}
               </p>
-              <span className="text-sm font-semibold flex items-center gap-1 transition-all group-hover:gap-2" style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}>
+              <span className="text-sm font-semibold flex items-center gap-1 transition-all group-hover:gap-2 group-hover:text-[#08703A]" style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}>
                 Learn more <span>→</span>
               </span>
             </div>
           ))}
+        </div>
+
+        <div className="mt-14 text-center">
+          <a
+            href="/services"
+            onClick={(e) => {
+              e.preventDefault();
+              if (onNavigate) onNavigate("/services");
+              else window.location.pathname = "/services";
+            }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            style={{ background: "#08703A", fontFamily: "Manrope, sans-serif" }}
+          >
+            <span>Explore All Services &amp; Capabilities</span>
+            <span className="transition-transform duration-200 hover:translate-x-1">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -2010,7 +2142,7 @@ const courseModules = [
   { n: "06", t: "Branding & Positioning", d: "Build a compelling brand identity, messaging and positioning that stands out." },
 ];
 
-function Course() {
+function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
     <section id="course" className="py-28 px-6 relative overflow-hidden" style={{ background: "var(--offwhite)" }}>
@@ -2052,20 +2184,30 @@ function Course() {
                 <span style={{ color: "#FFC515" }}>✦</span> Placement Support
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-wrap">
               <a
-                href="#contact"
-                className="btn-arrow inline-flex items-center px-7 py-4 rounded-full font-bold text-sm"
+                href="/courses"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/courses");
+                  else window.location.pathname = "/courses";
+                }}
+                className="btn-arrow inline-flex items-center px-7 py-4 rounded-full font-bold text-sm cursor-pointer hover:shadow-lg transition-all"
                 style={{ background: "var(--gold)", color: "var(--dark)", fontFamily: "Manrope" }}
               >
-                Enroll Now →
+                Explore All 9 Courses →
               </a>
               <a
-                href="#contact"
-                className="btn-arrow inline-flex items-center px-7 py-4 rounded-full font-semibold text-sm border-2"
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/contact");
+                  else window.location.pathname = "/contact";
+                }}
+                className="btn-arrow inline-flex items-center px-7 py-4 rounded-full font-semibold text-sm border-2 cursor-pointer hover:bg-[#08703A] hover:text-white transition-all"
                 style={{ borderColor: "var(--green-dark)", color: "var(--green-dark)", fontFamily: "Manrope" }}
               >
-                Get Syllabus
+                Get Syllabus &amp; Enroll
               </a>
             </div>
           </div>
@@ -2089,15 +2231,15 @@ function Course() {
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold mb-6"
               style={{ background: "#FFC515", color: "var(--dark)" }}
             >
-              🎓 DIGITAL MARKETING COURSE
+              🎓 DIGITAL MARKETING ACADEMY
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               {[
-                { v: "6", l: "Modules" },
+                { v: "9", l: "Courses" },
                 { v: "3 mo", l: "Duration" },
-                { v: "Live", l: "Sessions" },
-                { v: "Certificate", l: "On Completion" },
+                { v: "Live", l: "Mentorship" },
+                { v: "100%", l: "Practical Projects" },
               ].map(({ v, l }) => (
                 <div key={l} className="rounded-xl p-4" style={{ background: "rgba(250,251,247,0.07)" }}>
                   <div className="text-xl font-extrabold mb-0.5" style={{ color: "#FFC515", fontFamily: "Manrope" }}>{v}</div>
@@ -2106,9 +2248,21 @@ function Course() {
               ))}
             </div>
 
-            <p className="text-sm leading-relaxed" style={{ color: "rgba(250,251,247,0.65)", fontFamily: "Inter" }}>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(250,251,247,0.65)", fontFamily: "Inter" }}>
               Taught by working professionals with real agency experience. Small batch sizes, personal mentorship and a job-ready curriculum.
             </p>
+            <a
+              href="/courses"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/courses");
+                else window.location.pathname = "/courses";
+              }}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FFC515] hover:underline cursor-pointer"
+            >
+              <span>View full syllabus &amp; batch timings</span>
+              <span>→</span>
+            </a>
           </div>
         </div>
 
@@ -2117,17 +2271,21 @@ function Course() {
           {courseModules.map((m) => (
             <div
               key={m.n}
-              className="rounded-2xl p-6 flex gap-4 items-start"
+              onClick={() => {
+                if (onNavigate) onNavigate("/courses");
+                else window.location.pathname = "/courses";
+              }}
+              className="rounded-2xl p-6 flex gap-4 items-start cursor-pointer hover:border-[#08703A] hover:-translate-y-0.5 transition-all hover:shadow-md group"
               style={{ background: "#fff", border: "1.5px solid var(--border-light)" }}
             >
               <div
-                className="text-xs font-extrabold flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center"
+                className="text-xs font-extrabold flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-colors group-hover:bg-[#08703A] group-hover:text-white"
                 style={{ background: "rgba(7,92,42,0.08)", color: "var(--green-dark)", fontFamily: "Manrope" }}
               >
                 {m.n}
               </div>
               <div>
-                <h4 className="text-sm font-bold mb-1" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>{m.t}</h4>
+                <h4 className="text-sm font-bold mb-1 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>{m.t}</h4>
                 <p className="text-xs leading-relaxed" style={{ color: "rgba(23,33,27,0.55)", fontFamily: "Inter" }}>{m.d}</p>
               </div>
             </div>
@@ -2190,7 +2348,7 @@ const projects = [
     tag: "Branding",
     bg: "#1a2e22",
     accent: "#FFC515",
-    imgUrl: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=700&h=500&fit=crop&auto=format",
+    imgUrl: brandingImg,
   },
   {
     name: "URBANO",
@@ -2198,7 +2356,7 @@ const projects = [
     tag: "SMM",
     bg: "#0d1f14",
     accent: "#138A3D",
-    imgUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=700&h=500&fit=crop&auto=format",
+    imgUrl: socialMarketingImg,
   },
   {
     name: "AURA LIVING",
@@ -2206,7 +2364,7 @@ const projects = [
     tag: "Full Service",
     bg: "#17211b",
     accent: "#FFC515",
-    imgUrl: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=700&h=500&fit=crop&auto=format",
+    imgUrl: webDesignImg,
   },
   {
     name: "VERTEX",
@@ -2214,11 +2372,11 @@ const projects = [
     tag: "Marketing",
     bg: "#0b1a10",
     accent: "#138A3D",
-    imgUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=500&fit=crop&auto=format",
+    imgUrl: digitalAgencyImg,
   },
 ];
 
-function Portfolio() {
+function Portfolio({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
     <section id="our-work" className="py-28 px-6" style={{ background: "var(--offwhite)" }}>
@@ -2236,19 +2394,40 @@ function Portfolio() {
               Work we're proud of.
             </h2>
           </div>
-          <a
-            href="#contact"
-            className="btn-arrow inline-flex items-center font-semibold text-sm"
-            style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}
-          >
-            Start a project →
-          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href="/our-work"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/our-work");
+              }}
+              className="btn-arrow inline-flex items-center font-semibold text-sm cursor-pointer hover:text-[#08703A] transition-colors"
+              style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}
+            >
+              Explore Our Work →
+            </a>
+            <a
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/contact");
+                else window.location.pathname = "/contact";
+              }}
+              className="btn-arrow inline-flex items-center font-semibold text-sm opacity-85 hover:opacity-100 cursor-pointer hover:text-[#08703A] transition-colors"
+              style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}
+            >
+              Start a project →
+            </a>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-5">
           {projects.map((p) => (
             <div
               key={p.name}
+              onClick={() => {
+                if (onNavigate) onNavigate("/our-work");
+              }}
               className="portfolio-card rounded-3xl overflow-hidden relative cursor-pointer"
               style={{ height: "320px", background: p.bg }}
             >
@@ -2344,54 +2523,6 @@ function Process() {
   );
 }
 
-// ─── Results ─────────────────────────────────────────────────────────────────
-function Results() {
-  const ref = useReveal();
-  const stats = [
-    { n: "50+", l: "Brands Built" },
-    { n: "100+", l: "Projects Delivered" },
-    { n: "10+", l: "Industries Served" },
-    { n: "95%", l: "Client Satisfaction" },
-  ];
-  return (
-    <section className="py-28 px-6" style={{ background: "var(--offwhite)" }}>
-      <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal text-center mb-16">
-          <h2
-            className="text-4xl md:text-5xl font-extrabold mb-3 leading-tight"
-            style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
-          >
-            We don't just create.
-            <br />
-            <span style={{ color: "var(--green-dark)" }}>We create for impact.</span>
-          </h2>
-        </div>
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
-          {stats.map(({ n, l }, i) => (
-            <div
-              key={l}
-              className="rounded-2xl p-10 text-center"
-              style={{ background: i === 1 ? "var(--green-dark)" : "#fff", border: "1px solid var(--border-light)" }}
-            >
-              <div
-                className="text-5xl font-extrabold mb-3"
-                style={{ color: i === 1 ? "#FFC515" : "var(--green-dark)", fontFamily: "Manrope" }}
-              >
-                {n}
-              </div>
-              <div
-                className="text-sm font-medium"
-                style={{ color: i === 1 ? "rgba(250,251,247,0.7)" : "rgba(23,33,27,0.6)", fontFamily: "Inter" }}
-              >
-                {l}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── Testimonials ────────────────────────────────────────────────────────────
 const testimonials = [
@@ -2418,7 +2549,13 @@ const testimonials = [
 function Testimonials() {
   const ref = useReveal();
   return (
-    <section className="py-28 px-6" style={{ background: "#fff" }}>
+    <section
+      className="py-28 px-6 border-t"
+      style={{
+        background: "var(--offwhite)",
+        borderColor: "rgba(8, 112, 58, 0.09)",
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         <div ref={ref} className="reveal text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-5">
@@ -2437,8 +2574,12 @@ function Testimonials() {
           {testimonials.map((t, i) => (
             <div
               key={t.name}
-              className="testimonial-card rounded-2xl p-8 flex flex-col"
-              style={{ background: "var(--offwhite)", border: "1.5px solid var(--border-light)" }}
+              className="testimonial-card rounded-2xl p-8 flex flex-col transition-transform duration-200 hover:-translate-y-1"
+              style={{
+                background: "#FFFFFF",
+                border: "1.5px solid var(--border-light)",
+                boxShadow: "0 12px 32px rgba(21, 36, 27, 0.04)",
+              }}
             >
               {/* Stars */}
               <div className="flex gap-1 mb-5">
@@ -2452,7 +2593,7 @@ function Testimonials() {
               >
                 "{t.quote}"
               </p>
-              <div className="flex items-center gap-3 pt-4 border-t" style={{ borderColor: "var(--border-light)" }}>
+              <div className="flex items-center gap-3 pt-4 border-t" style={{ borderColor: "rgba(8, 112, 58, 0.08)" }}>
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
                   style={{ background: i === 1 ? "#FFC515" : "var(--green-dark)", color: i === 1 ? "var(--dark)" : "#FAFBF7", fontFamily: "Manrope" }}
@@ -2473,7 +2614,7 @@ function Testimonials() {
 }
 
 // ─── CTA ─────────────────────────────────────────────────────────────────────
-function CTA() {
+function CTA({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const ref = useReveal();
   return (
     <section className="py-28 px-6 relative overflow-hidden" style={{ background: "var(--green-dark)" }}>
@@ -2511,9 +2652,14 @@ function CTA() {
             Book a free strategy call and let's figure out exactly how SUPRABIZ can help your brand grow.
           </p>
           <a
-            href="#contact"
-            className="btn-arrow inline-flex items-center px-10 py-5 rounded-full text-base font-bold"
-            style={{ background: "#FFC515", color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.01em" }}
+            href="/contact"
+            onClick={(e) => {
+              e.preventDefault();
+              if (onNavigate) onNavigate("/contact");
+              else window.location.pathname = "/contact";
+            }}
+            className="btn-arrow inline-flex items-center px-10 py-5 rounded-full text-base font-bold transition-all hover:scale-105 cursor-pointer shadow-lg"
+            style={{ background: "#FFC21C", color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.01em" }}
           >
             Let's Build Together →
           </a>
@@ -2557,35 +2703,48 @@ function Contact() {
 
             <div className="flex flex-col gap-5">
               {[
-                { icon: "✉", label: "Email", val: "hello@suprabiz.com" },
-                { icon: "✆", label: "Phone", val: "+91 XXXXX XXXXX" },
-                { icon: "⌖", label: "Location", val: "Ahmedabad, Gujarat, India" },
+                { icon: "✉", label: "Email", val: "sales@suprabiz.co.in", href: "mailto:sales@suprabiz.co.in" },
+                { icon: "✆", label: "Sales Call", val: "+91 93130 09073", href: "tel:+919313009073" },
+                { icon: "✆", label: "Admin Desk", val: "+91 89804 44498", href: "tel:+918980444498" },
+                { icon: "⌖", label: "Location", val: "C-1210, Titanium business park, Makarba, Ahmedabad", href: "https://share.google/XcnqzuVTT3DxUhJjg" },
               ].map((c) => (
-                <div key={c.label} className="flex items-center gap-4">
+                <a
+                  key={c.label}
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-4 group cursor-pointer"
+                >
                   <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-sm"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-sm group-hover:bg-[#08703A] group-hover:text-white transition-colors"
                     style={{ background: "rgba(7,92,42,0.08)", color: "var(--green-dark)" }}
                   >
                     {c.icon}
                   </div>
                   <div>
                     <div className="text-xs mb-0.5" style={{ color: "rgba(23,33,27,0.45)", fontFamily: "Inter" }}>{c.label}</div>
-                    <div className="text-sm font-medium" style={{ color: "var(--dark)", fontFamily: "Inter" }}>{c.val}</div>
+                    <div className="text-sm font-medium group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Inter" }}>{c.val}</div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
             {/* Social */}
             <div className="flex gap-3 mt-8">
-              {["Instagram", "LinkedIn", "Facebook"].map((s) => (
+              {[
+                { name: "Instagram", href: "https://www.instagram.com/suprabiz/" },
+                { name: "LinkedIn", href: "https://www.linkedin.com/in/supra-biz-441133340/" },
+                { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61594457241124" },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
-                  className="px-4 py-2 rounded-full text-xs font-semibold transition-colors"
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-full text-xs font-semibold transition-colors hover:bg-[#08703A] hover:text-white"
                   style={{ background: "#fff", border: "1px solid var(--border-light)", color: "var(--green-dark)", fontFamily: "Manrope" }}
                 >
-                  {s}
+                  {s.name}
                 </a>
               ))}
             </div>
@@ -2598,7 +2757,7 @@ function Contact() {
           >
             {sent ? (
               <div className="text-center py-12">
-                <div className="text-4xl mb-4">✓</div>
+                <div className="text-4xl mb-4 text-[#08703A]">✓</div>
                 <h3 className="text-2xl font-bold mb-2" style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}>Enquiry Sent!</h3>
                 <p style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>We'll be in touch within 24 hours.</p>
               </div>
@@ -2608,7 +2767,7 @@ function Contact() {
                 {[
                   { id: "name", label: "Full Name", type: "text", placeholder: "Your name" },
                   { id: "email", label: "Email Address", type: "email", placeholder: "you@company.com" },
-                  { id: "phone", label: "Phone Number", type: "tel", placeholder: "+91 XXXXX XXXXX" },
+                  { id: "phone", label: "Phone Number", type: "tel", placeholder: "+91 93130 09073" },
                 ].map((f) => (
                   <div key={f.id}>
                     <label className="block text-xs font-semibold mb-1.5" style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>{f.label}</label>
@@ -2616,7 +2775,7 @@ function Contact() {
                       type={f.type}
                       placeholder={f.placeholder}
                       required
-                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all focus:border-[#08703A]"
                       style={{
                         border: "1.5px solid var(--border-light)",
                         background: "var(--offwhite)",
@@ -2632,13 +2791,13 @@ function Contact() {
                   <label className="block text-xs font-semibold mb-1.5" style={{ color: "rgba(23,33,27,0.6)", fontFamily: "Inter" }}>Service Interested In</label>
                   <select
                     required
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none"
+                    className="w-full px-4 py-3 rounded-xl text-sm outline-none focus:border-[#08703A]"
                     style={{ border: "1.5px solid var(--border-light)", background: "var(--offwhite)", color: "var(--dark)", fontFamily: "Inter" }}
                     value={form.service}
                     onChange={e => setForm({ ...form, service: e.target.value })}
                   >
                     <option value="">Select a service</option>
-                    {["Branding", "Social Media Marketing", "SEO", "Web Design & Development", "Performance Marketing", "Digital Marketing", "Digital Marketing Course"].map(s => (
+                    {["Branding", "Social Media Marketing", "SEO", "Web Design & Development", "Performance Marketing", "Digital Marketing", "Digital Marketing Courses"].map(s => (
                       <option key={s} value={s}>{s}</option>
                     ))}
                   </select>
@@ -2648,7 +2807,7 @@ function Contact() {
                   <textarea
                     rows={4}
                     placeholder="Tell us about your project..."
-                    className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none"
+                    className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none focus:border-[#08703A]"
                     style={{ border: "1.5px solid var(--border-light)", background: "var(--offwhite)", color: "var(--dark)", fontFamily: "Inter" }}
                     value={form.message}
                     onChange={e => setForm({ ...form, message: e.target.value })}
@@ -2656,7 +2815,7 @@ function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="btn-arrow w-full flex items-center justify-center py-4 rounded-xl font-bold text-sm mt-1"
+                  className="btn-arrow w-full flex items-center justify-center py-4 rounded-xl font-bold text-sm mt-1 cursor-pointer transition-transform hover:scale-[1.01]"
                   style={{ background: "var(--green-dark)", color: "#FAFBF7", fontFamily: "Manrope" }}
                 >
                   Send Enquiry →
@@ -2676,17 +2835,19 @@ function Location() {
     <section className="py-20 px-6" style={{ background: "#fff" }}>
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 items-stretch">
-          {/* Map placeholder */}
+          {/* Real Google Maps Embed */}
           <div
-            className="rounded-3xl overflow-hidden flex items-center justify-center min-h-72 relative"
-            style={{ background: "rgba(7,92,42,0.06)", border: "1px solid var(--border-light)", minHeight: "340px" }}
+            className="rounded-3xl overflow-hidden min-h-[340px] relative shadow-sm border"
+            style={{ borderColor: "var(--border-light)" }}
           >
-            <div className="text-center">
-              <div className="text-4xl mb-3">⌖</div>
-              <p className="text-sm font-semibold" style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}>Google Maps</p>
-              <p className="text-xs mt-1" style={{ color: "rgba(23,33,27,0.4)", fontFamily: "Inter" }}>Ahmedabad, Gujarat</p>
-              <p className="text-xs mt-0.5" style={{ color: "rgba(23,33,27,0.3)", fontFamily: "Inter" }}>Embed map here</p>
-            </div>
+            <iframe
+              title="SUPRABIZ ADS & EVENTS Studio Location Ahmedabad"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586.9755216994283!2d72.50187580937867!3d22.99767832344428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b7eee8ca869%3A0xd31c25799d187694!2sSUPRABIZ%20ADS%20%26%20EVENTS%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1788948480425!5m2!1sen!2sin"
+              className="w-full h-full min-h-[340px] border-0 block"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
           </div>
 
           {/* Details */}
@@ -2695,10 +2856,11 @@ function Location() {
             <div className="flex flex-col gap-4 mb-8">
               {[
                 { l: "Company", v: "SUPRABIZ — Branding & Digital Marketing Agency" },
-                { l: "Address", v: "Ahmedabad, Gujarat, India — 380 0XX" },
-                { l: "Phone", v: "+91 XXXXX XXXXX" },
-                { l: "Email", v: "hello@suprabiz.com" },
-                { l: "Business Hours", v: "Mon–Sat: 10:00 AM – 7:00 PM IST" },
+                { l: "Address", v: "C-1210, Titanium business park, Makarba, Ahmedabad, Gujarat 380015" },
+                { l: "Sales", v: "+91 93130 09073" },
+                { l: "Admin", v: "+91 89804 44498" },
+                { l: "Email", v: "sales@suprabiz.co.in" },
+                { l: "Business Hours", v: "Mon–Sat: 9:30 AM – 6:30 PM IST" },
               ].map(({ l, v }) => (
                 <div key={l} className="flex gap-3">
                   <span className="text-xs font-semibold w-28 flex-shrink-0 mt-0.5" style={{ color: "rgba(23,33,27,0.4)", fontFamily: "Inter" }}>{l}</span>
@@ -2707,8 +2869,10 @@ function Location() {
               ))}
             </div>
             <a
-              href="#"
-              className="btn-arrow inline-flex items-center self-start px-6 py-3 rounded-full font-semibold text-sm"
+              href="https://share.google/XcnqzuVTT3DxUhJjg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-arrow inline-flex items-center self-start px-6 py-3 rounded-full font-semibold text-sm cursor-pointer transition-transform hover:scale-105"
               style={{ background: "var(--gold)", color: "var(--dark)", fontFamily: "Manrope" }}
             >
               Get Directions →
@@ -2726,9 +2890,9 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Course", href: "#course" },
-    { name: "Our Work", href: "#our-work" },
-    { name: "Contact", href: "#contact" },
+    { name: "Course", href: "/courses" },
+    { name: "Our Work", href: "/our-work" },
+    { name: "Contact", href: "/contact" },
   ];
   const serviceLinks = [
     { name: "Branding", href: "/services#branding" },
@@ -2785,7 +2949,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
             {/* Social Links with SVG Icons */}
             <div className="flex items-center gap-2.5">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/suprabiz/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="SUPRA BIZ on Instagram"
@@ -2814,7 +2978,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/supra-biz-441133340/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="SUPRA BIZ on LinkedIn"
@@ -2843,7 +3007,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
               </a>
 
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61594457241124"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="SUPRA BIZ on Facebook"
@@ -2892,6 +3056,15 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     } else if (l.href === "/services") {
                       e.preventDefault();
                       if (onNavigate) onNavigate("/services");
+                    } else if (l.href === "/courses") {
+                      e.preventDefault();
+                      if (onNavigate) onNavigate("/courses");
+                    } else if (l.href === "/our-work") {
+                      e.preventDefault();
+                      if (onNavigate) onNavigate("/our-work");
+                    } else if (l.href === "/contact") {
+                      e.preventDefault();
+                      if (onNavigate) onNavigate("/contact");
                     } else if (l.href === "/") {
                       e.preventDefault();
                       if (onNavigate) onNavigate("/");
@@ -2954,7 +3127,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
             </h4>
             <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
             <div
-              className="flex flex-col gap-3 text-[13.5px] leading-relaxed"
+              className="flex flex-col gap-2.5 text-[13px] leading-relaxed"
               style={{ color: "rgba(255, 255, 255, 0.58)", fontFamily: "Inter, sans-serif" }}
             >
               <div className="flex items-center gap-2.5">
@@ -2962,32 +3135,52 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                <span>hello@suprabiz.com</span>
+                <a href="mailto:sales@suprabiz.co.in" className="hover:text-white transition-colors">
+                  sales@suprabiz.co.in
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <svg className="w-3.5 h-3.5 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                <span>+91 XXXXX XXXXX</span>
+                <span className="text-white/40 text-xs">Sales:</span>
+                <a href="tel:+919313009073" className="hover:text-white transition-colors">
+                  +91 93130 09073
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <svg className="w-3.5 h-3.5 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span className="text-white/40 text-xs">Admin:</span>
+                <a href="tel:+918980444498" className="hover:text-white transition-colors">
+                  +91 89804 44498
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5 pt-0.5">
+                <svg className="w-3.5 h-3.5 shrink-0 text-white/50 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <span>Ahmedabad, Gujarat</span>
+                <a
+                  href="https://share.google/XcnqzuVTT3DxUhJjg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors text-xs leading-relaxed"
+                >
+                  C-1210, Titanium business park, Makarba, Ahmedabad, Gujarat 380015
+                </a>
               </div>
             </div>
 
             <a
-              href="#contact"
+              href="/contact"
               onClick={(e) => {
-                if (window.location.pathname !== "/") {
-                  e.preventDefault();
-                  if (onNavigate) onNavigate("/#contact");
-                }
+                e.preventDefault();
+                if (onNavigate) onNavigate("/contact");
+                else window.location.pathname = "/contact";
               }}
-              className="inline-flex items-center gap-1.5 h-[40px] px-[18px] rounded-full text-[12px] font-[650] mt-[18px] transition-all duration-200 hover:translate-y-[-1px] shadow-sm"
+              className="inline-flex items-center gap-1.5 h-[40px] px-[18px] rounded-full text-[12px] font-[650] mt-[18px] transition-all duration-200 hover:translate-y-[-1px] shadow-sm cursor-pointer"
               style={{
                 background: "#FFC21C",
                 color: "#15241B",
@@ -3016,11 +3209,25 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
             className="flex items-center gap-4 text-[11.5px]"
             style={{ color: "rgba(255, 255, 255, 0.42)", fontFamily: "Inter, sans-serif" }}
           >
-            <a href="#" className="hover:text-white/80 transition-colors">
+            <a
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/contact");
+              }}
+              className="hover:text-white/80 transition-colors"
+            >
               Privacy Policy
             </a>
             <span className="text-white/20">•</span>
-            <a href="#" className="hover:text-white/80 transition-colors">
+            <a
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/contact");
+              }}
+              className="hover:text-white/80 transition-colors"
+            >
               Terms
             </a>
           </div>
@@ -3094,6 +3301,57 @@ export default function App() {
       return;
     }
 
+    if (path.startsWith("/courses#")) {
+      const hash = path.replace("/courses", "");
+      if (currentPath !== "/courses") {
+        window.history.pushState(null, "", path);
+        setCurrentPath("/courses");
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+      } else {
+        window.history.pushState(null, "", path);
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
+    if (path.startsWith("/our-work#")) {
+      const hash = path.replace("/our-work", "");
+      if (currentPath !== "/our-work") {
+        window.history.pushState(null, "", path);
+        setCurrentPath("/our-work");
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+      } else {
+        window.history.pushState(null, "", path);
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
+    if (path.startsWith("/contact#")) {
+      const hash = path.replace("/contact", "");
+      if (currentPath !== "/contact") {
+        window.history.pushState(null, "", path);
+        setCurrentPath("/contact");
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+      } else {
+        window.history.pushState(null, "", path);
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
     window.history.pushState(null, "", path);
     setCurrentPath(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -3104,6 +3362,18 @@ export default function App() {
     currentPath === "/services" ||
     currentPath === "/services/" ||
     currentPath.startsWith("/services#");
+  const isCourses =
+    currentPath === "/courses" ||
+    currentPath === "/courses/" ||
+    currentPath.startsWith("/courses#");
+  const isOurWork =
+    currentPath === "/our-work" ||
+    currentPath === "/our-work/" ||
+    currentPath.startsWith("/our-work#");
+  const isContact =
+    currentPath === "/contact" ||
+    currentPath === "/contact/" ||
+    currentPath.startsWith("/contact#");
 
   return (
     <div className="min-h-screen">
@@ -3112,21 +3382,24 @@ export default function App() {
         <AboutPage onNavigate={navigateTo} />
       ) : isServices ? (
         <ServicesPage onNavigate={navigateTo} />
+      ) : isCourses ? (
+        <CoursesPage onNavigate={navigateTo} />
+      ) : isOurWork ? (
+        <OurWorkPage onNavigate={navigateTo} />
+      ) : isContact ? (
+        <ContactPage onNavigate={navigateTo} />
       ) : (
         <>
-          <Hero />
+          <Hero onNavigate={navigateTo} />
           <TrustBar />
           <About onNavigate={navigateTo} />
-          <Services />
-          <Course />
+          <Services onNavigate={navigateTo} />
+          <Course onNavigate={navigateTo} />
           <WhyUs />
-          <Portfolio />
+          <Portfolio onNavigate={navigateTo} />
           <Process />
-          <Results />
           <Testimonials />
-          <CTA />
-          <Contact />
-          <Location />
+          <CTA onNavigate={navigateTo} />
         </>
       )}
       <Footer onNavigate={navigateTo} />
