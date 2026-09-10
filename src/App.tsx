@@ -2913,12 +2913,12 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
         SUPRABIZ
       </div>
 
-      <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-10 pt-14 sm:pt-[72px] pb-6 sm:pb-[32px] relative z-10">
+      <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-10 pt-10 sm:pt-[72px] pb-8 sm:pb-[32px] relative z-10">
         {/* Top Grid - Staggered progressive assembly */}
-        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-[60px] mb-10 sm:mb-14">
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-[60px] mb-8 sm:mb-14">
           {/* 1. Brand Column */}
           <StaggerItem index={0} staggerMs={70}>
-            <div>
+            <div className="flex flex-col items-start">
               <a
                 href="/"
                 onClick={(e) => {
@@ -2926,17 +2926,17 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/");
                   else window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="inline-block bg-white px-3 py-1.5 rounded-xl shadow-sm border border-white/10 hover:opacity-95 transition-opacity"
+                className="inline-flex items-center bg-white/95 px-3.5 py-2 rounded-xl shadow-xs border border-white/20 hover:opacity-95 transition-opacity"
               >
                 <img
                   src={headerLogoImg}
                   alt="SUPRABIZ"
-                  className="w-[120px] sm:w-[125px] h-auto object-contain block"
+                  className="w-[110px] sm:w-[125px] h-auto object-contain block"
                 />
               </a>
               <p
-                className="text-[14px] leading-[1.7] mt-4 mb-6 max-w-[280px]"
-                style={{ color: "rgba(255, 255, 255, 0.55)", fontFamily: "Inter, sans-serif" }}
+                className="text-[13.5px] sm:text-[14px] leading-[1.65] mt-3.5 mb-5 max-w-[290px]"
+                style={{ color: "rgba(255, 255, 255, 0.6)", fontFamily: "Inter, sans-serif" }}
               >
                 Building brands that stand out and grow. Your strategic creative partner.
               </p>
@@ -2948,11 +2948,11 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="SUPRABIZ on Instagram"
-                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-200 group"
                   style={{
-                    background: "rgba(255, 255, 255, 0.07)",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
-                    color: "rgba(255, 255, 255, 0.75)",
+                    background: "rgba(255, 255, 255, 0.08)",
+                    border: "1px solid rgba(255, 255, 255, 0.12)",
+                    color: "rgba(255, 255, 255, 0.85)",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = "#FFC21C";
@@ -2960,12 +2960,12 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     e.currentTarget.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
-                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.85)";
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -2977,11 +2977,11 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="SUPRABIZ on LinkedIn"
-                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-200 group"
                   style={{
-                    background: "rgba(255, 255, 255, 0.07)",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
-                    color: "rgba(255, 255, 255, 0.75)",
+                    background: "rgba(255, 255, 255, 0.08)",
+                    border: "1px solid rgba(255, 255, 255, 0.12)",
+                    color: "rgba(255, 255, 255, 0.85)",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = "#FFC21C";
@@ -2989,12 +2989,12 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     e.currentTarget.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
-                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.85)";
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                     <rect width="4" height="12" x="2" y="9" />
                     <circle cx="4" cy="4" r="2" />
@@ -3006,11 +3006,11 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="SUPRABIZ on Facebook"
-                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-200 group"
                   style={{
-                    background: "rgba(255, 255, 255, 0.07)",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
-                    color: "rgba(255, 255, 255, 0.75)",
+                    background: "rgba(255, 255, 255, 0.08)",
+                    border: "1px solid rgba(255, 255, 255, 0.12)",
+                    color: "rgba(255, 255, 255, 0.85)",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = "#FFC21C";
@@ -3018,12 +3018,12 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     e.currentTarget.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
-                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.85)";
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
-                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                   </svg>
                 </a>
@@ -3031,105 +3031,108 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
             </div>
           </StaggerItem>
 
-          {/* 2. Quick Links */}
-          <StaggerItem index={1} staggerMs={70}>
-            <div>
-              <h4
-                className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                QUICK LINKS
-              </h4>
-              <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
-              <div className="flex flex-col gap-2">
-                {quickLinks.map((l) => (
-                  <a
-                    key={l.name}
-                    href={l.href}
-                    onClick={(e) => {
-                      if (l.href === "/about") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/about");
-                      } else if (l.href === "/services") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/services");
-                      } else if (l.href === "/courses") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/courses");
-                      } else if (l.href === "/contact") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/contact");
-                      } else if (l.href === "/") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/");
-                      } else if (l.href.startsWith("#")) {
-                        if (window.location.pathname !== "/") {
+          {/* 2 & 3. Quick Links & Services (Side-by-Side 2-Column Grid on Mobile) */}
+          <div className="grid grid-cols-2 gap-6 sm:gap-10 col-span-1 lg:col-span-2">
+            {/* Quick Links */}
+            <StaggerItem index={1} staggerMs={70}>
+              <div>
+                <h4
+                  className="text-[11px] font-bold tracking-[0.14em] text-white uppercase"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  QUICK LINKS
+                </h4>
+                <div className="w-[20px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-4 sm:mb-5" />
+                <div className="flex flex-col gap-1.5 sm:gap-2">
+                  {quickLinks.map((l) => (
+                    <a
+                      key={l.name}
+                      href={l.href}
+                      onClick={(e) => {
+                        if (l.href === "/about") {
                           e.preventDefault();
-                          if (onNavigate) onNavigate("/" + l.href);
+                          if (onNavigate) onNavigate("/about");
+                        } else if (l.href === "/services") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/services");
+                        } else if (l.href === "/courses") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/courses");
+                        } else if (l.href === "/contact") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/contact");
+                        } else if (l.href === "/") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/");
+                        } else if (l.href.startsWith("#")) {
+                          if (window.location.pathname !== "/") {
+                            e.preventDefault();
+                            if (onNavigate) onNavigate("/" + l.href);
+                          }
                         }
-                      }
-                    }}
-                    className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
-                    style={{
-                      color: "rgba(255, 255, 255, 0.65)",
-                      fontFamily: "Inter, sans-serif",
-                    }}
-                  >
-                    {l.name}
-                  </a>
-                ))}
+                      }}
+                      className="text-[13.5px] sm:text-[14px] leading-[1.8] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
+                      style={{
+                        color: "rgba(255, 255, 255, 0.7)",
+                        fontFamily: "Inter, sans-serif",
+                      }}
+                    >
+                      {l.name}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          </StaggerItem>
+            </StaggerItem>
 
-          {/* 3. Services */}
-          <StaggerItem index={2} staggerMs={70}>
-            <div>
-              <h4
-                className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                SERVICES
-              </h4>
-              <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
-              <div className="flex flex-col gap-2">
-                {serviceLinks.map((l) => (
-                  <a
-                    key={l.name}
-                    href={l.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate(l.href);
-                    }}
-                    className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
-                    style={{
-                      color: "rgba(255, 255, 255, 0.65)",
-                      fontFamily: "Inter, sans-serif",
-                    }}
-                  >
-                    {l.name}
-                  </a>
-                ))}
+            {/* Services */}
+            <StaggerItem index={2} staggerMs={70}>
+              <div>
+                <h4
+                  className="text-[11px] font-bold tracking-[0.14em] text-white uppercase"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  SERVICES
+                </h4>
+                <div className="w-[20px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-4 sm:mb-5" />
+                <div className="flex flex-col gap-1.5 sm:gap-2">
+                  {serviceLinks.map((l) => (
+                    <a
+                      key={l.name}
+                      href={l.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate(l.href);
+                      }}
+                      className="text-[13.5px] sm:text-[14px] leading-[1.8] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
+                      style={{
+                        color: "rgba(255, 255, 255, 0.7)",
+                        fontFamily: "Inter, sans-serif",
+                      }}
+                    >
+                      {l.name}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          </StaggerItem>
+            </StaggerItem>
+          </div>
 
           {/* 4. Contact */}
           <StaggerItem index={3} staggerMs={70}>
             <div>
               <h4
-                className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
+                className="text-[11px] font-bold tracking-[0.14em] text-white uppercase"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 CONTACT
               </h4>
-              <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
+              <div className="w-[20px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-4 sm:mb-5" />
               <div
                 className="flex flex-col gap-3 text-[13.5px] leading-relaxed"
-                style={{ color: "rgba(255, 255, 255, 0.65)", fontFamily: "Inter, sans-serif" }}
+                style={{ color: "rgba(255, 255, 255, 0.7)", fontFamily: "Inter, sans-serif" }}
               >
                 <div className="flex items-center gap-2.5">
-                  <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="w-4 h-4 shrink-0 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
@@ -3138,7 +3141,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="w-4 h-4 shrink-0 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
                   <a href="tel:+919313009073" className="hover:text-white transition-colors">
@@ -3146,7 +3149,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   </a>
                 </div>
                 <div className="flex items-start gap-2.5 pt-0.5">
-                  <svg className="w-4 h-4 shrink-0 text-white/50 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="w-4 h-4 shrink-0 text-white/60 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
@@ -3168,7 +3171,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/contact");
                   else window.location.pathname = "/contact";
                 }}
-                className="btn-premium inline-flex items-center justify-center gap-1.5 h-[44px] px-[20px] rounded-full text-[13px] font-[650] mt-[20px] shadow-sm cursor-pointer w-full sm:w-auto"
+                className="btn-premium flex items-center justify-center gap-2 h-[46px] px-[22px] rounded-full text-[13.5px] font-[650] mt-5 shadow-sm cursor-pointer w-full sm:w-auto"
                 style={{
                   background: "#FFC21C",
                   color: "#15241B",
@@ -3184,19 +3187,19 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
         {/* Bottom Bar */}
         <div
-          className="pt-6 mt-8 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-t text-center sm:text-left"
-          style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}
+          className="pt-5 mt-6 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left border-t"
+          style={{ borderColor: "rgba(255, 255, 255, 0.1)" }}
         >
           <p
             className="text-[12px]"
-            style={{ color: "rgba(255, 255, 255, 0.5)", fontFamily: "Inter, sans-serif" }}
+            style={{ color: "rgba(255, 255, 255, 0.55)", fontFamily: "Inter, sans-serif" }}
           >
             © 2026 SUPRABIZ. All rights reserved.
           </p>
 
           <div
-            className="flex items-center gap-4 text-[12px]"
-            style={{ color: "rgba(255, 255, 255, 0.5)", fontFamily: "Inter, sans-serif" }}
+            className="flex items-center justify-center gap-4 text-[12px]"
+            style={{ color: "rgba(255, 255, 255, 0.55)", fontFamily: "Inter, sans-serif" }}
           >
             <a
               href="/contact"
