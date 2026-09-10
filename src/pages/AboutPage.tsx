@@ -1,6 +1,16 @@
 import React, { useEffect, useState, useRef, Fragment } from "react";
 import aboutTeamImg from "@/imports/suprabiz-about-team.jpg";
 import aboutStrategyImg from "@/imports/suprabiz-about-strategy.jpg";
+import {
+  RevealText,
+  RevealEyebrow,
+  RevealImage,
+  RevealLine,
+  RevealDirectional,
+  StaggerGroup,
+  StaggerItem,
+  RevealNumberSequence,
+} from "../motion/MotionComponents";
 
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -59,17 +69,14 @@ interface AboutPageProps {
 
 export default function AboutPage({ onNavigate }: AboutPageProps) {
   useEffect(() => {
-    document.title = "About SUPRA BIZ | Branding & Digital Marketing Agency";
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.setAttribute("name", "description");
-      document.head.appendChild(metaDesc);
+    document.title = "About SUPRABIZ | Branding & Digital Marketing Agency";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        "Learn about SUPRABIZ, a branding and digital marketing agency helping businesses build memorable brands, meaningful digital experiences and sustainable growth."
+      );
     }
-    metaDesc.setAttribute(
-      "content",
-      "Learn about SUPRA BIZ, a branding and digital marketing agency helping businesses build memorable brands, meaningful digital experiences and sustainable growth."
-    );
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
@@ -114,34 +121,26 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             {/* Left Content */}
             <div className="flex flex-col items-start">
               {/* Eyebrow */}
-              <div
-                className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-8"
-                style={{
-                  background: "#EEF5F0",
-                  border: "1px solid rgba(8, 112, 58, 0.14)",
-                }}
-              >
-                <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
-                <span
-                  className="text-[10.5px] sm:text-[12px] font-bold tracking-[0.14em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  ABOUT SUPRA BIZ
-                </span>
+              <div className="mb-5 sm:mb-8">
+                <RevealEyebrow
+                  label="ABOUT SUPRABIZ"
+                  dotColor="#FFC21C"
+                  delay={0}
+                />
               </div>
 
-              {/* Headline */}
+              {/* Headline with Mask Reveal */}
               <h1
                 className="text-[38px] xs:text-[44px] sm:text-[54px] md:text-[62px] lg:text-[66px] xl:text-[72px] font-extrabold tracking-[-0.04em] leading-[1.04] sm:leading-[1.02] mb-5 sm:mb-6"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                <span className="block" style={{ color: "#15241B" }}>
+                <RevealText as="span" delay={100} className="block" style={{ color: "#15241B" }}>
                   We Don't Just
-                </span>
-                <span className="block" style={{ color: "#15241B" }}>
+                </RevealText>
+                <RevealText as="span" delay={190} className="block" style={{ color: "#15241B" }}>
                   Market Brands.
-                </span>
-                <span className="block mt-1 sm:mt-1.5" style={{ color: "#08703A" }}>
+                </RevealText>
+                <RevealText as="span" delay={280} className="block mt-1 sm:mt-1.5" style={{ color: "#08703A" }}>
                   We Build Them to{" "}
                   <span className="relative inline-block">
                     Matter.
@@ -161,109 +160,107 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                       />
                     </svg>
                   </span>
-                </span>
+                </RevealText>
               </h1>
 
               {/* Description */}
-              <p
-                className="text-[15.5px] sm:text-[18px] md:text-[19px] max-w-[580px] leading-[1.65] mb-7 sm:mb-10"
-                style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-              >
-                SUPRA BIZ is a creative branding and digital marketing agency helping ambitious
-                businesses build stronger identities, meaningful digital experiences and sustainable growth.
-              </p>
+              <RevealDirectional direction="up" delay={320}>
+                <p
+                  className="text-[15.5px] sm:text-[18px] md:text-[19px] max-w-[580px] leading-[1.65] mb-7 sm:mb-10"
+                  style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
+                >
+                  SUPRABIZ is a creative branding and digital marketing agency helping ambitious
+                  businesses build stronger identities, meaningful digital experiences and sustainable growth.
+                </p>
+              </RevealDirectional>
 
               {/* CTA */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                <a
-                  href="/services"
-                  onClick={(e) => handleNav("/services", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
-                  style={{
-                    background: "#FFC21C",
-                    color: "#15241B",
-                    fontFamily: "Manrope, sans-serif",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.boxShadow = "0 12px 30px rgba(255, 194, 28, 0.28)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                >
-                  <span>Explore Our Services</span>
-                  <span className="transition-transform duration-200 group-hover:translate-x-[3px]">
-                    →
-                  </span>
-                </a>
+              <RevealDirectional direction="up" delay={420} className="w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                  <a
+                    href="/services"
+                    onClick={(e) => handleNav("/services", e)}
+                    className="btn-premium btn-premium-sweep group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer w-full sm:w-auto shadow-sm"
+                    style={{
+                      background: "#FFC21C",
+                      color: "#15241B",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                  >
+                    <span>Explore Our Services</span>
+                    <span className="btn-arrow-icon">
+                      →
+                    </span>
+                  </a>
 
-                <a
-                  href="/contact"
-                  onClick={(e) => handleNav("/contact", e)}
-                  className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
-                  style={{
-                    background: "transparent",
-                    border: "1.5px solid #08703A",
-                    color: "#08703A",
-                    fontFamily: "Manrope, sans-serif",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#08703A";
-                    e.currentTarget.style.color = "#FFFFFF";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#08703A";
-                  }}
-                >
-                  Start a Conversation
-                </a>
-              </div>
+                  <a
+                    href="/contact"
+                    onClick={(e) => handleNav("/contact", e)}
+                    className="btn-premium inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer w-full sm:w-auto"
+                    style={{
+                      background: "transparent",
+                      border: "1.5px solid #08703A",
+                      color: "#08703A",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "#08703A";
+                      e.currentTarget.style.color = "#FFFFFF";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "transparent";
+                      e.currentTarget.style.color = "#08703A";
+                    }}
+                  >
+                    Start a Conversation
+                  </a>
+                </div>
+              </RevealDirectional>
             </div>
 
             {/* Right Hero Image */}
             <div className="w-full flex justify-center lg:justify-end">
-              <div
-                className="relative w-full max-w-[540px] rounded-[20px] sm:rounded-[28px] overflow-hidden transition-transform duration-500 hover:scale-[1.015]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 24px 60px rgba(20, 55, 35, 0.10)",
-                  background: "#FFFFFF",
-                  aspectRatio: "4 / 4.5",
-                }}
-              >
-                <img
-                  src={aboutTeamImg}
-                  alt="SUPRA BIZ creative team working on digital marketing and brand strategy"
-                  className="w-full h-full object-cover object-center block"
-                  loading="eager"
-                />
-
-                {/* Subtle Inner Highlight */}
+              <RevealImage direction="left" delay={500} className="w-full max-w-[540px] rounded-[20px] sm:rounded-[28px]">
                 <div
-                  className="absolute inset-0 pointer-events-none rounded-[28px]"
-                  style={{ boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.6)" }}
-                />
+                  className="relative w-full rounded-[20px] sm:rounded-[28px] overflow-hidden"
+                  style={{
+                    border: "1px solid rgba(8, 112, 58, 0.08)",
+                    boxShadow: "0 24px 60px rgba(20, 55, 35, 0.10)",
+                    background: "#FFFFFF",
+                    aspectRatio: "4 / 4.5",
+                  }}
+                >
+                  <img
+                    src={aboutTeamImg}
+                    alt="SUPRABIZ creative team working on digital marketing and brand strategy"
+                    className="w-full h-full object-cover object-center block"
+                    loading="eager"
+                  />
 
-                {/* Editorial Label Overlay */}
-                <div className="absolute top-5 left-5 z-10">
-                  <span
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase backdrop-blur-md"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.94)",
-                      color: "#075C31",
-                      border: "1px solid rgba(8, 112, 58, 0.12)",
-                      boxShadow: "0 4px 14px rgba(20, 55, 35, 0.08)",
-                      fontFamily: "Manrope, sans-serif",
-                    }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#FFC21C" }} />
-                    STRATEGY • CREATIVE • DIGITAL
-                  </span>
+                  {/* Subtle Inner Highlight */}
+                  <div
+                    className="absolute inset-0 pointer-events-none rounded-[28px]"
+                    style={{ boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.6)" }}
+                  />
+
+                  {/* Editorial Label Overlay */}
+                  <div className="absolute top-5 left-5 z-10">
+                    <span
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase backdrop-blur-md"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.94)",
+                        color: "#075C31",
+                        border: "1px solid rgba(8, 112, 58, 0.12)",
+                        boxShadow: "0 4px 14px rgba(20, 55, 35, 0.08)",
+                        fontFamily: "Manrope, sans-serif",
+                      }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#FFC21C" }} />
+                      STRATEGY • CREATIVE • DIGITAL
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </RevealImage>
             </div>
           </div>
         </div>
@@ -274,31 +271,25 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
         <div className="max-w-[1380px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr] gap-12 lg:gap-16 items-start">
             {/* Left 38% */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  WHO WE ARE
-                </span>
+            <RevealDirectional direction="left">
+              <div className="mb-4">
+                <RevealEyebrow label="WHO WE ARE" dotColor="#08703A" />
               </div>
               <h2
                 className="text-[32px] sm:text-[40px] lg:text-[44px] font-extrabold tracking-[-0.03em] leading-[1.1]"
                 style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
               >
-                Ideas are easy. Building brands people remember is the real work.
+                <RevealText as="span" lines={["Ideas are easy.", "Building brands people", "remember is the real work."]} />
               </h2>
-            </div>
+            </RevealDirectional>
 
             {/* Right 62% */}
-            <div className="flex flex-col gap-6">
+            <RevealDirectional direction="up" delay={200} className="flex flex-col gap-6">
               <p
                 className="text-[18px] sm:text-[20px] leading-[1.7] font-normal"
                 style={{ color: "#4A554E", fontFamily: "Inter, sans-serif" }}
               >
-                SUPRA BIZ brings strategy, creativity and digital execution together to help
+                SUPRABIZ brings strategy, creativity and digital execution together to help
                 businesses build meaningful brands that stand out in crowded markets.
               </p>
               <p
@@ -328,7 +319,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                   "Great marketing gets attention. Great branding makes people remember."
                 </p>
               </div>
-            </div>
+            </RevealDirectional>
           </div>
         </div>
       </section>
@@ -413,111 +404,115 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-white">
         <div className="max-w-[1380px] mx-auto">
           <div className="text-center max-w-xl mx-auto mb-14 sm:mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
-              <span
-                className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                OUR PURPOSE
-              </span>
+            <div className="inline-flex items-center justify-center mb-3">
+              <RevealEyebrow label="OUR PURPOSE" dotColor="#FFC21C" />
             </div>
             <h2
               className="text-[32px] sm:text-[40px] font-extrabold tracking-[-0.03em]"
               style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
             >
-              Guiding Every Decision We Make
+              <RevealText as="span" lines={["Guiding Every Decision", "We Make"]} />
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {/* Mission Card */}
-            <div
-              className="relative p-8 sm:p-10 lg:p-12 rounded-[24px] overflow-hidden flex flex-col justify-between"
-              style={{
-                background: "#FFFFFF",
-                border: "1px solid rgba(8, 112, 58, 0.12)",
-                boxShadow: "0 10px 30px rgba(20, 55, 35, 0.04)",
-              }}
-            >
-              {/* Faint Watermark */}
+            <RevealDirectional direction="left">
               <div
-                className="absolute top-4 right-6 text-[100px] lg:text-[120px] font-black leading-none pointer-events-none select-none opacity-[0.05]"
-                style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
+                className="relative p-8 sm:p-10 lg:p-12 rounded-[24px] overflow-hidden flex flex-col justify-between h-full"
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid rgba(8, 112, 58, 0.12)",
+                  boxShadow: "0 10px 30px rgba(20, 55, 35, 0.04)",
+                }}
               >
-                01
-              </div>
+                {/* Top Animated Accent Line */}
+                <RevealLine className="h-[2px] w-full bg-[#08703A]/20 absolute top-0 left-0" direction="left" />
 
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-2.5 h-1 rounded-full" style={{ background: "#FFC21C" }} />
-                  <span
-                    className="text-[12px] font-bold tracking-[0.16em] uppercase"
-                    style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                  >
-                    OUR MISSION
-                  </span>
-                </div>
-                <h3
-                  className="text-[24px] sm:text-[28px] font-bold leading-[1.3] mb-5"
-                  style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
+                {/* Faint Watermark */}
+                <div
+                  className="absolute top-4 right-6 text-[100px] lg:text-[120px] font-black leading-none pointer-events-none select-none opacity-[0.05]"
+                  style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
                 >
-                  Build brands that communicate clearly, connect meaningfully and grow confidently.
-                </h3>
-              </div>
+                  01
+                </div>
 
-              <p
-                className="text-[15px] sm:text-[16px] leading-[1.65]"
-                style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-              >
-                We exist to cut through digital noise by crafting authentic identities, sharp strategy,
-                and conversion-driven campaigns that deliver real, lasting business impact.
-              </p>
-            </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="w-2.5 h-1 rounded-full" style={{ background: "#FFC21C" }} />
+                    <span
+                      className="text-[12px] font-bold tracking-[0.16em] uppercase"
+                      style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                    >
+                      OUR MISSION
+                    </span>
+                  </div>
+                  <h3
+                    className="text-[24px] sm:text-[28px] font-bold leading-[1.3] mb-5"
+                    style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    Build brands that communicate clearly, connect meaningfully and grow confidently.
+                  </h3>
+                </div>
+
+                <p
+                  className="text-[15px] sm:text-[16px] leading-[1.65]"
+                  style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
+                >
+                  We exist to cut through digital noise by crafting authentic identities, sharp strategy,
+                  and conversion-driven campaigns that deliver real, lasting business impact.
+                </p>
+              </div>
+            </RevealDirectional>
 
             {/* Vision Card */}
-            <div
-              className="relative p-8 sm:p-10 lg:p-12 rounded-[24px] overflow-hidden flex flex-col justify-between"
-              style={{
-                background: "#F5F9F6",
-                border: "1px solid rgba(8, 112, 58, 0.14)",
-                boxShadow: "0 10px 30px rgba(20, 55, 35, 0.04)",
-              }}
-            >
-              {/* Faint Watermark */}
+            <RevealDirectional direction="right" delay={100}>
               <div
-                className="absolute top-4 right-6 text-[100px] lg:text-[120px] font-black leading-none pointer-events-none select-none opacity-[0.06]"
-                style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
+                className="relative p-8 sm:p-10 lg:p-12 rounded-[24px] overflow-hidden flex flex-col justify-between h-full"
+                style={{
+                  background: "#F5F9F6",
+                  border: "1px solid rgba(8, 112, 58, 0.14)",
+                  boxShadow: "0 10px 30px rgba(20, 55, 35, 0.04)",
+                }}
               >
-                02
-              </div>
+                {/* Top Animated Accent Line */}
+                <RevealLine className="h-[2px] w-full bg-[#159447]/25 absolute top-0 left-0" direction="left" delay={120} />
 
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-2.5 h-1 rounded-full" style={{ background: "#159447" }} />
-                  <span
-                    className="text-[12px] font-bold tracking-[0.16em] uppercase"
-                    style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
-                  >
-                    OUR VISION
-                  </span>
-                </div>
-                <h3
-                  className="text-[24px] sm:text-[28px] font-bold leading-[1.3] mb-5"
-                  style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
+                {/* Faint Watermark */}
+                <div
+                  className="absolute top-4 right-6 text-[100px] lg:text-[120px] font-black leading-none pointer-events-none select-none opacity-[0.06]"
+                  style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
                 >
-                  Become the premier growth partner for businesses ready to build a lasting legacy.
-                </h3>
-              </div>
+                  02
+                </div>
 
-              <p
-                className="text-[15px] sm:text-[16px] leading-[1.65]"
-                style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-              >
-                To redefine how modern companies scale by establishing a standard where creativity and
-                analytical rigor work seamlessly together to generate sustained digital momentum.
-              </p>
-            </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="w-2.5 h-1 rounded-full" style={{ background: "#159447" }} />
+                    <span
+                      className="text-[12px] font-bold tracking-[0.16em] uppercase"
+                      style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
+                    >
+                      OUR VISION
+                    </span>
+                  </div>
+                  <h3
+                    className="text-[24px] sm:text-[28px] font-bold leading-[1.3] mb-5"
+                    style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    Become the premier growth partner for businesses ready to build a lasting legacy.
+                  </h3>
+                </div>
+
+                <p
+                  className="text-[15px] sm:text-[16px] leading-[1.65]"
+                  style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
+                >
+                  To redefine how modern companies scale by establishing a standard where creativity and
+                  analytical rigor work seamlessly together to generate sustained digital momentum.
+                </p>
+              </div>
+            </RevealDirectional>
           </div>
         </div>
       </section>
@@ -537,83 +532,87 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
             {/* Left 65% */}
             <div>
               {/* Clean Eyebrow */}
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "#FFC21C" }} />
-                <span
-                  className="text-[10px] sm:text-[11px] font-bold tracking-[0.14em] uppercase text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  WHAT DRIVES US
-                </span>
-              </div>
+              <RevealEyebrow text="WHAT DRIVES US" textColor="#08703A" dotColor="#FFC21C" className="mb-4" />
 
               {/* Headline */}
               <h2
                 className="text-[38px] sm:text-[48px] md:text-[54px] lg:text-[58px] font-bold tracking-[-0.035em] leading-[1.05]"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                <span className="block" style={{ color: "#15241B" }}>
-                  Strategy First.
-                </span>
-                <span className="block" style={{ color: "#08703A" }}>
-                  Creativity With Purpose.
-                </span>
+                <RevealText delay={80}>
+                  <span className="block" style={{ color: "#15241B" }}>
+                    Strategy First.
+                  </span>
+                </RevealText>
+                <RevealText delay={160}>
+                  <span className="block" style={{ color: "#08703A" }}>
+                    Creativity With Purpose.
+                  </span>
+                </RevealText>
               </h2>
             </div>
 
             {/* Right 35%: Supporting Paragraph */}
             <div className="lg:pb-1">
-              <p
-                className="text-[15px] sm:text-[16px] leading-[1.7] text-[#69736C]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                We reject superficial trends and generic templates. Every principle here directly guides
-                how we position, build, and scale meaningful brands.
-              </p>
+              <RevealDirectional direction="right" delay={180}>
+                <p
+                  className="text-[15px] sm:text-[16px] leading-[1.7] text-[#69736C]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  We reject superficial trends and generic templates. Every principle here directly guides
+                  how we position, build, and scale meaningful brands.
+                </p>
+              </RevealDirectional>
             </div>
           </div>
 
           {/* Editorial Principle Rows (No Cards, No Boxes) */}
-          <div className="divide-y divide-[rgba(8,112,58,0.10)] border-b border-[rgba(8,112,58,0.10)]">
+          <StaggerGroup delay={120} stagger={100} className="divide-y divide-[rgba(8,112,58,0.10)] border-b border-[rgba(8,112,58,0.10)]">
             {[
               {
                 num: "01",
-                category: "STRATEGY",
-                categoryGlyph: "◎",
-                title: "Think Before We Create",
-                desc: "Every creative decision starts with a thorough understanding of the business model, target audience, and commercial objectives before design begins.",
-                keywords: ["Discovery", "Positioning", "Market Research"],
-                isFeatured: false,
+                category: "CORE VALUE",
+                icon: (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                ),
+                title: "Integrity",
+                desc: "Doing the right thing at all times. We hold ourselves to unwavering honesty, direct transparency, and ethical accountability across every decision and campaign.",
+                keywords: ["Honesty", "Transparency", "Ethical Rigor"],
+                isFeatured: true,
               },
               {
                 num: "02",
-                category: "IDENTITY",
-                categoryGlyph: "✦",
-                title: "Make Brands Memorable",
-                desc: "Good design must do far more than look attractive — it must spark immediate recognition, foster emotional connection, and command lasting market presence.",
-                keywords: ["Identity Systems", "Visual Language", "Brand Guides"],
+                category: "CORE VALUE",
+                icon: (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                ),
+                title: "Intensity",
+                desc: "Going above and beyond. We bring relentless focus, tireless energy, and uncompromising commitment to our clients' growth and brand legacy.",
+                keywords: ["Above & Beyond", "Relentless Drive", "High Performance"],
                 isFeatured: false,
               },
               {
                 num: "03",
-                category: "PERFORMANCE",
-                categoryGlyph: "↗",
-                title: "Digital With Purpose",
-                desc: "Channels, campaigns, and content should connect directly to meaningful commercial goals, driving revenue and sustainable growth rather than vanity impressions.",
-                keywords: ["Paid Campaigns", "SEO Systems", "Conversion Funnels"],
-                isFeatured: true,
-              },
-              {
-                num: "04",
-                category: "PARTNERSHIP",
-                categoryGlyph: "◎",
-                title: "Grow Together",
-                desc: "The most impactful work stems from genuine, transparent collaboration between agency and client operating as an ambitious, aligned team.",
-                keywords: ["Dedicated Guidance", "Transparent Reporting", "Shared Wins"],
+                category: "CORE VALUE",
+                icon: (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+                    <path d="M9 18h6" />
+                    <path d="M10 22h4" />
+                  </svg>
+                ),
+                title: "Intellect",
+                desc: "Challenge the status quo. We think critically, question default assumptions, and synthesize deep strategic insight to craft breakthrough solutions.",
+                keywords: ["Critical Thinking", "Status Quo", "Strategic Insight"],
                 isFeatured: false,
               },
             ].map((item) => (
-              <div
+              <StaggerItem
                 key={item.num}
                 className="group relative py-7 sm:py-8 lg:py-10 px-3 sm:px-4 lg:px-6 transition-all duration-250 hover:bg-gradient-to-r hover:from-[rgba(8,112,58,0.035)] hover:to-transparent"
               >
@@ -622,8 +621,8 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                   className="absolute left-0 top-0 bottom-0 w-[3px] scale-y-0 group-hover:scale-y-100 transition-transform duration-250 origin-center bg-[#08703A]"
                 />
 
-                {/* Desktop Grid Layout: [NUMBER] [CATEGORY/TITLE] [DESCRIPTION] [KEYWORDS / ARROW] */}
-                <div className="hidden lg:grid grid-cols-[90px_340px_1fr_220px] items-start gap-8 xl:gap-12">
+                {/* Desktop Grid Layout: [NUMBER] [ICON + CATEGORY/TITLE] [DESCRIPTION] [KEYWORDS / ARROW] */}
+                <div className="hidden lg:grid grid-cols-[70px_350px_1fr_220px] items-start gap-8 xl:gap-12">
                   {/* 1. Oversized Number */}
                   <div>
                     <span
@@ -634,27 +633,32 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                     </span>
                   </div>
 
-                  {/* 2. Category + Title */}
-                  <div className="pt-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span
-                        className="text-[11px] font-bold tracking-[0.14em] uppercase text-[#08703A]"
+                  {/* 2. Icon + Category + Title */}
+                  <div className="pt-1 flex items-start gap-3.5">
+                    <div className="w-11 h-11 xl:w-12 xl:h-12 rounded-2xl flex items-center justify-center bg-[#E8F4EC] text-[#08703A] group-hover:bg-[#08703A] group-hover:text-white group-hover:scale-105 transition-all duration-250 shrink-0 border border-[#08703A]/12 shadow-sm mt-0.5">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span
+                          className="text-[10.5px] font-bold tracking-[0.14em] uppercase text-[#08703A]"
+                          style={{ fontFamily: "Manrope, sans-serif" }}
+                        >
+                          {item.category}
+                        </span>
+                        {item.isFeatured && (
+                          <span className="text-[9.5px] font-extrabold tracking-wider px-2 py-0.5 rounded-full bg-[#FFC21C]/20 text-[#8B6500] uppercase">
+                            Core
+                          </span>
+                        )}
+                      </div>
+                      <h3
+                        className="text-[23px] xl:text-[25px] font-bold tracking-[-0.02em] leading-[1.25] text-[#15241B] group-hover:text-[#08703A] transition-colors duration-250"
                         style={{ fontFamily: "Manrope, sans-serif" }}
                       >
-                        {item.categoryGlyph} {item.category}
-                      </span>
-                      {item.isFeatured && (
-                        <span className="text-[9.5px] font-extrabold tracking-wider px-2 py-0.5 rounded-full bg-[#FFC21C]/20 text-[#8B6500] uppercase">
-                          Core
-                        </span>
-                      )}
+                        {item.title}
+                      </h3>
                     </div>
-                    <h3
-                      className="text-[23px] xl:text-[25px] font-bold tracking-[-0.02em] leading-[1.25] text-[#15241B] group-hover:text-[#08703A] transition-colors duration-250"
-                      style={{ fontFamily: "Manrope, sans-serif" }}
-                    >
-                      {item.title}
-                    </h3>
                   </div>
 
                   {/* 3. Description */}
@@ -684,7 +688,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 </div>
 
                 {/* Tablet Layout (768px - 1023px) */}
-                <div className="hidden md:grid lg:hidden grid-cols-[70px_260px_1fr] items-start gap-6">
+                <div className="hidden md:grid lg:hidden grid-cols-[60px_280px_1fr] items-start gap-6">
                   {/* Number */}
                   <div>
                     <span
@@ -695,27 +699,32 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                     </span>
                   </div>
 
-                  {/* Title & Category */}
-                  <div className="pt-1">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span
-                        className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#08703A]"
+                  {/* Icon + Title & Category */}
+                  <div className="pt-1 flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#E8F4EC] text-[#08703A] group-hover:bg-[#08703A] group-hover:text-white transition-all shrink-0 border border-[#08703A]/12 shadow-sm mt-0.5">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span
+                          className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#08703A]"
+                          style={{ fontFamily: "Manrope, sans-serif" }}
+                        >
+                          {item.category}
+                        </span>
+                        {item.isFeatured && (
+                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#FFC21C]/20 text-[#8B6500] uppercase">
+                            Core
+                          </span>
+                        )}
+                      </div>
+                      <h3
+                        className="text-[21px] font-bold tracking-[-0.02em] leading-[1.2] text-[#15241B]"
                         style={{ fontFamily: "Manrope, sans-serif" }}
                       >
-                        {item.categoryGlyph} {item.category}
-                      </span>
-                      {item.isFeatured && (
-                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#FFC21C]/20 text-[#8B6500] uppercase">
-                          Core
-                        </span>
-                      )}
+                        {item.title}
+                      </h3>
                     </div>
-                    <h3
-                      className="text-[21px] font-bold tracking-[-0.02em] leading-[1.2] text-[#15241B]"
-                      style={{ fontFamily: "Manrope, sans-serif" }}
-                    >
-                      {item.title}
-                    </h3>
                   </div>
 
                   {/* Description & Keywords */}
@@ -740,26 +749,39 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 {/* Mobile Layout (< 768px) */}
                 <div className="block md:hidden py-1.5">
                   <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#E8F4EC] text-[#08703A] border border-[#08703A]/12 shrink-0 shadow-sm">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <span
+                            className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#08703A]"
+                            style={{ fontFamily: "Manrope, sans-serif" }}
+                          >
+                            {item.category}
+                          </span>
+                          {item.isFeatured && (
+                            <span className="text-[8.5px] font-extrabold px-1.5 py-0.5 rounded bg-[#FFC21C]/20 text-[#8B6500] uppercase">
+                              Core
+                            </span>
+                          )}
+                        </div>
+                        <h3
+                          className="text-[20px] font-bold tracking-[-0.02em] leading-tight text-[#15241B]"
+                          style={{ fontFamily: "Manrope, sans-serif" }}
+                        >
+                          {item.title}
+                        </h3>
+                      </div>
+                    </div>
                     <span
-                      className="text-[36px] font-bold tracking-[-0.04em] leading-none text-[#08703A]/40"
+                      className="text-[32px] font-bold tracking-[-0.04em] leading-none text-[#08703A]/30"
                       style={{ fontFamily: "Manrope, sans-serif" }}
                     >
                       {item.num}
                     </span>
-                    <span
-                      className="text-[10px] font-bold tracking-[0.14em] uppercase text-[#08703A] bg-[#EEF6F0] px-2.5 py-1 rounded-full"
-                      style={{ fontFamily: "Manrope, sans-serif" }}
-                    >
-                      {item.categoryGlyph} {item.category}
-                    </span>
                   </div>
-
-                  <h3
-                    className="text-[20px] font-bold tracking-[-0.02em] leading-[1.25] text-[#15241B] mb-2"
-                    style={{ fontFamily: "Manrope, sans-serif" }}
-                  >
-                    {item.title}
-                  </h3>
 
                   <p
                     className="text-[14px] leading-[1.65] text-[#5A665E] mb-3.5"
@@ -777,13 +799,13 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                     ))}
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
-      {/* ─── 6. Why Choose SUPRA BIZ ────────────────────────────────────────────── */}
+      {/* ─── 6. Why Choose SUPRABIZ ────────────────────────────────────────────── */}
       <section className="py-20 lg:py-[100px] px-6 sm:px-8 lg:px-10 bg-[#FFFFFF] relative overflow-hidden">
         {/* Subtle green radial glow behind the image */}
         <div
@@ -797,95 +819,24 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
             {/* Desktop Left: Premium Agency Image */}
             <div className="hidden lg:block">
-              <div
-                className="relative rounded-[28px] overflow-hidden h-[520px]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
-                }}
-              >
-                <img
-                  src={aboutStrategyImg}
-                  alt="SUPRA BIZ strategic brand planning and digital marketing methodology"
-                  className="w-full h-full object-cover block"
-                  loading="lazy"
-                />
-
-                {/* Subtle Editorial Label Capsule */}
+              <RevealImage direction="right" className="rounded-[28px] overflow-hidden">
                 <div
-                  className="absolute bottom-6 left-6 inline-flex items-center gap-2 px-3.5 py-2 rounded-full pointer-events-none"
-                  style={{
-                    background: "rgba(255, 255, 255, 0.92)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    border: "1px solid rgba(8, 112, 58, 0.12)",
-                    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
-                  }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
-                  <span
-                    className="text-[9.5px] font-bold tracking-[0.12em] uppercase"
-                    style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
-                  >
-                    BRAND • DIGITAL • GROWTH
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Content */}
-            <div className="flex flex-col items-start">
-              {/* Eyebrow */}
-              <div className="flex items-center gap-2 mb-3.5">
-                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
-                <span
-                  className="text-[10.5px] sm:text-[11px] font-bold tracking-[0.14em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  WHY SUPRA BIZ
-                </span>
-              </div>
-
-              {/* Two-Tone Headline */}
-              <h2
-                className="text-[34px] sm:text-[44px] lg:text-[clamp(44px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.05]"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                <span className="block" style={{ color: "#15241B" }}>
-                  Creative Thinking.
-                </span>
-                <span className="block" style={{ color: "#08703A" }}>
-                  Strategic Execution.
-                </span>
-              </h2>
-
-              {/* Description */}
-              <p
-                className="text-[17px] sm:text-[18px] leading-[1.65] mt-6 mb-7 sm:mb-8 max-w-[620px]"
-                style={{ color: "#69736C", fontFamily: "Inter, sans-serif" }}
-              >
-                We do not view branding and digital performance as siloed disciplines. We integrate
-                compelling brand storytelling directly into high-performing advertising, search engine
-                visibility, and conversion mechanics.
-              </p>
-
-              {/* Mobile-Only Image (between Description and Benefits) */}
-              <div className="block lg:hidden w-full my-6">
-                <div
-                  className="relative rounded-[24px] overflow-hidden h-[340px] sm:h-[420px]"
+                  className="relative rounded-[28px] overflow-hidden h-[520px]"
                   style={{
                     border: "1px solid rgba(8, 112, 58, 0.08)",
-                    boxShadow: "0 20px 48px rgba(20, 55, 35, 0.08)",
+                    boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
                   }}
                 >
                   <img
                     src={aboutStrategyImg}
-                    alt="SUPRA BIZ strategic brand planning and digital marketing methodology"
+                    alt="SUPRABIZ strategic brand planning and digital marketing methodology"
                     className="w-full h-full object-cover block"
                     loading="lazy"
                   />
+
+                  {/* Subtle Editorial Label Capsule */}
                   <div
-                    className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full pointer-events-none"
+                    className="absolute bottom-6 left-6 inline-flex items-center gap-2 px-3.5 py-2 rounded-full pointer-events-none"
                     style={{
                       background: "rgba(255, 255, 255, 0.92)",
                       backdropFilter: "blur(10px)",
@@ -896,17 +847,90 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                   >
                     <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
                     <span
-                      className="text-[9px] font-bold tracking-[0.12em] uppercase"
+                      className="text-[9.5px] font-bold tracking-[0.12em] uppercase"
                       style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
                     >
                       BRAND • DIGITAL • GROWTH
                     </span>
                   </div>
                 </div>
+              </RevealImage>
+            </div>
+
+            {/* Right Content */}
+            <div className="flex flex-col items-start">
+              {/* Eyebrow */}
+              <RevealEyebrow text="WHY SUPRABIZ" textColor="#08703A" dotColor="#FFC21C" className="mb-3.5" />
+
+              {/* Two-Tone Headline */}
+              <h2
+                className="text-[34px] sm:text-[44px] lg:text-[clamp(44px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.05]"
+                style={{ fontFamily: "Manrope, sans-serif" }}
+              >
+                <RevealText delay={80}>
+                  <span className="block" style={{ color: "#15241B" }}>
+                    Creative Thinking.
+                  </span>
+                </RevealText>
+                <RevealText delay={160}>
+                  <span className="block" style={{ color: "#08703A" }}>
+                    Strategic Execution.
+                  </span>
+                </RevealText>
+              </h2>
+
+              {/* Description */}
+              <RevealDirectional direction="up" delay={200}>
+                <p
+                  className="text-[17px] sm:text-[18px] leading-[1.65] mt-6 mb-7 sm:mb-8 max-w-[620px]"
+                  style={{ color: "#69736C", fontFamily: "Inter, sans-serif" }}
+                >
+                  We do not view branding and digital performance as siloed disciplines. We integrate
+                  compelling brand storytelling directly into high-performing advertising, search engine
+                  visibility, and conversion mechanics.
+                </p>
+              </RevealDirectional>
+
+              {/* Mobile-Only Image (between Description and Benefits) */}
+              <div className="block lg:hidden w-full my-6">
+                <RevealImage direction="up" delay={100} className="rounded-[24px]">
+                  <div
+                    className="relative rounded-[24px] overflow-hidden h-[340px] sm:h-[420px]"
+                    style={{
+                      border: "1px solid rgba(8, 112, 58, 0.08)",
+                      boxShadow: "0 20px 48px rgba(20, 55, 35, 0.08)",
+                    }}
+                  >
+                    <img
+                      src={aboutStrategyImg}
+                      alt="SUPRABIZ strategic brand planning and digital marketing methodology"
+                      className="w-full h-full object-cover block"
+                      loading="lazy"
+                    />
+                    <div
+                      className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full pointer-events-none"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.92)",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        border: "1px solid rgba(8, 112, 58, 0.12)",
+                        boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
+                      }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
+                      <span
+                        className="text-[9px] font-bold tracking-[0.12em] uppercase"
+                        style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
+                      >
+                        BRAND • DIGITAL • GROWTH
+                      </span>
+                    </div>
+                  </div>
+                </RevealImage>
               </div>
 
               {/* 2x2 Editorial Benefit Grid (no cards, subtle separators) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 lg:gap-x-12 w-full">
+              <StaggerGroup delay={240} stagger={70} className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 lg:gap-x-12 w-full">
                 {[
                   {
                     title: "Strategy-Led Thinking",
@@ -925,7 +949,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                     desc: "Focused on measurable conversions and client ROI.",
                   },
                 ].map((item, idx) => (
-                  <div
+                  <StaggerItem
                     key={item.title}
                     className={`group py-[22px] pb-[24px] transition-colors ${
                       idx !== 0 ? "border-t border-[rgba(8,112,58,0.10)]" : ""
@@ -969,9 +993,9 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
             </div>
           </div>
         </div>
@@ -981,31 +1005,27 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
       <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 bg-[#F5F9F6]">
         <div className="max-w-[1380px] mx-auto">
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
-              <span
-                className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                HOW WE WORK
-              </span>
+            <div className="flex justify-center">
+              <RevealEyebrow text="HOW WE WORK" textColor="#08703A" dotColor="#FFC21C" className="mb-3" />
             </div>
             <h2
               className="text-[30px] sm:text-[42px] font-extrabold tracking-[-0.03em]"
               style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
             >
-              From Idea to Impact
+              <RevealText delay={80}>From Idea to Impact</RevealText>
             </h2>
-            <p
-              className="text-[15px] sm:text-[16px] mt-2.5 sm:mt-3"
-              style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-            >
-              A structured 4-step framework designed to deliver predictability and creative excellence.
-            </p>
+            <RevealDirectional direction="up" delay={160}>
+              <p
+                className="text-[15px] sm:text-[16px] mt-2.5 sm:mt-3"
+                style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
+              >
+                A structured 4-step framework designed to deliver predictability and creative excellence.
+              </p>
+            </RevealDirectional>
           </div>
 
           {/* Connected Steps Grid */}
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
+          <StaggerGroup delay={200} stagger={90} className="relative grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
             {[
               {
                 step: "01",
@@ -1029,14 +1049,15 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
               },
             ].map((st, i) => (
               <Fragment key={st.step}>
-                <div
+                <StaggerItem
                   className="relative flex flex-col items-center text-center group py-2 md:py-0"
                 >
                   {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
                   {i < 3 && (
-                    <div
-                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
-                      style={{ background: "rgba(8, 112, 58, 0.18)" }}
+                    <RevealLine
+                      direction="left"
+                      delay={100 + i * 100}
+                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none bg-[#08703A]/20"
                     />
                   )}
 
@@ -1065,7 +1086,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                   >
                     {st.desc}
                   </p>
-                </div>
+                </StaggerItem>
 
                 {/* Mobile Vertical Connecting Line between steps */}
                 {i < 3 && (
@@ -1075,7 +1096,7 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
                 )}
               </Fragment>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
@@ -1106,105 +1127,92 @@ export default function AboutPage({ onNavigate }: AboutPageProps) {
 
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow Pill */}
-          <div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6"
-            style={{
-              background: "rgba(255, 255, 255, 0.09)",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
-            <span
-              className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.14em] uppercase"
-              style={{ color: "rgba(255, 255, 255, 0.82)", fontFamily: "Manrope, sans-serif" }}
-            >
-              START YOUR PROJECT
-            </span>
-          </div>
+          <RevealEyebrow text="START YOUR PROJECT" textColor="rgba(255, 255, 255, 0.85)" dotColor="#FFC21C" className="mb-5 sm:mb-6" />
 
           {/* Headline with Editorial Underline on 'Remember.' */}
           <h2
             className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(52px,5vw,68px)] font-bold text-white tracking-[-0.04em] leading-[1.05] sm:leading-[1.03] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
-            Let's Build Something
-            <br />
-            People{" "}
-            <span className="relative inline-block">
-              Remember.
-              <svg
-                className="absolute left-0 -bottom-1 sm:-bottom-2 w-full h-[6px] sm:h-[8px] text-[#FFC21C]"
-                viewBox="0 0 100 8"
-                fill="none"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M2 5.5C28 2 72 2 98 5.5"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
+            <RevealText delay={80}>
+              <span className="block">Let's Build Something</span>
+            </RevealText>
+            <RevealText delay={180}>
+              <span className="block">
+                People{" "}
+                <span className="relative inline-block">
+                  Remember.
+                  <svg
+                    className="absolute left-0 -bottom-1 sm:-bottom-2 w-full h-[6px] sm:h-[8px] text-[#FFC21C]"
+                    viewBox="0 0 100 8"
+                    fill="none"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M2 5.5C28 2 72 2 98 5.5"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </RevealText>
           </h2>
 
           {/* Description */}
-          <p
-            className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
-            style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
-          >
-            Whether you're building a brand from scratch or ready to scale an existing one, let's
-            create something meaningful and measurable together.
-          </p>
+          <RevealDirectional direction="up" delay={260}>
+            <p
+              className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
+              style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
+            >
+              Whether you're building a brand from scratch or ready to scale an existing one, let's
+              create something meaningful and measurable together.
+            </p>
+          </RevealDirectional>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
-            <a
-              href="/contact"
-              onClick={(e) => handleNav("/contact", e)}
-              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
-              style={{
-                background: "#FFC21C",
-                color: "#15241B",
-                fontFamily: "Manrope, sans-serif",
-                boxShadow: "0 12px 30px rgba(255, 194, 28, 0.16)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 16px 35px rgba(255, 194, 28, 0.22)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(255, 194, 28, 0.16)";
-              }}
-            >
-              <span>Start a Conversation</span>
-              <span className="transition-transform duration-200 group-hover:translate-x-[3px]">
-                →
-              </span>
-            </a>
+          <RevealDirectional direction="up" delay={340} className="w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
+              <a
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
+                className="btn-premium btn-premium-sweep group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer w-full sm:w-auto shadow-sm"
+                style={{
+                  background: "#FFC21C",
+                  color: "#15241B",
+                  fontFamily: "Manrope, sans-serif",
+                  boxShadow: "0 12px 30px rgba(255, 194, 28, 0.16)",
+                }}
+              >
+                <span>Start a Conversation</span>
+                <span className="btn-arrow-icon">
+                  →
+                </span>
+              </a>
 
-            <a
-              href="/services"
-              onClick={(e) => handleNav("/services", e)}
-              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
-              style={{
-                background: "transparent",
-                border: "1px solid rgba(255, 255, 255, 0.32)",
-                fontFamily: "Manrope, sans-serif",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.55)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.32)";
-              }}
-            >
-              Explore Our Services
-            </a>
-          </div>
+              <a
+                href="/services"
+                onClick={(e) => handleNav("/services", e)}
+                className="btn-premium inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer text-white w-full sm:w-auto"
+                style={{
+                  background: "transparent",
+                  border: "1px solid rgba(255, 255, 255, 0.32)",
+                  fontFamily: "Manrope, sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.55)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.32)";
+                }}
+              >
+                Explore Our Services
+              </a>
+            </div>
+          </RevealDirectional>
         </div>
       </section>
     </main>

@@ -2,6 +2,15 @@ import React, { useEffect, useState, Fragment } from "react";
 import heroImg from "@/imports/suprabiz-courses-hero.jpg";
 import socialLearningImg from "@/imports/suprabiz-social-media-learning.jpg";
 import analyticsLearningImg from "@/imports/suprabiz-analytics-learning.jpg";
+import {
+  RevealText,
+  RevealEyebrow,
+  RevealImage,
+  RevealLine,
+  RevealDirectional,
+  StaggerGroup,
+  StaggerItem,
+} from "../motion/MotionComponents";
 
 export interface Course {
   id: string;
@@ -154,12 +163,12 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
   const [activeNav, setActiveNav] = useState("social-media");
 
   useEffect(() => {
-    document.title = "Digital Marketing Courses in Ahmedabad | SUPRA BIZ";
+    document.title = "Digital Marketing Courses in Ahmedabad | SUPRABIZ";
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
         "content",
-        "Explore SUPRA BIZ digital marketing courses including social media marketing, SEO, Google Ads, Google Analytics, performance marketing and data analytics."
+        "Explore SUPRABIZ digital marketing courses including social media marketing, SEO, Google Ads, Google Analytics, performance marketing and data analytics."
       );
     }
 
@@ -224,15 +233,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
             {/* Left Column (52%) */}
             <div className="flex flex-col items-start">
               {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-5 sm:mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#08703A]" />
-                <span
-                  className="text-[11px] sm:text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  LEARN WITH SUPRA BIZ
-                </span>
-              </div>
+              <RevealEyebrow text="LEARN WITH SUPRABIZ" textColor="#08703A" dotColor="#08703A" className="mb-5 sm:mb-6" />
 
               {/* H1 Headline */}
               <h1
@@ -242,84 +243,93 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   fontFamily: "Manrope, sans-serif",
                 }}
               >
-                Master Digital Marketing.
-                <br />
-                <span className="text-[#08703A]">Build Skills That Matter.</span>
+                <RevealText delay={100}>
+                  <span className="block">Master Digital Marketing.</span>
+                </RevealText>
+                <RevealText delay={190}>
+                  <span className="block text-[#08703A]">Build Skills That Matter.</span>
+                </RevealText>
               </h1>
 
               {/* Description */}
-              <p
-                className="text-[#56645A] text-[15.5px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-7 sm:mb-10 font-normal"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Build practical skills across social media, SEO, Google Ads,
-                analytics and performance marketing through structured, real-world
-                focused learning.
-              </p>
+              <RevealDirectional direction="up" delay={280}>
+                <p
+                  className="text-[#56645A] text-[15.5px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-7 sm:mb-10 font-normal"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Build practical skills across social media, SEO, Google Ads,
+                  analytics and performance marketing through structured, real-world
+                  focused learning.
+                </p>
+              </RevealDirectional>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={(e) => scrollToSection("social-media", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] hover:bg-[#065A2E] transition-all duration-200 shadow-[0_8px_20px_rgba(8,112,58,0.20)] hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  <span>Explore Courses</span>
-                  <span className="transition-transform duration-200 group-hover:translate-y-0.5">
-                    ↓
-                  </span>
-                </button>
+              <RevealDirectional direction="up" delay={380} className="w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={(e) => scrollToSection("social-media", e)}
+                    className="btn-premium btn-premium-sweep group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-white bg-[#08703A] cursor-pointer w-full sm:w-auto shadow-sm"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    <span>Explore Courses</span>
+                    <span className="transition-transform duration-200 group-hover:translate-y-0.5">
+                      ↓
+                    </span>
+                  </button>
 
-                <button
-                  type="button"
-                  onClick={(e) => handleNav("/contact", e)}
-                  className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  <span>Talk to an Advisor</span>
-                  <span className="text-[#08703A] transition-transform duration-200 group-hover:translate-x-1">
-                    →
-                  </span>
-                </button>
-              </div>
+                  <button
+                    type="button"
+                    onClick={(e) => handleNav("/contact", e)}
+                    className="btn-premium group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[52px] px-7 sm:px-8 rounded-full text-[15px] font-semibold text-[#15241B] bg-[#F2F7F4] hover:bg-[#E7F1EB] border border-[#08703A]/15 cursor-pointer w-full sm:w-auto"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    <span>Talk to an Advisor</span>
+                    <span className="text-[#08703A] btn-arrow-icon">
+                      →
+                    </span>
+                  </button>
+                </div>
+              </RevealDirectional>
             </div>
 
             {/* Right Column (48%): Hero Image */}
             <div className="relative w-full flex justify-center lg:justify-end">
-              <div
-                className="relative w-full max-w-[560px] aspect-[4/4.2] rounded-[22px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.10)",
-                  boxShadow: "0 30px 70px rgba(20, 55, 35, 0.12)",
-                }}
-              >
-                <img
-                  src={heroImg}
-                  alt="Digital marketing learner working with social, SEO and analytics tools"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.015]"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-
-                {/* Subtle Editorial Label */}
+              <RevealImage direction="left" delay={500} className="w-full max-w-[560px] rounded-[22px] sm:rounded-[32px] overflow-hidden">
                 <div
-                  className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-6 sm:right-auto inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-md"
+                  className="relative w-full aspect-[4/4.2] rounded-[22px] sm:rounded-[32px] overflow-hidden bg-[#F4F8F5]"
                   style={{
-                    background: "rgba(255, 255, 255, 0.88)",
-                    border: "1px solid rgba(8, 112, 58, 0.12)",
-                    boxShadow: "0 8px 24px rgba(18, 58, 35, 0.08)",
+                    border: "1px solid rgba(8, 112, 58, 0.10)",
+                    boxShadow: "0 30px 70px rgba(20, 55, 35, 0.12)",
                   }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
-                  <span
-                    className="text-[10.5px] sm:text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
-                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  <img
+                    src={heroImg}
+                    alt="Digital marketing learner working with social, SEO and analytics tools"
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.015]"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+
+                  {/* Subtle Editorial Label */}
+                  <div
+                    className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-6 sm:right-auto inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-md"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.88)",
+                      border: "1px solid rgba(8, 112, 58, 0.12)",
+                      boxShadow: "0 8px 24px rgba(18, 58, 35, 0.08)",
+                    }}
                   >
-                    SOCIAL • SEO • ADS • ANALYTICS
-                  </span>
+                    <span className="w-2 h-2 rounded-full bg-[#FFC21C]" />
+                    <span
+                      className="text-[10.5px] sm:text-[11.5px] font-bold uppercase tracking-[0.08em] text-[#15241B]"
+                      style={{ fontFamily: "Manrope, sans-serif" }}
+                    >
+                      SOCIAL • SEO • ADS • ANALYTICS
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </RevealImage>
             </div>
           </div>
         </div>
@@ -509,7 +519,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           {/* Category Intro: 2-column (Text Left, Compact Visual Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-[70px] items-center mb-10 sm:mb-16">
-            <div>
+            <RevealDirectional direction="left" delay={60}>
               <div className="flex items-center gap-2 mb-3">
                 <span
                   className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] text-[#FFC21C]"
@@ -529,63 +539,73 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 className="text-[30px] xs:text-[36px] sm:text-[44px] lg:text-[50px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.06] mb-4 sm:mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Create Attention.
-                <br />
-                Build Community.
-                <br />
-                <span className="text-[#08703A]">Grow Brands.</span>
+                <RevealText delay={80}>
+                  <span className="block">Create Attention.</span>
+                </RevealText>
+                <RevealText delay={160}>
+                  <span className="block">Build Community.</span>
+                </RevealText>
+                <RevealText delay={240}>
+                  <span className="block text-[#08703A]">Grow Brands.</span>
+                </RevealText>
               </h2>
-              <p
-                className="text-[15.5px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Build an integrated social strategy across channels, content and community to develop sustainable organic reach and loyal brand advocacy.
-              </p>
-            </div>
+              <RevealDirectional direction="up" delay={180}>
+                <p
+                  className="text-[15.5px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Build an integrated social strategy across channels, content and community to develop sustainable organic reach and loyal brand advocacy.
+                </p>
+              </RevealDirectional>
+            </RevealDirectional>
 
-            {/* Compact Category Visual */}
+            {/* Compact Category Visual with Signature Brand Wipe */}
             <div className="w-full">
-              <div
-                className="relative w-full h-[260px] xs:h-[300px] sm:h-[360px] rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 22px 55px rgba(20, 55, 35, 0.08)",
-                }}
-              >
-                <img
-                  src={socialLearningImg}
-                  alt="Social media content planning workspace"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+              <RevealImage direction="right" brandWipe={true} delay={180} className="rounded-[22px] sm:rounded-[28px] overflow-hidden">
                 <div
-                  className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md text-[11px] font-bold text-[#15241B]"
+                  className="relative w-full h-[260px] xs:h-[300px] sm:h-[360px] rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
                   style={{
-                    background: "rgba(255, 255, 255, 0.92)",
-                    border: "1px solid rgba(8, 112, 58, 0.10)",
+                    border: "1px solid rgba(8, 112, 58, 0.08)",
+                    boxShadow: "0 22px 55px rgba(20, 55, 35, 0.08)",
                   }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-[#08703A]" />
-                  <span style={{ fontFamily: "Manrope, sans-serif" }}>
-                    CONTENT • CREATIVE • COMMUNITY
-                  </span>
+                  <img
+                    src={socialLearningImg}
+                    alt="Social media content planning workspace"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div
+                    className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md text-[11px] font-bold text-[#15241B]"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.92)",
+                      border: "1px solid rgba(8, 112, 58, 0.10)",
+                    }}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#08703A]" />
+                    <span style={{ fontFamily: "Manrope, sans-serif" }}>
+                      CONTENT • CREATIVE • COMMUNITY
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </RevealImage>
             </div>
           </div>
 
           {/* Courses Collection: Full Width 2-Column Editorial Grid Below Intro */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-0">
+          <StaggerGroup delay={220} stagger={80} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-0">
             {socialCourses.map((course, idx) => (
-              <article
+              <StaggerItem
                 key={course.id}
                 className="py-[28px] sm:py-[30px] pr-2 pb-[32px] sm:pb-[34px] border-t border-[#08703A]/10 group transition-colors duration-200"
               >
-                <div
-                  className="text-[11px] font-bold tracking-[0.08em] text-[#FFC21C] mb-2.5"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  {String(idx + 1).padStart(2, "0")}
+                <div className="overflow-hidden mb-2.5">
+                  <span
+                    className="num-digit text-[11px] font-bold tracking-[0.08em] text-[#FFC21C] block"
+                    style={{ fontFamily: "Manrope, sans-serif" }}
+                  >
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
                 </div>
                 <h3
                   className="text-[22px] sm:text-[25px] font-bold text-[#15241B] group-hover:text-[#08703A] transition-colors leading-[1.2] tracking-[-0.02em] mb-2"
@@ -625,9 +645,9 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                     →
                   </span>
                 </button>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
@@ -639,7 +659,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           {/* Category Intro: 2-column (Text Left, Compact Visual Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-[70px] items-center mb-12 sm:mb-16">
-            <div>
+            <RevealDirectional direction="left">
               <div className="flex items-center gap-2 mb-3">
                 <span
                   className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] text-[#FFC21C]"
@@ -648,33 +668,31 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   02
                 </span>
                 <span className="text-[12px] font-bold text-[#FFC21C]">/</span>
-                <span
-                  className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  SEARCH &amp; ADS
-                </span>
+                <RevealEyebrow
+                  text="SEARCH & ADS"
+                  dotColor="#08703A"
+                  textColor="#08703A"
+                  className="!mb-0"
+                />
               </div>
-              <h2
+              <RevealText
+                as="h2"
+                lines={["Be Found.", "Reach the Right Audience.", "Drive Action."]}
                 className="text-[34px] sm:text-[44px] lg:text-[50px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.06] mb-4 sm:mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                Be Found.
-                <br />
-                Reach the Right Audience.
-                <br />
-                <span className="text-[#08703A]">Drive Action.</span>
-              </h2>
-              <p
-                className="text-[16px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Learn how search engines discover, understand and rank content, and how paid acquisition targets high-intent queries with disciplined optimization.
-              </p>
-            </div>
+              />
+              <RevealDirectional direction="up" delay={120}>
+                <p
+                  className="text-[16px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Learn how search engines discover, understand and rank content, and how paid acquisition targets high-intent queries with disciplined optimization.
+                </p>
+              </RevealDirectional>
+            </RevealDirectional>
 
             {/* Compact Editorial Marketing Diagram */}
-            <div className="w-full">
+            <RevealDirectional direction="right" delay={100} className="w-full">
               <div
                 className="w-full h-[340px] sm:h-[360px] rounded-[24px] sm:rounded-[28px] bg-white p-6 sm:p-7 flex flex-col justify-between"
                 style={{
@@ -778,13 +796,17 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   </span>
                 </div>
               </div>
-            </div>
+            </RevealDirectional>
           </div>
 
           {/* Courses Collection: Full Width 3-Column Editorial Grid Below Intro */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-12 gap-y-0">
+          <StaggerGroup
+            delay={150}
+            stagger={80}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-12 gap-y-0"
+          >
             {searchAdsCourses.map((course, idx) => (
-              <article
+              <StaggerItem
                 key={course.id}
                 className="py-[28px] sm:py-[30px] pr-2 pb-[32px] sm:pb-[34px] border-t border-[#08703A]/10 group transition-colors duration-200"
               >
@@ -832,9 +854,9 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                     →
                   </span>
                 </button>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
@@ -846,7 +868,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           {/* Category Intro: 2-column (Text Left, Compact Visual Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-[70px] items-center mb-10 sm:mb-16">
-            <div>
+            <RevealDirectional direction="left">
               <div className="flex items-center gap-2 mb-3">
                 <span
                   className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] text-[#FFC21C]"
@@ -855,64 +877,70 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   03
                 </span>
                 <span className="text-[12px] font-bold text-[#FFC21C]">/</span>
-                <span
-                  className="text-[12px] sm:text-[13px] font-bold tracking-[0.12em] text-[#08703A]"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  DATA &amp; ANALYTICS
-                </span>
+                <RevealEyebrow
+                  text="DATA & ANALYTICS"
+                  dotColor="#08703A"
+                  textColor="#08703A"
+                  className="!mb-0"
+                />
               </div>
-              <h2
+              <RevealText
+                as="h2"
+                lines={["Understand Performance.", "Make Smarter Decisions."]}
                 className="text-[30px] xs:text-[36px] sm:text-[44px] lg:text-[50px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.06] mb-4 sm:mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                Understand Performance.
-                <br />
-                <span className="text-[#08703A]">Make Smarter Decisions.</span>
-              </h2>
-              <p
-                className="text-[15.5px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Learn how website and campaign telemetry can be interpreted to understand traffic attribution, user behaviour and data-backed business growth.
-              </p>
-            </div>
+              />
+              <RevealDirectional direction="up" delay={120}>
+                <p
+                  className="text-[15.5px] sm:text-[17.5px] text-[#69736C] leading-[1.65] max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Learn how website and campaign telemetry can be interpreted to understand traffic attribution, user behaviour and data-backed business growth.
+                </p>
+              </RevealDirectional>
+            </RevealDirectional>
 
-            {/* Compact Category Visual */}
+            {/* Compact Category Visual with Curtain Reveal */}
             <div className="w-full">
-              <div
-                className="relative w-full h-[260px] xs:h-[300px] sm:h-[360px] rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 22px 55px rgba(20, 55, 35, 0.08)",
-                }}
-              >
-                <img
-                  src={analyticsLearningImg}
-                  alt="Digital analytics workspace and measurement dashboards"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+              <RevealImage direction="right">
                 <div
-                  className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md text-[11px] font-bold text-[#15241B]"
+                  className="relative w-full h-[260px] xs:h-[300px] sm:h-[360px] rounded-[22px] sm:rounded-[28px] overflow-hidden bg-[#F4F8F5]"
                   style={{
-                    background: "rgba(255, 255, 255, 0.92)",
-                    border: "1px solid rgba(8, 112, 58, 0.10)",
+                    border: "1px solid rgba(8, 112, 58, 0.08)",
+                    boxShadow: "0 22px 55px rgba(20, 55, 35, 0.08)",
                   }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-[#08703A]" />
-                  <span style={{ fontFamily: "Manrope, sans-serif" }}>
-                    ANALYTICS • MEASUREMENT • DECISION-MAKING
-                  </span>
+                  <img
+                    src={analyticsLearningImg}
+                    alt="Digital analytics workspace and measurement dashboards"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div
+                    className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md text-[11px] font-bold text-[#15241B]"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.92)",
+                      border: "1px solid rgba(8, 112, 58, 0.10)",
+                    }}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#08703A]" />
+                    <span style={{ fontFamily: "Manrope, sans-serif" }}>
+                      ANALYTICS • MEASUREMENT • DECISION-MAKING
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </RevealImage>
             </div>
           </div>
 
           {/* Courses Collection: Full Width 2-Column Editorial Grid Below Intro */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-0">
+          <StaggerGroup
+            delay={150}
+            stagger={80}
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-0"
+          >
             {analyticsCourses.map((course, idx) => (
-              <article
+              <StaggerItem
                 key={course.id}
                 className="py-[28px] sm:py-[30px] pr-2 pb-[32px] sm:pb-[34px] border-t border-[#08703A]/10 group transition-colors duration-200"
               >
@@ -960,40 +988,30 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                     →
                   </span>
                 </button>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
-      {/* ─── 07. Section: Why Learn With SUPRA BIZ ───────────────────────────── */}
+      {/* ─── 07. Section: Why Learn With SUPRABIZ ───────────────────────────── */}
       <section className="py-20 sm:py-28 px-6 sm:px-8 lg:px-10 bg-[#FAFBF9] border-t border-[#08703A]/10">
         <div className="max-w-[1380px] mx-auto">
           {/* Section Header */}
           <div className="max-w-[760px] mb-14 sm:mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#08703A]" />
-              <span
-                className="text-[11.5px] font-bold uppercase tracking-[0.1em] text-[#08703A]"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                WHY LEARN WITH US
-              </span>
-            </div>
-            <h2
+            <RevealEyebrow text="WHY LEARN WITH US" />
+            <RevealText
+              as="h2"
+              lines={["Learn Skills You Can", "Actually Use."]}
               className="text-[32px] sm:text-[44px] lg:text-[48px] font-bold text-[#15241B] tracking-[-0.03em] leading-[1.15]"
               style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              Learn Skills You Can
-              <br />
-              Actually Use.
-            </h2>
+            />
           </div>
 
           {/* 2x2 Editorial Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <StaggerGroup delay={150} stagger={90} className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* Principle 01 */}
-            <div className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
+            <StaggerItem className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
               <div>
                 <span
                   className="text-[34px] sm:text-[40px] font-bold text-[#08703A]/22 block mb-3 leading-none"
@@ -1015,10 +1033,10 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   application across modern toolsets.
                 </p>
               </div>
-            </div>
+            </StaggerItem>
 
             {/* Principle 02 */}
-            <div className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
+            <StaggerItem className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
               <div>
                 <span
                   className="text-[34px] sm:text-[40px] font-bold text-[#08703A]/22 block mb-3 leading-none"
@@ -1040,10 +1058,10 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   performance-focused skills in a logical, guided progression.
                 </p>
               </div>
-            </div>
+            </StaggerItem>
 
             {/* Principle 03 */}
-            <div className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
+            <StaggerItem className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
               <div>
                 <span
                   className="text-[34px] sm:text-[40px] font-bold text-[#08703A]/22 block mb-3 leading-none"
@@ -1065,10 +1083,10 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   relied upon by businesses and agencies today.
                 </p>
               </div>
-            </div>
+            </StaggerItem>
 
             {/* Principle 04 */}
-            <div className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
+            <StaggerItem className="p-7 sm:p-8 rounded-2xl bg-white border border-[#08703A]/10 flex flex-col justify-between">
               <div>
                 <span
                   className="text-[34px] sm:text-[40px] font-bold text-[#08703A]/22 block mb-3 leading-none"
@@ -1090,8 +1108,8 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   campaigns to solve authentic business challenges.
                 </p>
               </div>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerGroup>
         </div>
       </section>
 
@@ -1099,32 +1117,26 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
       <section className="py-20 sm:py-24 lg:py-28 px-6 sm:px-8 lg:px-10 bg-[#F5F9F6] border-t border-[#08703A]/10">
         <div className="max-w-[1380px] mx-auto">
           {/* Centered Section Header */}
-          <div className="text-center max-w-xl mx-auto mb-14 sm:mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
-              <span
-                className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+          <div className="text-center max-w-xl mx-auto mb-14 sm:mb-16 flex flex-col items-center">
+            <RevealEyebrow text="HOW LEARNING WORKS" dotColor="#FFC21C" textColor="#08703A" />
+            <RevealText
+              as="h2"
+              lines={["Learn. Practice. Apply. Grow."]}
+              className="text-[32px] sm:text-[42px] font-extrabold tracking-[-0.03em] text-[#15241B]"
+              style={{ fontFamily: "Manrope, sans-serif" }}
+            />
+            <RevealDirectional direction="up" delay={120}>
+              <p
+                className="text-[16px] mt-3"
+                style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
               >
-                HOW LEARNING WORKS
-              </span>
-            </div>
-            <h2
-              className="text-[32px] sm:text-[42px] font-extrabold tracking-[-0.03em]"
-              style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
-            >
-              Learn. Practice. Apply. Grow.
-            </h2>
-            <p
-              className="text-[16px] mt-3"
-              style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-            >
-              A structured 4-step framework designed to deliver practical capability and creative excellence.
-            </p>
+                A structured 4-step framework designed to deliver practical capability and creative excellence.
+              </p>
+            </RevealDirectional>
           </div>
 
           {/* Connected Steps Grid */}
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-8">
+          <StaggerGroup delay={150} stagger={100} className="relative grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-8">
             {[
               {
                 step: "01",
@@ -1148,12 +1160,12 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
               },
             ].map((st, i) => (
               <Fragment key={st.step}>
-                <div className="relative flex flex-col items-center text-center group py-2 md:py-0">
+                <StaggerItem className="relative flex flex-col items-center text-center group py-2 md:py-0">
                   {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
                   {i < 3 && (
-                    <div
-                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
-                      style={{ background: "rgba(8, 112, 58, 0.18)" }}
+                    <RevealLine
+                      delay={100}
+                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none bg-[#08703A]/[0.18]"
                     />
                   )}
 
@@ -1182,7 +1194,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                   >
                     {st.desc}
                   </p>
-                </div>
+                </StaggerItem>
 
                 {/* Mobile Vertical Connecting Line */}
                 {i < 3 && (
@@ -1192,7 +1204,7 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
                 )}
               </Fragment>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
@@ -1223,89 +1235,82 @@ export default function CoursesPage({ onNavigate }: CoursesPageProps) {
 
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow Pill */}
-          <div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6"
-            style={{
-              background: "rgba(255, 255, 255, 0.09)",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
-            <span
-              className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.14em] uppercase"
-              style={{ color: "rgba(255, 255, 255, 0.82)", fontFamily: "Manrope, sans-serif" }}
-            >
-              FIND YOUR PATH
-            </span>
-          </div>
+          <RevealEyebrow
+            text="FIND YOUR PATH"
+            dotColor="#FFC21C"
+            textColor="rgba(255, 255, 255, 0.88)"
+            className="mb-5 sm:mb-6 px-3.5 py-1.5 sm:py-2 rounded-full bg-white/[0.09] border border-white/[0.12]"
+          />
 
           {/* Headline */}
-          <h2
+          <RevealText
+            as="h2"
+            lines={["Not Sure Which Course", "Is Right for You?"]}
             className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.05] sm:leading-[1.03] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
-          >
-            Not Sure Which Course
-            <br />
-            Is Right for You?
-          </h2>
+          />
 
           {/* Description */}
-          <p
-            className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
-            style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
-          >
-            Explore the learning path that best matches the skills you want to build and the area of digital marketing you want to understand better.
-          </p>
+          <RevealDirectional direction="up" delay={120}>
+            <p
+              className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
+              style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
+            >
+              Explore the learning path that best matches the skills you want to build and the area of digital marketing you want to understand better.
+            </p>
+          </RevealDirectional>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
-            <button
-              type="button"
-              onClick={(e) => scrollToSection("social-media", e)}
-              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
-              style={{
-                background: "transparent",
-                border: "1px solid rgba(255, 255, 255, 0.32)",
-                fontFamily: "Manrope, sans-serif",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.55)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.32)";
-              }}
-            >
-              <span>Explore Courses</span>
-              <span className="ml-1.5">↑</span>
-            </button>
+          <RevealDirectional direction="up" delay={200}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={(e) => scrollToSection("social-media", e)}
+                className="btn-premium inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
+                style={{
+                  background: "transparent",
+                  border: "1px solid rgba(255, 255, 255, 0.32)",
+                  fontFamily: "Manrope, sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.55)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.32)";
+                }}
+              >
+                <span>Explore Courses</span>
+                <span className="ml-1.5">↑</span>
+              </button>
 
-            <a
-              href="/contact"
-              onClick={(e) => handleNav("/contact", e)}
-              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
-              style={{
-                background: "#FFC21C",
-                color: "#15241B",
-                fontFamily: "Manrope, sans-serif",
-                boxShadow: "0 12px 30px rgba(255, 194, 28, 0.16)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 16px 35px rgba(255, 194, 28, 0.22)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(255, 194, 28, 0.16)";
-              }}
-            >
-              <span>Talk to Us</span>
-              <span className="transition-transform duration-200 group-hover:translate-x-[3px]">
-                →
-              </span>
-            </a>
-          </div>
+              <a
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
+                className="btn-premium btn-premium-sweep group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
+                style={{
+                  background: "#FFC21C",
+                  color: "#15241B",
+                  fontFamily: "Manrope, sans-serif",
+                  boxShadow: "0 12px 30px rgba(255, 194, 28, 0.16)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 16px 35px rgba(255, 194, 28, 0.22)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 12px 30px rgba(255, 194, 28, 0.16)";
+                }}
+              >
+                <span>Talk to Us</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-[3px]">
+                  →
+                </span>
+              </a>
+            </div>
+          </RevealDirectional>
         </div>
       </section>
     </main>

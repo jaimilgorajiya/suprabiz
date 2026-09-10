@@ -5,13 +5,18 @@ import heroMarketingImg from "@/imports/suprabiz-hero-digital-marketing.jpg";
 import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import CoursesPage from "./pages/CoursesPage";
-import OurWorkPage from "./pages/OurWorkPage";
 import ContactPage from "./pages/ContactPage";
 import aboutStrategyImg from "@/imports/suprabiz-about-strategy.jpg";
-import brandingImg from "@/imports/suprabiz-branding-service.jpg";
-import socialMarketingImg from "@/imports/suprabiz-social-media-marketing.jpg";
-import webDesignImg from "@/imports/suprabiz-web-design-service.jpg";
-import digitalAgencyImg from "@/imports/suprabiz-services-digital-agency.jpg";
+import {
+  RevealText,
+  RevealEyebrow,
+  RevealImage,
+  RevealLine,
+  RevealDirectional,
+  StaggerGroup,
+  StaggerItem,
+  RevealNumberSequence,
+} from "./motion/MotionComponents";
 
 // ─── Logo ────────────────────────────────────────────────────────────────────
 // Light bg: use the real photo logo; dark bg: SVG wordmark
@@ -560,7 +565,7 @@ function TopAnnouncementBar() {
             style={{ background: "#FFC21C" }}
           />
           <span className="font-semibold text-white/95 whitespace-nowrap">
-            Grow Your Brand With SUPRA BIZ
+            Grow Your Brand With SUPRABIZ
           </span>
           <span className="hidden md:inline text-white/40">•</span>
           <span className="hidden md:inline text-white/80 text-[11px] font-normal truncate">
@@ -575,17 +580,14 @@ function TopAnnouncementBar() {
           </span>
           <span className="hidden lg:inline text-white/30">|</span>
           <a
-            href="tel:+919313009073"
-            className="hover:underline flex items-center gap-1 text-[11px] font-semibold text-white/90 hover:text-white transition-colors"
-          >
-            <span>Sales: +91 93130 09073</span>
-          </a>
-          <span className="text-white/30">|</span>
-          <a
             href="mailto:sales@suprabiz.co.in"
-            className="hover:underline flex items-center gap-1 text-[11px] font-semibold text-white transition-colors"
+            className="hover:underline flex items-center gap-1.5 text-[11px] font-semibold text-white transition-colors"
           >
-            sales@suprabiz.co.in
+            <svg className="w-3.5 h-3.5 text-white/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            <span>sales@suprabiz.co.in</span>
           </a>
         </div>
       </div>
@@ -644,15 +646,6 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
         window.location.pathname === "/courses/" ||
         window.location.pathname.startsWith("/courses#")));
 
-  const isOurWorkRoute =
-    currentPath === "/our-work" ||
-    currentPath === "/our-work/" ||
-    currentPath.startsWith("/our-work#") ||
-    (typeof window !== "undefined" &&
-      (window.location.pathname === "/our-work" ||
-        window.location.pathname === "/our-work/" ||
-        window.location.pathname.startsWith("/our-work#")));
-
   const isContactRoute =
     currentPath === "/contact" ||
     currentPath === "/contact/" ||
@@ -678,10 +671,6 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
         setActiveSection("course");
         return;
       }
-      if (isOurWorkRoute) {
-        setActiveSection("our-work");
-        return;
-      }
       if (isContactRoute) {
         setActiveSection("contact");
         return;
@@ -693,7 +682,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentPath, isAboutRoute, isServicesRoute, isCoursesRoute, isOurWorkRoute, isContactRoute]);
+  }, [currentPath, isAboutRoute, isServicesRoute, isCoursesRoute, isContactRoute]);
 
   // Keyboard accessibility and click outside handling
   useEffect(() => {
@@ -736,15 +725,17 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
     { name: "About", href: "/about", id: "about" },
     { name: "Services", href: "/services", id: "services" },
     { name: "Course", href: "/courses", id: "course", isDropdown: true },
-    { name: "Our Work", href: "/our-work", id: "our-work" },
     { name: "Contact", href: "/contact", id: "contact" },
   ];
 
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-[1000] w-full transition-all duration-300"
+      className="sticky top-0 z-[1000] w-full bg-white transition-shadow duration-300"
       style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
         background: "#FFFFFF",
         borderBottom: "1px solid rgba(10, 60, 35, 0.08)",
         boxShadow: scrolled
@@ -757,12 +748,12 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
       {/* Main Navbar - Pure Clean White Surface */}
       <nav
-        className="w-full relative bg-white transition-all duration-300"
+        className="w-full relative bg-white"
         aria-label="Main Navigation"
       >
         <div
-          className="max-w-[1380px] mx-auto px-4 sm:px-7 lg:px-10 flex items-center justify-between min-[960px]:block transition-all duration-300"
-          style={{ height: scrolled ? "70px" : "76px" }}
+          className="max-w-[1380px] mx-auto px-4 sm:px-7 lg:px-10 flex items-center justify-between min-[960px]:block"
+          style={{ height: "76px" }}
         >
           {/* Desktop 3-Column Grid Layout: 180px Logo | 1fr Nav | 180px CTA */}
           <div className="hidden min-[960px]:grid grid-cols-[180px_1fr_180px] items-center w-full h-full">
@@ -771,7 +762,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
               <a
                 href="/"
                 className="flex items-center cursor-pointer transition-transform duration-200 hover:opacity-90"
-                aria-label="SUPRA BIZ Home"
+                aria-label="SUPRABIZ Home"
                 onClick={(e) => {
                   e.preventDefault();
                   if (onNavigate) onNavigate("/");
@@ -832,8 +823,6 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                   ? item.id === "services"
                   : isCoursesRoute
                   ? item.id === "course"
-                  : isOurWorkRoute
-                  ? item.id === "our-work"
                   : isContactRoute
                   ? item.id === "contact"
                   : item.id === "home";
@@ -849,9 +838,6 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       } else if (item.id === "services") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/services");
-                      } else if (item.id === "our-work") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/our-work");
                       } else if (item.id === "contact") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/contact");
@@ -913,7 +899,7 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
             <a
               href="/"
               className="flex items-center cursor-pointer transition-transform duration-200 hover:opacity-90"
-              aria-label="SUPRA BIZ Home"
+              aria-label="SUPRABIZ Home"
               onClick={(e) => {
                 e.preventDefault();
                 setMobileOpen(false);
@@ -1162,8 +1148,6 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                   ? item.id === "services"
                   : isCoursesRoute
                   ? item.id === "course"
-                  : isOurWorkRoute
-                  ? item.id === "our-work"
                   : isContactRoute
                   ? item.id === "contact"
                   : item.id === "home";
@@ -1183,9 +1167,6 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
                       } else if (item.id === "services") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/services");
-                      } else if (item.id === "our-work") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/our-work");
                       } else if (item.id === "contact") {
                         e.preventDefault();
                         if (onNavigate) onNavigate("/contact");
@@ -1315,38 +1296,27 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
         <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-14 xl:gap-16 items-center">
           {/* Left Content Column */}
           <div className="flex flex-col items-start w-full">
-            {/* Badge */}
-            <div
-              className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-8 transition-transform duration-200 hover:scale-[1.02]"
-              style={{
-                background: "#EEF5F0",
-                border: "1px solid rgba(8, 112, 58, 0.14)",
-              }}
-            >
-              <span
-                className="w-2 h-2 rounded-full flex-shrink-0"
-                style={{ background: "#FFC21C" }}
+            {/* Eyebrow Sequence */}
+            <div className="mb-5 sm:mb-8">
+              <RevealEyebrow
+                label="CREATIVE • STRATEGIC • DIGITAL"
+                dotColor="#FFC21C"
+                delay={0}
               />
-              <span
-                className="text-[10.5px] sm:text-[12px] font-bold tracking-[0.12em] uppercase"
-                style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
-              >
-                CREATIVE • STRATEGIC • DIGITAL
-              </span>
             </div>
 
-            {/* Headline */}
+            {/* Headline with Line-by-Line Editorial Reveal */}
             <h1
               className="text-[38px] xs:text-[44px] sm:text-[56px] md:text-[62px] lg:text-[66px] xl:text-[76px] font-extrabold tracking-[-0.04em] leading-[1.02] sm:leading-[1.0] mb-5 sm:mb-6"
               style={{ fontFamily: "Manrope, sans-serif" }}
             >
-              <span className="block" style={{ color: "#15241B" }}>
+              <RevealText as="span" delay={100} className="block" style={{ color: "#15241B" }}>
                 Building Brands
-              </span>
-              <span className="block mt-1 sm:mt-1.5" style={{ color: "#075C31" }}>
+              </RevealText>
+              <RevealText as="span" delay={190} className="block mt-1 sm:mt-1.5" style={{ color: "#075C31" }}>
                 That Stand Out
-              </span>
-              <span className="relative inline-block mt-1 sm:mt-1.5" style={{ color: "#159447" }}>
+              </RevealText>
+              <RevealText as="span" delay={280} className="relative inline-block mt-1 sm:mt-1.5" style={{ color: "#159447" }}>
                 &amp; Grow.
                 {/* Subtle curved yellow accent line below Grow. */}
                 <svg
@@ -1363,75 +1333,70 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
                     strokeLinecap="round"
                   />
                 </svg>
-              </span>
+              </RevealText>
             </h1>
 
             {/* Description */}
-            <p
-              className="text-[15.5px] sm:text-[18px] md:text-[19px] max-w-[580px] leading-[1.65] mb-8 sm:mb-9"
-              style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
-            >
-              SUPRABIZ helps ambitious businesses build powerful brands, create
-              meaningful digital experiences and connect with the right audience.
-            </p>
+            <RevealDirectional direction="up" delay={320}>
+              <p
+                className="text-[15.5px] sm:text-[18px] md:text-[19px] max-w-[580px] leading-[1.65] mb-8 sm:mb-9"
+                style={{ color: "#667069", fontFamily: "Inter, sans-serif" }}
+              >
+                SUPRABIZ helps ambitious businesses build powerful brands, create
+                meaningful digital experiences and connect with the right audience.
+              </p>
+            </RevealDirectional>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 sm:mb-10 w-full sm:w-auto">
-              <a
-                href="/contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (onNavigate) onNavigate("/contact");
-                  else window.location.pathname = "/contact";
-                }}
-                className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
-                style={{
-                  background: "#FFC21C",
-                  color: "#15241B",
-                  fontFamily: "Manrope, sans-serif",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 12px 30px rgba(255, 194, 28, 0.28)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-              >
-                <span>Grow Your Brand</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-[3px]">
-                  →
-                </span>
-              </a>
+            <RevealDirectional direction="up" delay={420} className="w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 sm:mb-10 w-full sm:w-auto">
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigate) onNavigate("/contact");
+                    else window.location.pathname = "/contact";
+                  }}
+                  className="btn-premium btn-premium-sweep group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
+                  style={{
+                    background: "#FFC21C",
+                    color: "#15241B",
+                    fontFamily: "Manrope, sans-serif",
+                  }}
+                >
+                  <span>Grow Your Brand</span>
+                  <span className="btn-arrow-icon">
+                    →
+                  </span>
+                </a>
 
-              <a
-                href="/services"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (onNavigate) onNavigate("/services");
-                  else window.location.pathname = "/services";
-                }}
-                className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
-                style={{
-                  background: "transparent",
-                  border: "1.5px solid #08703A",
-                  color: "#08703A",
-                  fontFamily: "Manrope, sans-serif",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#08703A";
-                  e.currentTarget.style.color = "#FFFFFF";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.color = "#08703A";
-                }}
-              >
-                Explore Our Services
-              </a>
-            </div>
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigate) onNavigate("/services");
+                    else window.location.pathname = "/services";
+                  }}
+                  className="btn-premium inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-semibold text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto"
+                  style={{
+                    background: "transparent",
+                    border: "1.5px solid #08703A",
+                    color: "#08703A",
+                    fontFamily: "Manrope, sans-serif",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#08703A";
+                    e.currentTarget.style.color = "#FFFFFF";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = "#08703A";
+                  }}
+                >
+                  Explore Our Services
+                </a>
+              </div>
+            </RevealDirectional>
 
             {/* Horizontal Trust Strip (Desktop / Tablet) with Increasing Numbers */}
             <div
@@ -1567,30 +1532,37 @@ function HeroVisual() {
         }}
       />
 
-      {/* Main Image Container */}
-      <div
-        className="relative w-full h-[340px] xs:h-[400px] sm:h-[500px] lg:h-[550px] xl:h-[580px] rounded-[22px] sm:rounded-[28px] lg:rounded-[32px] overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.01]"
-        style={{
-          border: "1px solid rgba(8, 112, 58, 0.08)",
-          boxShadow: "0 24px 60px rgba(20, 55, 35, 0.10)",
-          background: "#FFFFFF",
-        }}
+      {/* Main Image Container with Signature Brand Wipe Curtain */}
+      <RevealImage
+        direction="left"
+        brandWipe={true}
+        delay={500}
+        className="rounded-[22px] sm:rounded-[28px] lg:rounded-[32px]"
       >
-        <img
-          src={heroMarketingImg}
-          alt="Digital marketing, social media ads, and SEO campaign workspace by SUPRA BIZ"
-          className="w-full h-full object-cover object-[center_36%] block"
-          loading="eager"
-        />
-
-        {/* Subtle Top Inner Edge Highlight */}
         <div
-          className="absolute inset-0 pointer-events-none rounded-[22px] sm:rounded-[28px] lg:rounded-[32px]"
+          className="relative w-full h-[340px] xs:h-[400px] sm:h-[500px] lg:h-[550px] xl:h-[580px] rounded-[22px] sm:rounded-[28px] lg:rounded-[32px] overflow-hidden"
           style={{
-            boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.5)",
+            border: "1px solid rgba(8, 112, 58, 0.08)",
+            boxShadow: "0 24px 60px rgba(20, 55, 35, 0.10)",
+            background: "#FFFFFF",
           }}
-        />
-      </div>
+        >
+          <img
+            src={heroMarketingImg}
+            alt="Digital marketing, social media ads, and SEO campaign workspace by SUPRABIZ"
+            className="w-full h-full object-cover object-[center_36%] block"
+            loading="eager"
+          />
+
+          {/* Subtle Top Inner Edge Highlight */}
+          <div
+            className="absolute inset-0 pointer-events-none rounded-[22px] sm:rounded-[28px] lg:rounded-[32px]"
+            style={{
+              boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.5)",
+            }}
+          />
+        </div>
+      </RevealImage>
 
       {/* Floating Card 1: SEO & Performance (Top Right - Desktop/Tablet Only) */}
       <div
@@ -1656,7 +1628,7 @@ function HeroVisual() {
 
       {/* Floating Card 2: Social Media (Repositioned safely on mobile so it never spills over) */}
       <div
-        className="absolute bottom-3 left-3 sm:-bottom-5 sm:-left-5 z-20 transition-all duration-300 group-hover:-translate-y-[2px] max-w-[calc(100%-24px)]"
+        className="absolute bottom-3 left-3 sm:-bottom-5 sm:-left-5 z-20 transition-all duration-300 group-hover:-translate-y-[2px] max-w-[calc(100%-24px)] px-3.5 py-3 sm:px-4.5 sm:py-3.5 min-w-[175px] sm:min-w-[195px]"
         style={{
           background: "rgba(255, 255, 255, 0.95)",
           backdropFilter: "blur(14px)",
@@ -1664,14 +1636,12 @@ function HeroVisual() {
           border: "1px solid rgba(8, 112, 58, 0.08)",
           borderRadius: "16px",
           boxShadow: "0 14px 35px rgba(20, 55, 35, 0.12)",
-          padding: "10px 14px sm:14px sm:18px",
-          minWidth: "165px",
         }}
       >
-        <div className="flex items-center justify-between gap-3 mb-1">
+        <div className="flex items-center justify-between gap-3 mb-1.5">
           <div className="flex items-center gap-1.5">
             <span
-              className="w-1.5 h-1.5 rounded-full"
+              className="w-1.5 h-1.5 rounded-full shrink-0"
               style={{ background: "#FFC21C" }}
             />
             <span
@@ -1683,7 +1653,7 @@ function HeroVisual() {
           </div>
 
           <div
-            className="w-6 h-6 rounded-md flex items-center justify-center"
+            className="w-6 h-6 rounded-md flex items-center justify-center shrink-0"
             style={{ background: "rgba(255, 194, 28, 0.16)", color: "#9E7000" }}
           >
             <svg
@@ -1701,14 +1671,14 @@ function HeroVisual() {
         </div>
 
         <div
-          className="text-[14px] sm:text-[16px] font-bold leading-tight mb-0.5 sm:mb-1"
+          className="text-[14px] sm:text-[16px] font-bold leading-tight mb-1"
           style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
         >
           Social Media
         </div>
 
         <div
-          className="text-[9.5px] sm:text-[11px] font-medium"
+          className="text-[10px] sm:text-[11px] font-medium whitespace-nowrap"
           style={{ color: "#69736C", fontFamily: "Inter, sans-serif" }}
         >
           Content • Creative • Growth
@@ -1722,28 +1692,53 @@ function HeroVisual() {
 function TrustBar() {
   const trustedBrands = [
     {
-      name: "NEXORA",
-      style: { letterSpacing: "0.08em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
+      name: "Radio Sabarmati 89.6 FM",
+      style: { letterSpacing: "0.04em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
       logo: null,
     },
     {
-      name: "URBANO",
-      style: { letterSpacing: "0.14em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
+      name: "Blossom Pediatric Clinic",
+      style: { letterSpacing: "0.03em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
       logo: null,
     },
     {
-      name: "VERTEX",
-      style: { letterSpacing: "0.05em", fontWeight: 800, fontFamily: "Manrope, sans-serif" },
+      name: "Jay Womens Hospital",
+      style: { letterSpacing: "0.04em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
       logo: null,
     },
     {
-      name: "AURA",
-      style: { letterSpacing: "0.12em", fontWeight: 500, fontFamily: "Inter, sans-serif" },
+      name: "Fashion World",
+      style: { letterSpacing: "0.06em", fontWeight: 800, fontFamily: "Manrope, sans-serif" },
       logo: null,
     },
     {
-      name: "NOVEX",
-      style: { letterSpacing: "0.09em", fontWeight: 750, fontFamily: "Manrope, sans-serif" },
+      name: "Maruti Dental Clinic",
+      style: { letterSpacing: "0.04em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
+      logo: null,
+    },
+    {
+      name: "Prahant Ayurveda",
+      style: { letterSpacing: "0.05em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
+      logo: null,
+    },
+    {
+      name: "Vishwaroopam Gurukulam",
+      style: { letterSpacing: "0.03em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
+      logo: null,
+    },
+    {
+      name: "Woww Chik",
+      style: { letterSpacing: "0.07em", fontWeight: 800, fontFamily: "Manrope, sans-serif" },
+      logo: null,
+    },
+    {
+      name: "Satara Spices",
+      style: { letterSpacing: "0.06em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
+      logo: null,
+    },
+    {
+      name: "Twacha Skincare",
+      style: { letterSpacing: "0.05em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
       logo: null,
     },
   ];
@@ -1769,9 +1764,9 @@ function TrustBar() {
       <div className="max-w-[1380px] mx-auto relative z-10 flex flex-col items-center">
         {/* Subtle Section Title with Side Accent Lines */}
         <div className="w-full max-w-[560px] flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-6">
-          <div
+          <RevealLine
             className="h-[1px] flex-1 max-w-[80px] sm:max-w-[110px]"
-            style={{ background: "rgba(8, 112, 58, 0.12)" }}
+            direction="right"
           />
 
           <div className="flex items-center gap-2">
@@ -1783,36 +1778,37 @@ function TrustBar() {
             </span>
           </div>
 
-          <div
+          <RevealLine
             className="h-[1px] flex-1 max-w-[80px] sm:max-w-[110px]"
-            style={{ background: "rgba(8, 112, 58, 0.12)" }}
+            direction="left"
           />
         </div>
 
-        {/* Brand Logos Row */}
-        <div className="w-full max-w-[980px] mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center justify-items-center gap-6 sm:gap-8 md:gap-10 lg:gap-14">
-          {trustedBrands.map((brand) => (
-            <div
-              key={brand.name}
-              className="group cursor-default py-1 px-2 flex flex-col items-center transition-all duration-200"
-            >
-              <span
-                className="text-[17px] sm:text-[19px] md:text-[20px] transition-all duration-200 select-none group-hover:text-[#08703A] group-hover:-translate-y-[2px]"
-                style={{
-                  color: "#8E9992",
-                  opacity: 0.85,
-                  ...brand.style,
-                }}
+        {/* Brand Logos Row - Staggered progressive assembly */}
+        <StaggerGroup className="w-full max-w-[1200px] mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center justify-items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+          {trustedBrands.map((brand, i) => (
+            <StaggerItem key={brand.name} index={i} staggerMs={70}>
+              <div
+                className="group cursor-default py-1 px-2 flex flex-col items-center transition-all duration-200"
               >
-                {brand.name}
-              </span>
-              <span
-                className="w-0 h-[2px] rounded-full transition-all duration-200 group-hover:w-4 mt-0.5"
-                style={{ background: "#FFC21C" }}
-              />
-            </div>
+                <span
+                  className="text-[13px] sm:text-[14px] md:text-[15px] transition-all duration-200 select-none group-hover:text-[#08703A] group-hover:-translate-y-[2px] text-center leading-snug"
+                  style={{
+                    color: "#8E9992",
+                    opacity: 0.85,
+                    ...brand.style,
+                  }}
+                >
+                  {brand.name}
+                </span>
+                <span
+                  className="w-0 h-[2px] rounded-full transition-all duration-200 group-hover:w-4 mt-0.5"
+                  style={{ background: "#FFC21C" }}
+                />
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
         {/* Small Supporting Trust Indicator */}
         <p
@@ -1828,31 +1824,26 @@ function TrustBar() {
 
 // ─── About ───────────────────────────────────────────────────────────────────
 function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
-  const ref = useReveal();
-
   return (
     <section id="about" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "var(--offwhite)" }}>
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="flex flex-col items-start w-full">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Left Content Column - Directional Reveal */}
+          <RevealDirectional direction="left" className="flex flex-col items-start w-full">
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#E8F4EC] border border-[#08703A]/15 mb-5 sm:mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#08703A]" />
-              <span
-                className="text-[12px] font-bold tracking-[0.08em] uppercase text-[#08703A]"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                WHO WE ARE
-              </span>
+            <div className="mb-5 sm:mb-6">
+              <RevealEyebrow
+                label="WHO WE ARE"
+                dotColor="#08703A"
+              />
             </div>
 
-            {/* Headline */}
+            {/* Editorial Headline Mask Reveal */}
             <h2
               className="text-[28px] xs:text-[34px] sm:text-[42px] lg:text-[46px] font-extrabold mb-5 sm:mb-6 leading-[1.14] text-[#15241B]"
               style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "-0.03em" }}
             >
-              We turn ideas into brands people remember.
+              <RevealText as="span" lines={["We turn ideas into", "brands people remember."]} />
             </h2>
 
             {/* Paragraphs */}
@@ -1860,7 +1851,7 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
               className="text-[15.5px] sm:text-[17px] mb-4 sm:mb-5 leading-[1.68] text-[#526056]"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
-              SUPRABIZ is a full-service branding and digital marketing agency based in Ahmedabad, Gujarat.
+              SUPRABIZ is a branding and digital marketing agency based in Ahmedabad, Gujarat.
               We partner with ambitious businesses to build brand identities that resonate, marketing systems
               that convert, and digital experiences that leave lasting impressions.
             </p>
@@ -1873,32 +1864,33 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
               strategy, creativity and execution together in one focused partnership.
             </p>
 
-            {/* Value Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 sm:mb-9 w-full">
+            {/* Value Pillars - Staggered Assembly */}
+            <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 sm:mb-9 w-full">
               {[
                 { title: "Strategic Clarity", desc: "Positioning built to cut through market noise" },
                 { title: "Creative Craft", desc: "Design systems tailored to inspire trust" },
                 { title: "Performance Drive", desc: "ROI-led execution on every campaign" },
-                { title: "Local Presence", desc: "Direct studio access in Ahmedabad" },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="flex items-start gap-2.5 p-3 rounded-xl bg-white/80 border border-[#08703A]/10 shadow-[0_2px_8px_rgba(20,55,35,0.02)]"
-                >
-                  <span className="w-5 h-5 rounded-full bg-[#E8F4EC] text-[#08703A] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
-                    ✓
-                  </span>
-                  <div>
-                    <h4 className="text-[13.5px] font-bold text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>
-                      {item.title}
-                    </h4>
-                    <p className="text-[12px] text-[#69746D]" style={{ fontFamily: "Inter, sans-serif" }}>
-                      {item.desc}
-                    </p>
+                { title: "Local Presence", desc: "Direct office access in Ahmedabad" },
+              ].map((item, idx) => (
+                <StaggerItem key={item.title} index={idx} staggerMs={70}>
+                  <div
+                    className="flex items-start gap-2.5 p-3 rounded-xl bg-white/80 border border-[#08703A]/10 shadow-[0_2px_8px_rgba(20,55,35,0.02)]"
+                  >
+                    <span className="w-5 h-5 rounded-full bg-[#E8F4EC] text-[#08703A] flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                      ✓
+                    </span>
+                    <div>
+                      <h4 className="text-[13.5px] font-bold text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>
+                        {item.title}
+                      </h4>
+                      <p className="text-[12px] text-[#69746D]" style={{ fontFamily: "Inter, sans-serif" }}>
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 w-full sm:w-auto">
@@ -1909,11 +1901,11 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/about");
                   else window.location.pathname = "/about";
                 }}
-                className="inline-flex items-center justify-center gap-2.5 h-[50px] px-7 rounded-full text-[14.5px] font-semibold text-white transition-all duration-200 cursor-pointer shadow-[0_6px_20px_rgba(8,112,58,0.20)] hover:bg-[#065A2E] hover:-translate-y-0.5 w-full sm:w-auto text-center"
+                className="btn-premium btn-premium-sweep inline-flex items-center justify-center gap-2.5 h-[50px] px-7 rounded-full text-[14.5px] font-semibold text-white cursor-pointer shadow-[0_6px_20px_rgba(8,112,58,0.20)] w-full sm:w-auto text-center"
                 style={{ background: "#08703A", fontFamily: "Manrope, sans-serif" }}
               >
                 <span>Discover Our Story</span>
-                <span className="transition-transform duration-200 hover:translate-x-1">→</span>
+                <span className="btn-arrow-icon">→</span>
               </a>
               <a
                 href="/services"
@@ -1922,101 +1914,98 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/services");
                   else window.location.pathname = "/services";
                 }}
-                className="inline-flex items-center justify-center gap-2 h-[50px] px-6 rounded-full text-[14.5px] font-semibold text-[#15241B] bg-white border border-[#08703A]/20 hover:border-[#08703A] hover:bg-[#F2F7F4] transition-all duration-200 cursor-pointer hover:-translate-y-0.5 w-full sm:w-auto text-center"
+                className="btn-premium inline-flex items-center justify-center gap-2 h-[50px] px-6 rounded-full text-[14.5px] font-semibold text-[#15241B] bg-white border border-[#08703A]/20 hover:border-[#08703A] hover:bg-[#F2F7F4] cursor-pointer w-full sm:w-auto text-center"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
                 <span>See what we do</span>
-                <span>→</span>
+                <span className="btn-arrow-icon">→</span>
               </a>
             </div>
-          </div>
+          </RevealDirectional>
 
-          {/* Right — Refined Visual Showcase without bottom number tiles */}
+          {/* Right — Masked Curtain Image Reveal */}
           <div className="relative w-full flex justify-center lg:justify-end">
-            {/* Ambient Glow */}
-            <div
-              className="absolute -inset-4 rounded-[40px] pointer-events-none opacity-50 filter blur-2xl"
-              style={{
-                background:
-                  "radial-gradient(circle at 60% 40%, rgba(8, 112, 58, 0.15) 0%, rgba(255, 194, 28, 0.08) 50%, transparent 70%)",
-              }}
-            />
+            <RevealImage direction="left" className="rounded-[32px] w-full max-w-[560px]">
+              {/* Ambient Glow */}
+              <div
+                className="relative w-full rounded-[32px] overflow-hidden bg-white border border-[rgba(8,112,58,0.12)] shadow-[0_20px_50px_rgba(20,55,35,0.08)] group"
+              >
+                {/* Main Workspace Image */}
+                <div className="relative aspect-[4/3.1] overflow-hidden">
+                  <img
+                    src={aboutStrategyImg}
+                    alt="SUPRABIZ Strategy & Creative Agency Workspace"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
 
-            <div
-              className="relative w-full max-w-[560px] rounded-[32px] overflow-hidden bg-white border border-[rgba(8,112,58,0.12)] shadow-[0_20px_50px_rgba(20,55,35,0.08)] group"
-            >
-              {/* Main Workspace Image */}
-              <div className="relative aspect-[4/3.6] sm:aspect-[4/3.8] overflow-hidden">
-                <img
-                  src={aboutStrategyImg}
-                  alt="SUPRA BIZ Strategy & Creative Agency Workspace"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-
-                {/* Subtle gradient scrim */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#15241B]/85 via-[#15241B]/25 to-transparent pointer-events-none" />
-
-                {/* Top Floating Glass Badge */}
-                <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/60 shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-[#08703A] animate-pulse" />
-                    <span
-                      className="text-[11.5px] font-bold tracking-wide uppercase text-[#15241B]"
-                      style={{ fontFamily: "Manrope, sans-serif" }}
-                    >
-                      Studio HQ • Ahmedabad
+                  {/* Top Floating Glass Badge */}
+                  <div className="absolute top-4 left-4 right-4 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between pointer-events-none">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/92 backdrop-blur-md border border-white/60 shadow-sm">
+                      <span className="w-2 h-2 rounded-full bg-[#08703A] animate-pulse" />
+                      <span
+                        className="text-[11.5px] font-bold tracking-wide uppercase text-[#15241B]"
+                        style={{ fontFamily: "Manrope, sans-serif" }}
+                      >
+                        Administrative Office • Ahmedabad
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-semibold text-white/90 bg-[#15241B]/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                      Gujarat, IN
                     </span>
                   </div>
-                  <span className="text-[11px] font-semibold text-white/90 bg-[#15241B]/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                    Gujarat, IN
-                  </span>
+
+                  {/* Bottom Floating Frosted Caption */}
+                  <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
+                    <div className="inline-flex flex-col gap-1 px-4 py-2.5 rounded-2xl bg-white/92 backdrop-blur-md border border-white/70 shadow-[0_8px_24px_rgba(20,55,35,0.08)]">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
+                        <span className="text-[10px] font-extrabold text-[#08703A] uppercase tracking-[0.10em]">
+                          Creative &amp; Strategic Hub
+                        </span>
+                      </div>
+                      <p
+                        className="text-[#15241B] text-[13px] sm:text-[14px] font-bold leading-tight"
+                        style={{ fontFamily: "Manrope, sans-serif" }}
+                      >
+                        Strategic thinking meets high-performance execution.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                {/* In-Image Caption Bottom */}
-                <div className="absolute bottom-5 left-5 right-5 text-white">
-                  <div className="inline-block px-2.5 py-1 rounded-md text-[10.5px] font-bold bg-[#FFC21C] text-[#15241B] uppercase tracking-wider mb-2">
-                    Creative &amp; Strategic Hub
+                {/* Bottom Editorial Trust Bar */}
+                <div className="p-5 sm:p-6 bg-white border-t border-[#08703A]/[0.08] flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-[#E8F4EC] flex items-center justify-center text-[#08703A] font-bold text-sm shrink-0">
+                      ★
+                    </div>
+                    <div>
+                      <p className="text-[13.5px] font-bold text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>
+                        Dedicated Agency Team
+                      </p>
+                      <p className="text-[11.5px] text-[#69746D]" style={{ fontFamily: "Inter, sans-serif" }}>
+                        Branding, campaigns &amp; web experiences
+                      </p>
+                    </div>
                   </div>
-                  <p
-                    className="text-white text-[15px] sm:text-[16.5px] font-semibold leading-snug drop-shadow-sm"
+
+                  <a
+                    href="/about"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onNavigate) onNavigate("/about");
+                      else window.location.pathname = "/about";
+                    }}
+                    className="inline-flex items-center gap-1 text-[12.5px] font-bold text-[#08703A] hover:text-[#065A2E] transition-colors shrink-0 group/link"
                     style={{ fontFamily: "Manrope, sans-serif" }}
                   >
-                    Strategic thinking meets high-performance execution.
-                  </p>
+                    <span>Learn More</span>
+                    <span className="transition-transform duration-200 group-hover/link:translate-x-1">→</span>
+                  </a>
                 </div>
               </div>
-
-              {/* Bottom Editorial Trust Bar */}
-              <div className="p-5 sm:p-6 bg-white border-t border-[#08703A]/[0.08] flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#E8F4EC] flex items-center justify-center text-[#08703A] font-bold text-sm shrink-0">
-                    ★
-                  </div>
-                  <div>
-                    <p className="text-[13.5px] font-bold text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>
-                      Dedicated Agency Team
-                    </p>
-                    <p className="text-[11.5px] text-[#69746D]" style={{ fontFamily: "Inter, sans-serif" }}>
-                      Branding, campaigns &amp; web experiences
-                    </p>
-                  </div>
-                </div>
-
-                <a
-                  href="/about"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onNavigate) onNavigate("/about");
-                    else window.location.pathname = "/about";
-                  }}
-                  className="inline-flex items-center gap-1 text-[12.5px] font-bold text-[#08703A] hover:text-[#065A2E] transition-colors shrink-0 group/link"
-                  style={{ fontFamily: "Manrope, sans-serif" }}
-                >
-                  <span>Learn More</span>
-                  <span className="transition-transform duration-200 group-hover/link:translate-x-1">→</span>
-                </a>
-              </div>
-            </div>
+            </RevealImage>
           </div>
         </div>
       </div>
@@ -2025,95 +2014,149 @@ function About({ onNavigate }: { onNavigate?: (path: string) => void }) {
 }
 
 // ─── Services ────────────────────────────────────────────────────────────────
-const services = [
+const services: Array<{
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  href: string;
+}> = [
   {
-    icon: "◈",
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m12 19 7-7 3 3-7 7-3-3z" />
+        <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+        <path d="m2 2 7.586 7.586" />
+        <circle cx="11" cy="11" r="2" />
+      </svg>
+    ),
     title: "Branding",
     desc: "Logo, identity systems, brand guidelines and visual language that makes your brand unmistakable.",
     href: "/services#branding",
   },
   {
-    icon: "◉",
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="18" cy="5" r="3" />
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="19" r="3" />
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+      </svg>
+    ),
     title: "Social Media Marketing",
     desc: "Content strategy, creative production and community management that builds real audiences.",
     href: "/services#social-media",
   },
   {
-    icon: "◎",
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.35-4.35" />
+        <polyline points="7 12 10 9 13 12 15 10" />
+        <polyline points="12 10 15 10 15 13" />
+      </svg>
+    ),
     title: "SEO",
     desc: "Technical SEO, content strategy and link building to rank higher and drive organic growth.",
     href: "/services#seo",
   },
   {
-    icon: "⬡",
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="16" x="2" y="4" rx="2.5" />
+        <line x1="2" y1="9" x2="22" y2="9" />
+        <path d="m8 13-2 2 2 2" />
+        <path d="m16 13 2 2-2 2" />
+        <line x1="13" y1="12.5" x2="11" y2="17.5" />
+      </svg>
+    ),
     title: "Web Design & Development",
     desc: "Fast, conversion-optimized websites and landing pages built to perform and impress.",
     href: "/services#web-design",
   },
   {
-    icon: "◐",
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="22" y1="12" x2="18" y2="12" />
+        <line x1="6" y1="12" x2="2" y2="12" />
+        <line x1="12" y1="6" x2="12" y2="2" />
+        <line x1="12" y1="22" x2="12" y2="18" />
+        <circle cx="12" cy="12" r="4" />
+      </svg>
+    ),
     title: "Performance Marketing",
     desc: "Data-driven paid campaigns on Meta, Google and more — every rupee tracked for ROI.",
     href: "/services#performance-marketing",
   },
   {
-    icon: "◑",
-    title: "Digital Marketing",
-    desc: "Integrated digital strategy combining multiple channels into one cohesive growth engine.",
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M18 13a6 6 0 0 1-12 0Z" />
+        <line x1="9" y1="9" x2="9.01" y2="9" strokeWidth="3" strokeLinecap="round" />
+        <line x1="15" y1="9" x2="15.01" y2="9" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    ),
+    title: "Marketing with Memes",
+    desc: "Wanna get viral between the GENZs, this is the way to get views and shares for your brand",
     href: "/services#digital-marketing",
   },
 ];
 
 function Services({ onNavigate }: { onNavigate?: (path: string) => void }) {
-  const ref = useReveal();
   return (
     <section id="services" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "#fff" }}>
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal text-center mb-12 sm:mb-16">
-          <div className="flex items-center justify-center gap-3 mb-4 sm:mb-5">
-            <span className="gold-dot" />
-            <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>WHAT WE DO</span>
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="flex items-center justify-center mb-4 sm:mb-5">
+            <RevealEyebrow label="WHAT WE DO" dotColor="#138A3D" />
           </div>
           <h2
             className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold mb-3 sm:mb-4 mx-auto max-w-2xl leading-[1.15]"
             style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
           >
-            Everything your brand needs to grow.
+            <RevealText as="span" lines={["Everything your brand", "needs to grow."]} />
           </h2>
-          <p className="text-[15.5px] sm:text-lg mx-auto max-w-xl text-[#66736A]" style={{ fontFamily: "Inter" }}>
-            From identity to performance — we handle it all under one roof.
-          </p>
+          <RevealDirectional direction="up" delay={220}>
+            <p className="text-[15.5px] sm:text-lg mx-auto max-w-xl text-[#66736A]" style={{ fontFamily: "Inter" }}>
+              From identity to performance — we handle it all under one roof.
+            </p>
+          </RevealDirectional>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              onClick={() => {
-                if (onNavigate) onNavigate(s.href);
-                else window.location.href = s.href;
-              }}
-              className="service-card rounded-2xl p-6 sm:p-7 cursor-pointer group hover:-translate-y-1 hover:shadow-lg transition-all"
-              style={{ background: "var(--offwhite)", border: "1.5px solid var(--border-light)" }}
-            >
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {services.map((s, idx) => (
+            <StaggerItem key={s.title} index={idx} staggerMs={75}>
               <div
-                className="text-2xl mb-4 sm:mb-5 w-12 h-12 flex items-center justify-center rounded-xl transition-colors group-hover:bg-[#08703A] group-hover:text-white"
-                style={{ background: "rgba(7,92,42,0.08)", color: "var(--green-dark)" }}
+                onClick={() => {
+                  if (onNavigate) onNavigate(s.href);
+                  else window.location.href = s.href;
+                }}
+                className="service-card rounded-2xl p-6 sm:p-7 cursor-pointer group hover:-translate-y-1 hover:shadow-lg transition-all h-full flex flex-col justify-between"
+                style={{ background: "var(--offwhite)", border: "1.5px solid var(--border-light)" }}
               >
-                {s.icon}
+                <div>
+                  <div
+                    className="mb-4 sm:mb-5 w-12 h-12 flex items-center justify-center rounded-xl transition-colors group-hover:bg-[#08703A] group-hover:text-white"
+                    style={{ background: "rgba(7,92,42,0.08)", color: "var(--green-dark)" }}
+                  >
+                    {s.icon}
+                  </div>
+                  <h3 className="text-lg font-bold mb-2.5 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>
+                    {s.title}
+                  </h3>
+                  <p className="text-[13.5px] sm:text-sm leading-relaxed mb-5 text-[#66736A]" style={{ fontFamily: "Inter" }}>
+                    {s.desc}
+                  </p>
+                </div>
+                <span className="text-sm font-semibold flex items-center gap-1 transition-all group-hover:gap-2 group-hover:text-[#08703A]" style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}>
+                  Learn more <span className="btn-arrow-icon">→</span>
+                </span>
               </div>
-              <h3 className="text-lg font-bold mb-2.5 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>
-                {s.title}
-              </h3>
-              <p className="text-[13.5px] sm:text-sm leading-relaxed mb-5 text-[#66736A]" style={{ fontFamily: "Inter" }}>
-                {s.desc}
-              </p>
-              <span className="text-sm font-semibold flex items-center gap-1 transition-all group-hover:gap-2 group-hover:text-[#08703A]" style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}>
-                Learn more <span>→</span>
-              </span>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
         <div className="mt-10 sm:mt-14 text-center">
           <a
@@ -2123,11 +2166,11 @@ function Services({ onNavigate }: { onNavigate?: (path: string) => void }) {
               if (onNavigate) onNavigate("/services");
               else window.location.pathname = "/services";
             }}
-            className="inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-bold text-white transition-all duration-200 cursor-pointer shadow-md hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto text-center"
+            className="btn-premium btn-premium-sweep inline-flex items-center justify-center gap-2 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-bold text-white cursor-pointer shadow-md w-full sm:w-auto text-center"
             style={{ background: "#08703A", fontFamily: "Manrope, sans-serif" }}
           >
             <span>Explore All Services &amp; Capabilities</span>
-            <span className="transition-transform duration-200 hover:translate-x-1">→</span>
+            <span className="btn-arrow-icon">→</span>
           </a>
         </div>
       </div>
@@ -2146,30 +2189,20 @@ const courseModules = [
 ];
 
 function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
-  const ref = useReveal();
   return (
     <section id="course" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 relative overflow-hidden" style={{ background: "var(--offwhite)" }}>
-      {/* Decorative bg element */}
-      <div
-        className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none"
-        style={{ background: "linear-gradient(135deg, transparent 0%, rgba(7,92,42,0.04) 100%)" }}
-      />
-
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div ref={ref} className="reveal grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-12 sm:mb-16">
-          <div>
-            <div className="flex items-center gap-3 mb-4 sm:mb-5">
-              <span className="gold-dot" />
-              <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>LEARN WITH SUPRABIZ</span>
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-12 sm:mb-16">
+          <RevealDirectional direction="left">
+            <div className="mb-4 sm:mb-5">
+              <RevealEyebrow label="LEARN WITH SUPRABIZ" dotColor="#FFC515" />
             </div>
             <h2
               className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold mb-4 sm:mb-5 leading-[1.12]"
               style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
             >
-              Master Digital Marketing.
-              <br />
-              <span style={{ color: "var(--green-dark)" }}>From Zero to Pro.</span>
+              <RevealText as="span" lines={["Master Digital Marketing.", "From Zero to Pro."]} />
             </h2>
             <p className="text-[15.5px] sm:text-lg mb-7 sm:mb-8 leading-relaxed text-[#5A665E]" style={{ fontFamily: "Inter" }}>
               Our hands-on Digital Marketing Course is built by practitioners, not professors.
@@ -2195,11 +2228,11 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/courses");
                   else window.location.pathname = "/courses";
                 }}
-                className="btn-arrow inline-flex items-center justify-center px-7 py-3.5 sm:py-4 rounded-full font-bold text-sm cursor-pointer hover:shadow-lg transition-all w-full sm:w-auto text-center"
+                className="btn-premium btn-premium-sweep inline-flex items-center justify-center px-7 py-3.5 sm:py-4 rounded-full font-bold text-sm cursor-pointer shadow-md w-full sm:w-auto text-center"
                 style={{ background: "var(--gold)", color: "var(--dark)", fontFamily: "Manrope" }}
               >
                 <span>Explore All 9 Courses</span>
-                <span>→</span>
+                <span className="btn-arrow-icon">→</span>
               </a>
               <a
                 href="/contact"
@@ -2208,93 +2241,96 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
                   if (onNavigate) onNavigate("/contact");
                   else window.location.pathname = "/contact";
                 }}
-                className="btn-arrow inline-flex items-center justify-center px-7 py-3.5 sm:py-4 rounded-full font-semibold text-sm border-2 cursor-pointer hover:bg-[#08703A] hover:text-white transition-all w-full sm:w-auto text-center"
+                className="btn-premium inline-flex items-center justify-center px-7 py-3.5 sm:py-4 rounded-full font-semibold text-sm border-2 cursor-pointer hover:bg-[#08703A] hover:text-white transition-all w-full sm:w-auto text-center"
                 style={{ borderColor: "var(--green-dark)", color: "var(--green-dark)", fontFamily: "Manrope" }}
               >
                 Get Syllabus &amp; Enroll
               </a>
             </div>
-          </div>
+          </RevealDirectional>
 
           {/* Course highlight card */}
-          <div
-            className="rounded-3xl p-6 sm:p-8 relative overflow-hidden"
-            style={{ background: "var(--green-dark)", minHeight: "320px" }}
-          >
-            {/* Decorative squares */}
-            <div className="absolute top-6 right-6 opacity-20">
-              <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                <rect x="32" y="42" width="18" height="18" rx="4" fill="#FFC515" />
-                <rect x="22" y="28" width="14" height="14" rx="3" fill="#138A3D" />
-                <rect x="12" y="14" width="10" height="10" rx="2" fill="#FFC515" />
-                <line x1="18" y1="60" x2="46" y2="10" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </div>
-
+          <RevealDirectional direction="right" delay={200}>
             <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold mb-6"
-              style={{ background: "#FFC515", color: "var(--dark)" }}
+              className="rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-lg"
+              style={{ background: "var(--green-dark)", minHeight: "320px" }}
             >
-              🎓 DIGITAL MARKETING ACADEMY
-            </div>
+              {/* Decorative squares */}
+              <div className="absolute top-6 right-6 opacity-20">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                  <rect x="32" y="42" width="18" height="18" rx="4" fill="#FFC515" />
+                  <rect x="22" y="28" width="14" height="14" rx="3" fill="#138A3D" />
+                  <rect x="12" y="14" width="10" height="10" rx="2" fill="#FFC515" />
+                  <line x1="18" y1="60" x2="46" y2="10" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </div>
 
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
-              {[
-                { v: "9", l: "Courses" },
-                { v: "3 mo", l: "Duration" },
-                { v: "Live", l: "Mentorship" },
-                { v: "100%", l: "Practical Projects" },
-              ].map(({ v, l }) => (
-                <div key={l} className="rounded-xl p-3.5 sm:p-4" style={{ background: "rgba(250,251,247,0.07)" }}>
-                  <div className="text-xl font-extrabold mb-0.5" style={{ color: "#FFC515", fontFamily: "Manrope" }}>{v}</div>
-                  <div className="text-xs" style={{ color: "rgba(250,251,247,0.6)", fontFamily: "Inter" }}>{l}</div>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(250,251,247,0.65)", fontFamily: "Inter" }}>
-              Taught by working professionals with real agency experience. Small batch sizes, personal mentorship and a job-ready curriculum.
-            </p>
-            <a
-              href="/courses"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavigate) onNavigate("/courses");
-                else window.location.pathname = "/courses";
-              }}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FFC515] hover:underline cursor-pointer"
-            >
-              <span>View full syllabus &amp; batch timings</span>
-              <span>→</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Modules grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
-          {courseModules.map((m) => (
-            <div
-              key={m.n}
-              onClick={() => {
-                if (onNavigate) onNavigate("/courses");
-                else window.location.pathname = "/courses";
-              }}
-              className="rounded-2xl p-5 sm:p-6 flex gap-4 items-start cursor-pointer hover:border-[#08703A] hover:-translate-y-0.5 transition-all hover:shadow-md group"
-              style={{ background: "#fff", border: "1.5px solid var(--border-light)" }}
-            >
               <div
-                className="text-xs font-extrabold flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-colors group-hover:bg-[#08703A] group-hover:text-white"
-                style={{ background: "rgba(7,92,42,0.08)", color: "var(--green-dark)", fontFamily: "Manrope" }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold mb-6"
+                style={{ background: "#FFC515", color: "var(--dark)" }}
               >
-                {m.n}
+                🎓 DIGITAL MARKETING ACADEMY
               </div>
-              <div>
-                <h4 className="text-sm font-bold mb-1 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>{m.t}</h4>
-                <p className="text-xs leading-relaxed text-[#69736C]" style={{ fontFamily: "Inter" }}>{m.d}</p>
+
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+                {[
+                  { v: "9", l: "Courses" },
+                  { v: "3 mo", l: "Duration" },
+                  { v: "Live", l: "Mentorship" },
+                  { v: "100%", l: "Practical Projects" },
+                ].map(({ v, l }) => (
+                  <div key={l} className="rounded-xl p-3.5 sm:p-4" style={{ background: "rgba(250,251,247,0.07)" }}>
+                    <div className="text-xl font-extrabold mb-0.5" style={{ color: "#FFC515", fontFamily: "Manrope" }}>{v}</div>
+                    <div className="text-xs" style={{ color: "rgba(250,251,247,0.6)", fontFamily: "Inter" }}>{l}</div>
+                  </div>
+                ))}
               </div>
+
+              <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(250,251,247,0.65)", fontFamily: "Inter" }}>
+                Taught by working professionals with real agency experience. Small batch sizes, personal mentorship and a job-ready curriculum.
+              </p>
+              <a
+                href="/courses"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/courses");
+                  else window.location.pathname = "/courses";
+                }}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FFC515] hover:underline cursor-pointer"
+              >
+                <span>View full syllabus &amp; batch timings</span>
+                <span>→</span>
+              </a>
             </div>
-          ))}
+          </RevealDirectional>
         </div>
+
+        {/* Modules grid - Staggered Assembly */}
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+          {courseModules.map((m, idx) => (
+            <StaggerItem key={m.n} index={idx} staggerMs={70}>
+              <div
+                onClick={() => {
+                  if (onNavigate) onNavigate("/courses");
+                  else window.location.pathname = "/courses";
+                }}
+                className="rounded-2xl p-5 sm:p-6 flex gap-4 items-start cursor-pointer hover:border-[#08703A] hover:-translate-y-0.5 transition-all hover:shadow-md group h-full"
+                style={{ background: "#fff", border: "1.5px solid var(--border-light)" }}
+              >
+                <div
+                  className="text-xs font-extrabold flex-shrink-0 mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center transition-colors group-hover:bg-[#08703A] group-hover:text-white"
+                  style={{ background: "rgba(7,92,42,0.08)", color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                >
+                  {m.n}
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold mb-1 group-hover:text-[#08703A] transition-colors" style={{ color: "var(--dark)", fontFamily: "Manrope" }}>{m.t}</h4>
+                  <p className="text-xs leading-relaxed text-[#69736C]" style={{ fontFamily: "Inter" }}>{m.d}</p>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
       </div>
     </section>
   );
@@ -2304,165 +2340,62 @@ function Course({ onNavigate }: { onNavigate?: (path: string) => void }) {
 const whyPoints = [
   { n: "01", t: "Strategy First", d: "Every creative decision is grounded in research, data and a clear understanding of your audience and market." },
   { n: "02", t: "Creative Thinking", d: "We don't do generic. Each project gets a fresh creative perspective tailored to your brand's unique story." },
-  { n: "03", t: "Growth Focused", d: "Beautiful work means nothing without results. We measure success by the growth it drives for your business." },
+  { n: "03", t: "Growth Focused", d: "Work means nothing without results. We measure success by the growth it drives for your business." },
   { n: "04", t: "Partnership Approach", d: "We work as an extension of your team — transparent, proactive and genuinely invested in your success." },
 ];
 
 function WhyUs() {
-  const ref = useReveal();
   return (
-    <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "var(--green-dark)" }}>
+    <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-10 bg-white border-b border-[rgba(8,112,58,0.08)]">
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal">
-          <div className="flex items-center gap-3 mb-4 sm:mb-5">
-            <span style={{ width: 8, height: 8, background: "#FFC21C", borderRadius: "50%", display: "inline-block" }} />
-            <span className="text-xs font-bold tracking-widest" style={{ color: "rgba(250,251,247,0.5)", fontFamily: "Inter" }}>WHY SUPRABIZ</span>
-          </div>
-          <h2
-            className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[50px] font-extrabold mb-10 sm:mb-16 max-w-xl leading-[1.12]"
-            style={{ color: "#FAFBF7", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
+        <div className="mb-4 sm:mb-5">
+          <RevealEyebrow
+            label="THE SUPRABIZ ADVANTAGE"
+            dotColor="#FFC21C"
+          />
+        </div>
+
+        <h2
+          className="text-[36px] xs:text-[44px] sm:text-[54px] lg:text-[62px] font-extrabold mb-4 sm:mb-5 leading-[1.06] text-[#15241B]"
+          style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "-0.03em" }}
+        >
+          <RevealText as="span" lines={["Why SUPRABIZ?"]} underline={true} />
+        </h2>
+
+        <RevealDirectional direction="up" delay={180}>
+          <p
+            className="text-[17px] sm:text-[20px] lg:text-[22px] leading-[1.55] max-w-3xl mb-12 sm:mb-16 font-normal text-[#56645A]"
+            style={{ fontFamily: "Inter, sans-serif" }}
           >
-            Creativity backed by strategy.
-          </h2>
+            <span className="font-bold text-[#08703A]">Strategy backed by AI &amp; Creativity</span>, where Human brains and Artificial Intelligence blend together to create a solution for your brand.
+          </p>
+        </RevealDirectional>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {whyPoints.map((p) => (
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {whyPoints.map((p, idx) => (
+            <StaggerItem key={p.n} index={idx} staggerMs={80}>
               <div
-                key={p.n}
-                className="rounded-2xl p-6 sm:p-7"
-                style={{ background: "rgba(250,251,247,0.06)", border: "1px solid rgba(250,251,247,0.1)" }}
+                className="rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5 bg-[#FAFBF9] border border-[#08703A]/12 hover:border-[#08703A]/30 hover:bg-white shadow-[0_4px_20px_rgba(20,55,35,0.03)] hover:shadow-[0_16px_36px_rgba(20,55,35,0.08)] flex flex-col justify-between h-full"
               >
-                <div className="text-xs font-bold mb-3.5 sm:mb-4" style={{ color: "#FFC515", fontFamily: "Manrope" }}>{p.n}</div>
-                <h3 className="text-lg font-bold mb-2.5 sm:mb-3" style={{ color: "#FAFBF7", fontFamily: "Manrope" }}>{p.t}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(250,251,247,0.6)", fontFamily: "Inter" }}>{p.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Portfolio ───────────────────────────────────────────────────────────────
-const projects = [
-  {
-    name: "NEXORA",
-    category: "Brand Identity",
-    tag: "Branding",
-    bg: "#1a2e22",
-    accent: "#FFC515",
-    imgUrl: brandingImg,
-  },
-  {
-    name: "URBANO",
-    category: "Social Media",
-    tag: "SMM",
-    bg: "#0d1f14",
-    accent: "#138A3D",
-    imgUrl: socialMarketingImg,
-  },
-  {
-    name: "AURA LIVING",
-    category: "Branding + Website",
-    tag: "Full Service",
-    bg: "#17211b",
-    accent: "#FFC515",
-    imgUrl: webDesignImg,
-  },
-  {
-    name: "VERTEX",
-    category: "Performance Marketing",
-    tag: "Marketing",
-    bg: "#0b1a10",
-    accent: "#138A3D",
-    imgUrl: digitalAgencyImg,
-  },
-];
-
-function Portfolio({ onNavigate }: { onNavigate?: (path: string) => void }) {
-  const ref = useReveal();
-  return (
-    <section id="our-work" className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10" style={{ background: "var(--offwhite)" }}>
-      <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="reveal flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 gap-6">
-          <div>
-            <div className="flex items-center gap-3 mb-4 sm:mb-5">
-              <span className="gold-dot" />
-              <span className="text-xs font-bold tracking-widest" style={{ color: "var(--green-mid)", fontFamily: "Inter" }}>SELECTED WORK</span>
-            </div>
-            <h2
-              className="text-[28px] xs:text-[34px] sm:text-[42px] md:text-[48px] font-extrabold leading-[1.14]"
-              style={{ color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
-            >
-              Work we're proud of.
-            </h2>
-          </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="/our-work"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavigate) onNavigate("/our-work");
-              }}
-              className="btn-arrow inline-flex items-center font-semibold text-sm cursor-pointer hover:text-[#08703A] transition-colors"
-              style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}
-            >
-              Explore Our Work →
-            </a>
-            <a
-              href="/contact"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavigate) onNavigate("/contact");
-                else window.location.pathname = "/contact";
-              }}
-              className="btn-arrow inline-flex items-center font-semibold text-sm opacity-85 hover:opacity-100 cursor-pointer hover:text-[#08703A] transition-colors"
-              style={{ color: "var(--green-dark)", fontFamily: "Manrope" }}
-            >
-              Start a project →
-            </a>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-          {projects.map((p) => (
-            <div
-              key={p.name}
-              onClick={() => {
-                if (onNavigate) onNavigate("/our-work");
-              }}
-              className="portfolio-card rounded-3xl overflow-hidden relative cursor-pointer"
-              style={{ height: "300px", background: p.bg }}
-            >
-              <img
-                src={p.imgUrl}
-                alt={p.name}
-                className="portfolio-img absolute inset-0 w-full h-full object-cover opacity-60"
-              />
-              <div
-                className="portfolio-overlay absolute inset-0"
-                style={{ background: `linear-gradient(135deg, ${p.bg}e0 0%, ${p.bg}80 100%)` }}
-              />
-              <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-between">
-                <span
-                  className="self-start px-3 py-1.5 rounded-full text-xs font-semibold"
-                  style={{ background: p.accent, color: "#17211B" }}
-                >
-                  {p.tag}
-                </span>
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-extrabold mb-1" style={{ color: "#FAFBF7", fontFamily: "Manrope" }}>{p.name}</h3>
-                  <p className="text-sm" style={{ color: "rgba(250,251,247,0.7)", fontFamily: "Inter" }}>{p.category}</p>
+                  <div className="num-mask mb-3.5 sm:mb-4">
+                    <span className="num-digit text-xs font-bold tracking-wider text-[#08703A]" style={{ fontFamily: "Manrope, sans-serif" }}>
+                      {p.n}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-bold mb-2.5 sm:mb-3 text-[#15241B]" style={{ fontFamily: "Manrope, sans-serif" }}>{p.t}</h3>
+                  <p className="text-sm leading-relaxed text-[#69736C]" style={{ fontFamily: "Inter, sans-serif" }}>{p.d}</p>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );
 }
+
+
 
 // ─── Process ─────────────────────────────────────────────────────────────────
 const steps = [
@@ -2536,22 +2469,22 @@ function Process() {
 // ─── Testimonials ────────────────────────────────────────────────────────────
 const testimonials = [
   {
-    quote: "SUPRABIZ completely transformed our brand. The team brought a clarity and visual language we'd been struggling to articulate for years. Our customers immediately noticed the difference.",
-    name: "Arjun Mehta",
-    role: "Founder, NEXORA",
-    initials: "AM",
+    quote: "SUPRABIZ gave our clinic a digital presence we're proud of. Their strategy brought in new patient inquiries consistently every month. Truly professional and results-driven.",
+    name: "Dr. Ravi Patel",
+    role: "Director, Blossom Pediatric Clinic",
+    initials: "RP",
   },
   {
-    quote: "The social media growth we saw in just 3 months was remarkable. SUPRABIZ understood our audience better than we did and built a content strategy that actually worked.",
-    name: "Priya Sharma",
-    role: "CMO, URBANO",
-    initials: "PS",
+    quote: "Our fashion brand went from zero online presence to thousands of engaged followers. SUPRABIZ understood our aesthetic and built a content plan that felt truly authentic.",
+    name: "Meena Shah",
+    role: "Founder, Fashion World",
+    initials: "MS",
   },
   {
-    quote: "Working with SUPRABIZ feels like having an in-house team that genuinely cares. They're proactive, creative and always thinking about what's best for our business.",
-    name: "Rohan Desai",
-    role: "CEO, AURA LIVING",
-    initials: "RD",
+    quote: "Working with SUPRABIZ has been a game-changer. They handle everything — content, ads, branding — and our Ayurveda brand has never looked more credible and professional.",
+    name: "Vaidya Prahant",
+    role: "Founder, Prahant Ayurveda",
+    initials: "VP",
   },
 ];
 
@@ -2624,11 +2557,10 @@ function Testimonials() {
 
 // ─── CTA ─────────────────────────────────────────────────────────────────────
 function CTA({ onNavigate }: { onNavigate?: (path: string) => void }) {
-  const ref = useReveal();
   return (
     <section className="py-14 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-10 relative overflow-hidden" style={{ background: "var(--green-dark)" }}>
       {/* Decorative */}
-      <div className="absolute top-8 right-12 opacity-20 pointer-events-none">
+      <div className="absolute top-8 right-12 opacity-20 pointer-events-none transition-transform duration-1000 ease-out">
         <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
           <rect x="60" y="80" width="30" height="30" rx="6" fill="#FFC515" />
           <rect x="40" y="55" width="24" height="24" rx="5" fill="#138A3D" />
@@ -2645,33 +2577,36 @@ function CTA({ onNavigate }: { onNavigate?: (path: string) => void }) {
       </div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
-        <div ref={ref} className="reveal">
-          <p className="text-xs font-bold tracking-widest mb-4 sm:mb-5" style={{ color: "rgba(250,251,247,0.5)", fontFamily: "Inter" }}>
-            READY TO GROW?
-          </p>
+        <div>
+          <div className="flex justify-center mb-4 sm:mb-5">
+            <RevealEyebrow label="READY TO GROW?" dotColor="#FFC515" />
+          </div>
           <h2
             className="text-[30px] xs:text-[36px] sm:text-[46px] md:text-[56px] font-extrabold mb-5 sm:mb-6 leading-[1.08]"
             style={{ color: "#FAFBF7", fontFamily: "Manrope", letterSpacing: "-0.02em" }}
           >
-            Have a brand in mind?
-            <br />
-            <span style={{ color: "#FFC515" }}>Let's make it unforgettable.</span>
+            <RevealText as="span" lines={["Have a brand in mind?", "Let's make it Work."]} underline={true} />
           </h2>
-          <p className="text-[15.5px] sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto" style={{ color: "rgba(250,251,247,0.7)", fontFamily: "Inter" }}>
-            Book a free strategy call and let's figure out exactly how SUPRABIZ can help your brand grow.
-          </p>
-          <a
-            href="/contact"
-            onClick={(e) => {
-              e.preventDefault();
-              if (onNavigate) onNavigate("/contact");
-              else window.location.pathname = "/contact";
-            }}
-            className="btn-arrow inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 rounded-full text-[15px] sm:text-base font-bold transition-all hover:scale-105 cursor-pointer shadow-lg w-full sm:w-auto text-center"
-            style={{ background: "#FFC21C", color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.01em" }}
-          >
-            Let's Build Together →
-          </a>
+          <RevealDirectional direction="up" delay={260}>
+            <p className="text-[15.5px] sm:text-lg mb-8 sm:mb-10 max-w-2xl mx-auto" style={{ color: "rgba(250,251,247,0.7)", fontFamily: "Inter" }}>
+              Book a free strategy call and let's figure out exactly how SUPRABIZ can help your brand grow.
+            </p>
+          </RevealDirectional>
+          <RevealDirectional direction="up" delay={380}>
+            <a
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate("/contact");
+                else window.location.pathname = "/contact";
+              }}
+              className="btn-premium btn-premium-sweep inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 rounded-full text-[15px] sm:text-base font-bold cursor-pointer shadow-lg w-full sm:w-auto text-center"
+              style={{ background: "#FFC21C", color: "var(--dark)", fontFamily: "Manrope", letterSpacing: "-0.01em" }}
+            >
+              <span>Let's Build Together</span>
+              <span className="btn-arrow-icon">→</span>
+            </a>
+          </RevealDirectional>
         </div>
       </div>
     </section>
@@ -2714,8 +2649,7 @@ function Contact() {
               {[
                 { icon: "✉", label: "Email", val: "sales@suprabiz.co.in", href: "mailto:sales@suprabiz.co.in" },
                 { icon: "✆", label: "Sales Call", val: "+91 93130 09073", href: "tel:+919313009073" },
-                { icon: "✆", label: "Admin Desk", val: "+91 89804 44498", href: "tel:+918980444498" },
-                { icon: "⌖", label: "Location", val: "C-1210, Titanium business park, Makarba, Ahmedabad", href: "https://share.google/XcnqzuVTT3DxUhJjg" },
+                { icon: "⌖", label: "Location", val: "C-1210, Titanium business park, Makarba, Ahmedabad", href: "https://www.google.com/maps?sca_esv=ac456b0eb9994c0f&authuser=1&output=search&q=SUPRABIZ+ADS+and+EVENTS+PRIVATE+LIMITED+Ahmedabad&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832a9BVCEiB2iPJNekNderQwIgLtPdGtXl-1ukUntONsOMhizNPwQ2HNK10e_nDgVknt3CoXceMc3mRCIZwiN30-loNNQUzVeHN_bUqs5_4k8dfYftaUK6H0OaBHjmrUApnKgMMiNwc4wizR_R5Kf_u9p7AfeGfp-rvsBKNQzLfOeYCu3VdQ&entry=mc&ved=1t:200715&ictx=111" },
               ].map((c) => (
                 <a
                   key={c.label}
@@ -2846,14 +2780,15 @@ function Location() {
         <div className="grid lg:grid-cols-2 gap-10 items-stretch">
           {/* Real Google Maps Embed */}
           <div
-            className="rounded-3xl overflow-hidden min-h-[340px] relative shadow-sm border"
+            className="rounded-3xl overflow-hidden min-h-[380px] h-[380px] sm:h-[420px] relative shadow-sm border"
             style={{ borderColor: "var(--border-light)" }}
           >
             <iframe
-              title="SUPRABIZ ADS & EVENTS Studio Location Ahmedabad"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d586.9755216994283!2d72.50187580937867!3d22.99767832344428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b7eee8ca869%3A0xd31c25799d187694!2sSUPRABIZ%20ADS%20%26%20EVENTS%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1788948480425!5m2!1sen!2sin"
-              className="w-full h-full min-h-[340px] border-0 block"
-              loading="lazy"
+              title="SUPRABIZ ADS & EVENTS Administrative Office Ahmedabad"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.4852924151705!2d72.5018758!3d22.9976783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b7eee8ca869%3A0xd31c25799d187694!2sSUPRABIZ%20ADS%20%26%20EVENTS%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1788948480425!5m2!1sen!2sin"
+              className="absolute inset-0 w-full h-full border-0 block"
+              style={{ border: 0, width: "100%", height: "100%" }}
+              loading="eager"
               allowFullScreen
               referrerPolicy="strict-origin-when-cross-origin"
             />
@@ -2867,9 +2802,8 @@ function Location() {
                 { l: "Company", v: "SUPRABIZ — Branding & Digital Marketing Agency" },
                 { l: "Address", v: "C-1210, Titanium business park, Makarba, Ahmedabad, Gujarat 380015" },
                 { l: "Sales", v: "+91 93130 09073" },
-                { l: "Admin", v: "+91 89804 44498" },
                 { l: "Email", v: "sales@suprabiz.co.in" },
-                { l: "Business Hours", v: "Mon–Sat: 9:30 AM – 6:30 PM IST" },
+                { l: "Business Hours", v: "Mon–Sat: 10 AM – 6 PM" },
               ].map(({ l, v }) => (
                 <div key={l} className="flex gap-3">
                   <span className="text-xs font-semibold w-28 flex-shrink-0 mt-0.5" style={{ color: "rgba(23,33,27,0.4)", fontFamily: "Inter" }}>{l}</span>
@@ -2878,7 +2812,7 @@ function Location() {
               ))}
             </div>
             <a
-              href="https://share.google/XcnqzuVTT3DxUhJjg"
+              href="https://www.google.com/maps?sca_esv=ac456b0eb9994c0f&authuser=1&output=search&q=SUPRABIZ+ADS+and+EVENTS+PRIVATE+LIMITED+Ahmedabad&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832a9BVCEiB2iPJNekNderQwIgLtPdGtXl-1ukUntONsOMhizNPwQ2HNK10e_nDgVknt3CoXceMc3mRCIZwiN30-loNNQUzVeHN_bUqs5_4k8dfYftaUK6H0OaBHjmrUApnKgMMiNwc4wizR_R5Kf_u9p7AfeGfp-rvsBKNQzLfOeYCu3VdQ&entry=mc&ved=1t:200715&ictx=111"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-arrow inline-flex items-center self-start px-6 py-3 rounded-full font-semibold text-sm cursor-pointer transition-transform hover:scale-105"
@@ -2900,7 +2834,6 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Course", href: "/courses" },
-    { name: "Our Work", href: "/our-work" },
     { name: "Contact", href: "/contact" },
   ];
   const serviceLinks = [
@@ -2920,287 +2853,285 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
         borderColor: "rgba(255, 255, 255, 0.08)",
       }}
     >
+      {/* Top Divider Line Drawing */}
+      <RevealLine className="h-[1px] w-full bg-white/10" direction="left" />
+
       {/* Subtle Oversized Brand Wordmark Background */}
       <div
         className="absolute bottom-[-15px] left-1/2 -translate-x-1/2 text-[clamp(100px,15vw,220px)] font-extrabold tracking-[-0.06em] text-white/[0.018] pointer-events-none select-none whitespace-nowrap leading-none z-0"
         style={{ fontFamily: "Manrope, sans-serif" }}
       >
-        SUPRA BIZ
+        SUPRABIZ
       </div>
 
       <div className="max-w-[1380px] mx-auto px-5 sm:px-8 lg:px-10 pt-14 sm:pt-[72px] pb-6 sm:pb-[32px] relative z-10">
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-[60px] mb-10 sm:mb-14">
+        {/* Top Grid - Staggered progressive assembly */}
+        <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr] gap-8 sm:gap-10 lg:gap-[60px] mb-10 sm:mb-14">
           {/* 1. Brand Column */}
-          <div>
-            <a
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavigate) onNavigate("/");
-                else window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              className="inline-block bg-white px-3 py-1.5 rounded-xl shadow-sm border border-white/10 hover:opacity-95 transition-opacity"
-            >
-              <img
-                src={headerLogoImg}
-                alt="SUPRA BIZ"
-                className="w-[120px] sm:w-[125px] h-auto object-contain block"
-              />
-            </a>
-            <p
-              className="text-[14px] leading-[1.7] mt-4 mb-6 max-w-[280px]"
-              style={{ color: "rgba(255, 255, 255, 0.55)", fontFamily: "Inter, sans-serif" }}
-            >
-              Building brands that stand out and grow. Your strategic creative partner.
-            </p>
-
-            {/* Social Links with SVG Icons — 44px touch targets */}
-            <div className="flex items-center gap-3">
+          <StaggerItem index={0} staggerMs={70}>
+            <div>
               <a
-                href="https://www.instagram.com/suprabiz/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="SUPRA BIZ on Instagram"
-                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
-                style={{
-                  background: "rgba(255, 255, 255, 0.07)",
-                  border: "1px solid rgba(255, 255, 255, 0.08)",
-                  color: "rgba(255, 255, 255, 0.75)",
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/");
+                  else window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#FFC21C";
-                  e.currentTarget.style.color = "#15241B";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
-                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
+                className="inline-block bg-white px-3 py-1.5 rounded-xl shadow-sm border border-white/10 hover:opacity-95 transition-opacity"
               >
-                <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
+                <img
+                  src={headerLogoImg}
+                  alt="SUPRABIZ"
+                  className="w-[120px] sm:w-[125px] h-auto object-contain block"
+                />
               </a>
+              <p
+                className="text-[14px] leading-[1.7] mt-4 mb-6 max-w-[280px]"
+                style={{ color: "rgba(255, 255, 255, 0.55)", fontFamily: "Inter, sans-serif" }}
+              >
+                Building brands that stand out and grow. Your strategic creative partner.
+              </p>
 
-              <a
-                href="https://www.linkedin.com/in/supra-biz-441133340/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="SUPRA BIZ on LinkedIn"
-                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
-                style={{
-                  background: "rgba(255, 255, 255, 0.07)",
-                  border: "1px solid rgba(255, 255, 255, 0.08)",
-                  color: "rgba(255, 255, 255, 0.75)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#FFC21C";
-                  e.currentTarget.style.color = "#15241B";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
-                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect width="4" height="12" x="2" y="9" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
+              {/* Social Links with SVG Icons */}
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.instagram.com/suprabiz/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="SUPRABIZ on Instagram"
+                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.07)",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                    color: "rgba(255, 255, 255, 0.75)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#FFC21C";
+                    e.currentTarget.style.color = "#15241B";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
+                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                  </svg>
+                </a>
 
-              <a
-                href="https://www.facebook.com/profile.php?id=61594457241124"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="SUPRA BIZ on Facebook"
-                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
-                style={{
-                  background: "rgba(255, 255, 255, 0.07)",
-                  border: "1px solid rgba(255, 255, 255, 0.08)",
-                  color: "rgba(255, 255, 255, 0.75)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#FFC21C";
-                  e.currentTarget.style.color = "#15241B";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
-                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
+                <a
+                  href="https://www.linkedin.com/in/supra-biz-441133340/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="SUPRABIZ on LinkedIn"
+                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.07)",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                    color: "rgba(255, 255, 255, 0.75)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#FFC21C";
+                    e.currentTarget.style.color = "#15241B";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
+                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect width="4" height="12" x="2" y="9" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
+                </a>
+
+                <a
+                  href="https://www.facebook.com/profile.php?id=61594457241124"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="SUPRABIZ on Facebook"
+                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center transition-all duration-200 group"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.07)",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                    color: "rgba(255, 255, 255, 0.75)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#FFC21C";
+                    e.currentTarget.style.color = "#15241B";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
+                    e.currentTarget.style.color = "rgba(255, 255, 255, 0.75)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                </a>
+              </div>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* 2. Quick Links */}
-          <div>
-            <h4
-              className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              QUICK LINKS
-            </h4>
-            <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
-            <div className="flex flex-col gap-2">
-              {quickLinks.map((l) => (
-                <a
-                  key={l.name}
-                  href={l.href}
-                  onClick={(e) => {
-                    if (l.href === "/about") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/about");
-                    } else if (l.href === "/services") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/services");
-                    } else if (l.href === "/courses") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/courses");
-                    } else if (l.href === "/our-work") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/our-work");
-                    } else if (l.href === "/contact") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/contact");
-                    } else if (l.href === "/") {
-                      e.preventDefault();
-                      if (onNavigate) onNavigate("/");
-                    } else if (l.href.startsWith("#")) {
-                      if (window.location.pathname !== "/") {
+          <StaggerItem index={1} staggerMs={70}>
+            <div>
+              <h4
+                className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
+                style={{ fontFamily: "Manrope, sans-serif" }}
+              >
+                QUICK LINKS
+              </h4>
+              <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
+              <div className="flex flex-col gap-2">
+                {quickLinks.map((l) => (
+                  <a
+                    key={l.name}
+                    href={l.href}
+                    onClick={(e) => {
+                      if (l.href === "/about") {
                         e.preventDefault();
-                        if (onNavigate) onNavigate("/" + l.href);
+                        if (onNavigate) onNavigate("/about");
+                      } else if (l.href === "/services") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/services");
+                      } else if (l.href === "/courses") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/courses");
+                      } else if (l.href === "/contact") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/contact");
+                      } else if (l.href === "/") {
+                        e.preventDefault();
+                        if (onNavigate) onNavigate("/");
+                      } else if (l.href.startsWith("#")) {
+                        if (window.location.pathname !== "/") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/" + l.href);
+                        }
                       }
-                    }
-                  }}
-                  className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
-                  style={{
-                    color: "rgba(255, 255, 255, 0.65)",
-                    fontFamily: "Inter, sans-serif",
-                  }}
-                >
-                  {l.name}
-                </a>
-              ))}
+                    }}
+                    className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
+                    style={{
+                      color: "rgba(255, 255, 255, 0.65)",
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
+                    {l.name}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* 3. Services */}
-          <div>
-            <h4
-              className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              SERVICES
-            </h4>
-            <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
-            <div className="flex flex-col gap-2">
-              {serviceLinks.map((l) => (
-                <a
-                  key={l.name}
-                  href={l.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onNavigate) onNavigate(l.href);
-                  }}
-                  className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
-                  style={{
-                    color: "rgba(255, 255, 255, 0.65)",
-                    fontFamily: "Inter, sans-serif",
-                  }}
-                >
-                  {l.name}
-                </a>
-              ))}
+          <StaggerItem index={2} staggerMs={70}>
+            <div>
+              <h4
+                className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
+                style={{ fontFamily: "Manrope, sans-serif" }}
+              >
+                SERVICES
+              </h4>
+              <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
+              <div className="flex flex-col gap-2">
+                {serviceLinks.map((l) => (
+                  <a
+                    key={l.name}
+                    href={l.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onNavigate) onNavigate(l.href);
+                    }}
+                    className="text-[14.5px] sm:text-[14px] leading-[1.9] transition-all duration-200 inline-block hover:text-white hover:translate-x-[3px]"
+                    style={{
+                      color: "rgba(255, 255, 255, 0.65)",
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
+                    {l.name}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* 4. Contact */}
-          <div>
-            <h4
-              className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
-              style={{ fontFamily: "Manrope, sans-serif" }}
-            >
-              CONTACT
-            </h4>
-            <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
-            <div
-              className="flex flex-col gap-3 text-[13.5px] leading-relaxed"
-              style={{ color: "rgba(255, 255, 255, 0.65)", fontFamily: "Inter, sans-serif" }}
-            >
-              <div className="flex items-center gap-2.5">
-                <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-                <a href="mailto:sales@suprabiz.co.in" className="hover:text-white transition-colors">
-                  sales@suprabiz.co.in
-                </a>
+          <StaggerItem index={3} staggerMs={70}>
+            <div>
+              <h4
+                className="text-[11px] font-bold tracking-[0.12em] text-white uppercase"
+                style={{ fontFamily: "Manrope, sans-serif" }}
+              >
+                CONTACT
+              </h4>
+              <div className="w-[22px] h-[2px] rounded-full bg-[#FFC21C] mt-2 mb-5" />
+              <div
+                className="flex flex-col gap-3 text-[13.5px] leading-relaxed"
+                style={{ color: "rgba(255, 255, 255, 0.65)", fontFamily: "Inter, sans-serif" }}
+              >
+                <div className="flex items-center gap-2.5">
+                  <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  <a href="mailto:sales@suprabiz.co.in" className="hover:text-white transition-colors">
+                    sales@suprabiz.co.in
+                  </a>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <a href="tel:+919313009073" className="hover:text-white transition-colors">
+                    +91 93130 09073
+                  </a>
+                </div>
+                <div className="flex items-start gap-2.5 pt-0.5">
+                  <svg className="w-4 h-4 shrink-0 text-white/50 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <a
+                    href="https://www.google.com/maps?sca_esv=ac456b0eb9994c0f&authuser=1&output=search&q=SUPRABIZ+ADS+and+EVENTS+PRIVATE+LIMITED+Ahmedabad&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832a9BVCEiB2iPJNekNderQwIgLtPdGtXl-1ukUntONsOMhizNPwQ2HNK10e_nDgVknt3CoXceMc3mRCIZwiN30-loNNQUzVeHN_bUqs5_4k8dfYftaUK6H0OaBHjmrUApnKgMMiNwc4wizR_R5Kf_u9p7AfeGfp-rvsBKNQzLfOeYCu3VdQ&entry=mc&ved=1t:200715&ictx=111"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors text-[13px] leading-relaxed"
+                  >
+                    C-1210, Titanium business park, Makarba, Ahmedabad, Gujarat 380015
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5">
-                <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <span className="text-white/40 text-xs">Sales:</span>
-                <a href="tel:+919313009073" className="hover:text-white transition-colors">
-                  +91 93130 09073
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <svg className="w-4 h-4 shrink-0 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <span className="text-white/40 text-xs">Admin:</span>
-                <a href="tel:+918980444498" className="hover:text-white transition-colors">
-                  +91 89804 44498
-                </a>
-              </div>
-              <div className="flex items-start gap-2.5 pt-0.5">
-                <svg className="w-4 h-4 shrink-0 text-white/50 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                <a
-                  href="https://share.google/XcnqzuVTT3DxUhJjg"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors text-[13px] leading-relaxed"
-                >
-                  C-1210, Titanium business park, Makarba, Ahmedabad, Gujarat 380015
-                </a>
-              </div>
-            </div>
 
-            <a
-              href="/contact"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavigate) onNavigate("/contact");
-                else window.location.pathname = "/contact";
-              }}
-              className="inline-flex items-center justify-center gap-1.5 h-[44px] px-[20px] rounded-full text-[13px] font-[650] mt-[20px] transition-all duration-200 hover:translate-y-[-1px] shadow-sm cursor-pointer w-full sm:w-auto"
-              style={{
-                background: "#FFC21C",
-                color: "#15241B",
-                fontFamily: "Manrope, sans-serif",
-              }}
-            >
-              <span>Let's Talk</span>
-              <span>→</span>
-            </a>
-          </div>
-        </div>
+              <a
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigate) onNavigate("/contact");
+                  else window.location.pathname = "/contact";
+                }}
+                className="btn-premium inline-flex items-center justify-center gap-1.5 h-[44px] px-[20px] rounded-full text-[13px] font-[650] mt-[20px] shadow-sm cursor-pointer w-full sm:w-auto"
+                style={{
+                  background: "#FFC21C",
+                  color: "#15241B",
+                  fontFamily: "Manrope, sans-serif",
+                }}
+              >
+                <span>Let's Talk</span>
+                <span className="btn-arrow-icon">→</span>
+              </a>
+            </div>
+          </StaggerItem>
+        </StaggerGroup>
 
         {/* Bottom Bar */}
         <div
@@ -3211,7 +3142,7 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
             className="text-[12px]"
             style={{ color: "rgba(255, 255, 255, 0.5)", fontFamily: "Inter, sans-serif" }}
           >
-            © 2026 SUPRA BIZ. All rights reserved.
+            © 2026 SUPRABIZ. All rights reserved.
           </p>
 
           <div
@@ -3246,6 +3177,55 @@ function Footer({ onNavigate }: { onNavigate?: (path: string) => void }) {
   );
 }
 
+// ─── Floating WhatsApp Button with Predefined Question ───────────────────────
+function WhatsAppFloatingButton() {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const phoneNumber = "919313009073";
+  const predefinedQuestion = "Hi SUPRABIZ, I would like to inquire about your branding & digital marketing services for my business.";
+  const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(predefinedQuestion)}`;
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 select-none">
+      {/* Interactive Tooltip / Predefined Question Preview */}
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+        className="group relative flex items-center"
+        aria-label="Chat with SUPRABIZ on WhatsApp"
+      >
+        {/* Desktop floating pill badge */}
+        <div
+          className={`hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full bg-white text-[#15241B] shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-[#08703A]/15 text-[12.5px] font-semibold transition-all duration-300 mr-2.5 group-hover:bg-[#F4FBF6] ${
+            showTooltip ? "scale-105 shadow-[0_12px_28px_rgba(37,211,102,0.22)]" : ""
+          }`}
+          style={{ fontFamily: "Manrope, sans-serif" }}
+        >
+          <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+          <span>Chat on WhatsApp</span>
+        </div>
+
+        {/* Floating Green Circle Button */}
+        <div className="relative w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white flex items-center justify-center shadow-[0_8px_24px_rgba(37,211,102,0.42)] hover:shadow-[0_12px_32px_rgba(37,211,102,0.60)] transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer">
+          {/* Subtle pulse wave */}
+          <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-25 pointer-events-none" />
+
+          {/* Official WhatsApp SVG Icon */}
+          <svg
+            className="w-7 h-7 fill-white relative z-10"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+          </svg>
+        </div>
+      </a>
+    </div>
+  );
+}
+
 // ─── App ─────────────────────────────────────────────────────────────────────
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -3265,7 +3245,7 @@ export default function App() {
 
   useEffect(() => {
     if (currentPath === "/") {
-      document.title = "SUPRA BIZ | Branding & Digital Marketing Agency Ahmedabad";
+      document.title = "SUPRABIZ | Branding & Digital Marketing Agency Ahmedabad";
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute(
@@ -3327,20 +3307,10 @@ export default function App() {
       return;
     }
 
-    if (path.startsWith("/our-work#")) {
-      const hash = path.replace("/our-work", "");
-      if (currentPath !== "/our-work") {
-        window.history.pushState(null, "", path);
-        setCurrentPath("/our-work");
-        setTimeout(() => {
-          const el = document.querySelector(hash);
-          if (el) el.scrollIntoView({ behavior: "smooth" });
-        }, 150);
-      } else {
-        window.history.pushState(null, "", path);
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }
+    if (path.startsWith("/our-work")) {
+      window.history.pushState(null, "", "/services");
+      setCurrentPath("/services");
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
@@ -3375,10 +3345,6 @@ export default function App() {
     currentPath === "/courses" ||
     currentPath === "/courses/" ||
     currentPath.startsWith("/courses#");
-  const isOurWork =
-    currentPath === "/our-work" ||
-    currentPath === "/our-work/" ||
-    currentPath.startsWith("/our-work#");
   const isContact =
     currentPath === "/contact" ||
     currentPath === "/contact/" ||
@@ -3393,8 +3359,6 @@ export default function App() {
         <ServicesPage onNavigate={navigateTo} />
       ) : isCourses ? (
         <CoursesPage onNavigate={navigateTo} />
-      ) : isOurWork ? (
-        <OurWorkPage onNavigate={navigateTo} />
       ) : isContact ? (
         <ContactPage onNavigate={navigateTo} />
       ) : (
@@ -3405,13 +3369,12 @@ export default function App() {
           <Services onNavigate={navigateTo} />
           <Course onNavigate={navigateTo} />
           <WhyUs />
-          <Portfolio onNavigate={navigateTo} />
-          <Process />
-          <Testimonials />
+          {/* <Testimonials /> */}
           <CTA onNavigate={navigateTo} />
         </>
       )}
       <Footer onNavigate={navigateTo} />
+      <WhatsAppFloatingButton />
     </div>
   );
 }

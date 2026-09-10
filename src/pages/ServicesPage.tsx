@@ -1,8 +1,17 @@
-import React, { useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import heroImg from "@/imports/suprabiz-services-digital-agency.jpg";
 import brandingImg from "@/imports/suprabiz-branding-service.jpg";
 import socialImg from "@/imports/suprabiz-social-media-marketing.jpg";
 import webDesignImg from "@/imports/suprabiz-web-design-service.jpg";
+import {
+  RevealText,
+  RevealEyebrow,
+  RevealImage,
+  RevealLine,
+  RevealDirectional,
+  StaggerGroup,
+  StaggerItem,
+} from "../motion/MotionComponents";
 
 interface ServicesPageProps {
   onNavigate?: (path: string) => void;
@@ -10,14 +19,15 @@ interface ServicesPageProps {
 
 export default function ServicesPage({ onNavigate }: ServicesPageProps) {
   const quickNavRef = useRef<HTMLDivElement>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
-    document.title = "Digital Marketing & Branding Services | SUPRA BIZ";
+    document.title = "Digital Marketing & Branding Services | SUPRABIZ";
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
         "content",
-        "Explore SUPRA BIZ services including branding, social media marketing, SEO, web design, performance marketing and integrated digital marketing."
+        "Explore SUPRABIZ services including branding, social media marketing, SEO, web design, performance marketing and integrated digital marketing."
       );
     }
     window.scrollTo(0, 0);
@@ -59,128 +69,122 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
             {/* Left: Content */}
             <div className="flex flex-col items-start">
               {/* Eyebrow */}
-              <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  WHAT WE DO
-                </span>
-              </div>
+              <RevealEyebrow text="WHAT WE DO" textColor="#08703A" dotColor="#FFC21C" className="mb-4" />
 
               {/* H1 Headline */}
               <h1
                 className="text-[44px] sm:text-[56px] md:text-[68px] lg:text-[clamp(56px,5vw,78px)] font-bold tracking-[-0.045em] leading-[1.0] mb-6"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                <span className="block" style={{ color: "#15241B" }}>
-                  Strategy, Creativity &amp;
-                </span>
-                <span className="block" style={{ color: "#08703A" }}>
-                  Digital Growth.
-                </span>
-                <span className="block" style={{ color: "#159447" }}>
-                  Under One Roof.
-                </span>
+                <RevealText delay={80}>
+                  <span className="block" style={{ color: "#15241B" }}>
+                    Strategy, Creativity &amp;
+                  </span>
+                </RevealText>
+                <RevealText delay={170}>
+                  <span className="block" style={{ color: "#08703A" }}>
+                    Digital Growth.
+                  </span>
+                </RevealText>
+                <RevealText delay={260}>
+                  <span className="block" style={{ color: "#159447" }}>
+                    Under One Roof.
+                  </span>
+                </RevealText>
               </h1>
 
               {/* Description */}
-              <p
-                className="text-[17px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-8 sm:mb-9"
-                style={{ color: "#69736C", fontFamily: "Inter, sans-serif" }}
-              >
-                From building memorable brand identities to creating digital campaigns that drive
-                meaningful growth, SUPRA BIZ brings strategy, creativity and performance together.
-              </p>
+              <RevealDirectional direction="up" delay={320}>
+                <p
+                  className="text-[17px] sm:text-[18px] leading-[1.65] max-w-[620px] mb-8 sm:mb-9"
+                  style={{ color: "#69736C", fontFamily: "Inter, sans-serif" }}
+                >
+                  From building memorable brand identities to creating digital campaigns that drive
+                  meaningful growth, SUPRABIZ brings strategy, creativity and performance together.
+                </p>
+              </RevealDirectional>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={(e) => scrollToSection("branding", e)}
-                  className="inline-flex items-center justify-center gap-2 h-[52px] px-8 rounded-full font-bold text-[15px] cursor-pointer transition-all duration-250 text-white"
-                  style={{
-                    background: "#08703A",
-                    boxShadow: "0 10px 25px rgba(8, 112, 58, 0.20)",
-                    fontFamily: "Manrope, sans-serif",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.boxShadow = "0 14px 30px rgba(8, 112, 58, 0.28)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "0 10px 25px rgba(8, 112, 58, 0.20)";
-                  }}
-                >
-                  <span>Explore Our Services</span>
-                  <span className="text-[16px]">↓</span>
-                </button>
+              <RevealDirectional direction="up" delay={420} className="w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={(e) => scrollToSection("branding", e)}
+                    className="btn-premium btn-premium-sweep inline-flex items-center justify-center gap-2 h-[52px] px-8 rounded-full font-bold text-[15px] cursor-pointer text-white shadow-sm"
+                    style={{
+                      background: "#08703A",
+                      boxShadow: "0 10px 25px rgba(8, 112, 58, 0.20)",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                  >
+                    <span>Explore Our Services</span>
+                    <span className="text-[16px] transition-transform duration-250 group-hover:translate-y-1">↓</span>
+                  </button>
 
-                <a
-                  href="/contact"
-                  onClick={(e) => handleNav("/contact", e)}
-                  className="inline-flex items-center justify-center gap-2 h-[52px] px-8 rounded-full font-bold text-[15px] cursor-pointer transition-all duration-250"
-                  style={{
-                    background: "transparent",
-                    color: "#15241B",
-                    border: "1.5px solid rgba(8, 112, 58, 0.20)",
-                    fontFamily: "Manrope, sans-serif",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#F4F8F5";
-                    e.currentTarget.style.borderColor = "#08703A";
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.borderColor = "rgba(8, 112, 58, 0.20)";
-                    e.currentTarget.style.transform = "translateY(0)";
-                  }}
-                >
-                  <span>Start a Conversation</span>
-                  <span>→</span>
-                </a>
-              </div>
+                  <a
+                    href="/contact"
+                    onClick={(e) => handleNav("/contact", e)}
+                    className="btn-premium inline-flex items-center justify-center gap-2 h-[52px] px-8 rounded-full font-bold text-[15px] cursor-pointer"
+                    style={{
+                      background: "transparent",
+                      color: "#15241B",
+                      border: "1.5px solid rgba(8, 112, 58, 0.20)",
+                      fontFamily: "Manrope, sans-serif",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "#F4F8F5";
+                      e.currentTarget.style.borderColor = "#08703A";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "transparent";
+                      e.currentTarget.style.borderColor = "rgba(8, 112, 58, 0.20)";
+                    }}
+                  >
+                    <span>Start a Conversation</span>
+                    <span className="btn-arrow-icon">→</span>
+                  </a>
+                </div>
+              </RevealDirectional>
             </div>
 
             {/* Right: Studio Imagery */}
             <div className="relative">
-              <div
-                className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden aspect-[4/4.2] sm:aspect-[4/3.8] lg:aspect-[4/4.2] w-full"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 30px 70px rgba(20, 55, 35, 0.10)",
-                }}
-              >
-                <img
-                  src={heroImg}
-                  alt="SUPRA BIZ multidisciplinary creative and digital agency workspace"
-                  className="w-full h-full object-cover block"
-                  loading="eager"
-                />
-
-                {/* Editorial Capsule Badge */}
+              <RevealImage direction="left" delay={500} className="rounded-[28px] sm:rounded-[32px] overflow-hidden">
                 <div
-                  className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 inline-flex items-center gap-2 px-3.5 py-2 rounded-full pointer-events-none"
+                  className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden aspect-[4/4.2] sm:aspect-[4/3.8] lg:aspect-[4/4.2] w-full"
                   style={{
-                    background: "rgba(255, 255, 255, 0.94)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    border: "1px solid rgba(8, 112, 58, 0.12)",
-                    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
+                    border: "1px solid rgba(8, 112, 58, 0.08)",
+                    boxShadow: "0 30px 70px rgba(20, 55, 35, 0.10)",
                   }}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
-                  <span
-                    className="text-[9.5px] font-bold tracking-[0.14em] uppercase"
-                    style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
+                  <img
+                    src={heroImg}
+                    alt="SUPRABIZ multidisciplinary creative and digital agency workspace"
+                    className="w-full h-full object-cover block"
+                    loading="eager"
+                  />
+
+                  {/* Editorial Capsule Badge */}
+                  <div
+                    className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 inline-flex items-center gap-2 px-3.5 py-2 rounded-full pointer-events-none"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.94)",
+                      backdropFilter: "blur(10px)",
+                      WebkitBackdropFilter: "blur(10px)",
+                      border: "1px solid rgba(8, 112, 58, 0.12)",
+                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
+                    }}
                   >
-                    BRAND • SOCIAL • SEARCH • DIGITAL
-                  </span>
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
+                    <span
+                      className="text-[9.5px] font-bold tracking-[0.14em] uppercase"
+                      style={{ color: "#075C31", fontFamily: "Manrope, sans-serif" }}
+                    >
+                      BRAND • SOCIAL • SEARCH • DIGITAL
+                    </span>
+                  </div>
                 </div>
-              </div>
+              </RevealImage>
             </div>
           </div>
         </div>
@@ -238,21 +242,18 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Text (Order 1 on mobile, Order 1 on desktop) */}
-            <div className="order-1 flex flex-col items-start">
+            <RevealDirectional direction="left" delay={60} className="order-1 flex flex-col items-start">
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span
-                  className="text-[48px] sm:text-[64px] font-semibold leading-none select-none"
-                  style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
-                >
-                  01
-                </span>
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  BRANDING
-                </span>
+                <div className="overflow-hidden">
+                  <span
+                    className="num-digit text-[48px] sm:text-[64px] font-semibold leading-none select-none block"
+                    style={{ color: "rgba(8, 112, 58, 0.20)", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    01
+                  </span>
+                </div>
+                <RevealEyebrow text="BRANDING" textColor="#08703A" dotColor="#FFC21C" />
               </div>
 
               {/* Title */}
@@ -260,28 +261,30 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 className="text-[34px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Build a Brand People Recognize and Remember.
+                <RevealText delay={80}>Build a Brand People Recognize and Remember.</RevealText>
               </h2>
 
               {/* Description */}
-              <p
-                className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Strong brands are built through clarity, consistency and meaningful creative direction.
-                We shape identities that communicate who you are, what you stand for and why your
-                audience should care.
-              </p>
+              <RevealDirectional direction="up" delay={160}>
+                <p
+                  className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Strong brands are built through clarity, consistency and meaningful creative direction.
+                  We shape identities that communicate who you are, what you stand for and why your
+                  audience should care.
+                </p>
+              </RevealDirectional>
 
               {/* Capabilities (Clean 2x2 list, no cards) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
+              <StaggerGroup delay={200} stagger={60} className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
                 {[
                   "Brand Strategy",
                   "Visual Identity",
                   "Brand Guidelines",
                   "Creative Direction",
                 ].map((cap) => (
-                  <div key={cap} className="flex items-center gap-2.5">
+                  <StaggerItem key={cap} className="flex items-center gap-2.5">
                     <div
                       className="w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "#08703A", color: "#FFFFFF" }}
@@ -296,38 +299,42 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     >
                       {cap}
                     </span>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
 
               {/* Text CTA */}
-              <a
-                href="/contact"
-                onClick={(e) => handleNav("/contact", e)}
-                className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                <span>Explore Branding</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
-            </div>
+              <RevealDirectional direction="up" delay={260}>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleNav("/contact", e)}
+                  className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
+                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                >
+                  <span>Explore Branding</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              </RevealDirectional>
+            </RevealDirectional>
 
             {/* Visual (Order 2 on mobile, Order 2 on desktop) */}
             <div className="order-2">
-              <div
-                className="relative rounded-[26px] overflow-hidden h-[360px] sm:h-[460px] lg:h-[500px]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
-                }}
-              >
-                <img
-                  src={brandingImg}
-                  alt="Brand identity strategy and creative design workspace"
-                  className="w-full h-full object-cover block"
-                  loading="lazy"
-                />
-              </div>
+              <RevealImage direction="left" delay={180} className="rounded-[26px] overflow-hidden">
+                <div
+                  className="relative rounded-[26px] overflow-hidden h-[360px] sm:h-[460px] lg:h-[500px]"
+                  style={{
+                    border: "1px solid rgba(8, 112, 58, 0.08)",
+                    boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
+                  }}
+                >
+                  <img
+                    src={brandingImg}
+                    alt="Brand identity strategy and creative design workspace"
+                    className="w-full h-full object-cover block"
+                    loading="lazy"
+                  />
+                </div>
+              </RevealImage>
             </div>
           </div>
         </div>
@@ -342,38 +349,37 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Visual (Order 2 on mobile, Order 1 on desktop) */}
             <div className="order-2 lg:order-1">
-              <div
-                className="relative rounded-[26px] overflow-hidden h-[300px] xs:h-[360px] sm:h-[460px] lg:h-[500px]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
-                }}
-              >
-                <img
-                  src={socialImg}
-                  alt="Social media campaign planning and content creation"
-                  className="w-full h-full object-cover block"
-                  loading="lazy"
-                />
-              </div>
+              <RevealImage direction="right" delay={100} className="rounded-[26px] overflow-hidden">
+                <div
+                  className="relative rounded-[26px] overflow-hidden h-[300px] xs:h-[360px] sm:h-[460px] lg:h-[500px]"
+                  style={{
+                    border: "1px solid rgba(8, 112, 58, 0.08)",
+                    boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
+                  }}
+                >
+                  <img
+                    src={socialImg}
+                    alt="Social media campaign planning and content creation"
+                    className="w-full h-full object-cover block"
+                    loading="lazy"
+                  />
+                </div>
+              </RevealImage>
             </div>
 
             {/* Text (Order 1 on mobile, Order 2 on desktop) */}
-            <div className="order-1 lg:order-2 flex flex-col items-start">
+            <RevealDirectional direction="right" delay={160} className="order-1 lg:order-2 flex flex-col items-start">
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span
-                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
-                  style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
-                >
-                  02
-                </span>
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  SOCIAL MEDIA MARKETING
-                </span>
+                <div className="overflow-hidden">
+                  <span
+                    className="num-digit text-[42px] sm:text-[64px] font-semibold leading-none select-none block"
+                    style={{ color: "rgba(8, 112, 58, 0.20)", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    02
+                  </span>
+                </div>
+                <RevealEyebrow text="SOCIAL MEDIA MARKETING" textColor="#08703A" dotColor="#FFC21C" />
               </div>
 
               {/* Title */}
@@ -381,27 +387,29 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 className="text-[30px] xs:text-[36px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Turn Attention Into Meaningful Connection.
+                <RevealText delay={80}>Turn Attention Into Meaningful Connection.</RevealText>
               </h2>
 
               {/* Description */}
-              <p
-                className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                We create social strategies and content designed to make brands more relevant,
-                consistent and engaging across the channels where their audiences spend time.
-              </p>
+              <RevealDirectional direction="up" delay={160}>
+                <p
+                  className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  We create social strategies and content designed to make brands more relevant,
+                  consistent and engaging across the channels where their audiences spend time.
+                </p>
+              </RevealDirectional>
 
               {/* Capabilities (Clean 2x2 list) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
+              <StaggerGroup delay={200} stagger={60} className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
                 {[
                   "Social Strategy",
                   "Content Planning",
                   "Creative Campaigns",
                   "Community Growth",
                 ].map((cap) => (
-                  <div key={cap} className="flex items-center gap-2.5">
+                  <StaggerItem key={cap} className="flex items-center gap-2.5">
                     <div
                       className="w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "#08703A", color: "#FFFFFF" }}
@@ -416,21 +424,23 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     >
                       {cap}
                     </span>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
 
               {/* Text CTA */}
-              <a
-                href="/contact"
-                onClick={(e) => handleNav("/contact", e)}
-                className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                <span>Explore Social Media</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
-            </div>
+              <RevealDirectional direction="up" delay={260}>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleNav("/contact", e)}
+                  className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
+                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                >
+                  <span>Explore Social Media</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              </RevealDirectional>
+            </RevealDirectional>
           </div>
         </div>
       </section>
@@ -443,21 +453,18 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Text (Order 1 on mobile, Order 1 on desktop) */}
-            <div className="order-1 flex flex-col items-start">
+            <RevealDirectional direction="left" delay={60} className="order-1 flex flex-col items-start">
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span
-                  className="text-[48px] sm:text-[64px] font-semibold leading-none select-none"
-                  style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
-                >
-                  03
-                </span>
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  SEO
-                </span>
+                <div className="overflow-hidden">
+                  <span
+                    className="num-digit text-[48px] sm:text-[64px] font-semibold leading-none select-none block"
+                    style={{ color: "rgba(8, 112, 58, 0.20)", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    03
+                  </span>
+                </div>
+                <RevealEyebrow text="SEO" textColor="#08703A" dotColor="#FFC21C" />
               </div>
 
               {/* Title */}
@@ -465,27 +472,29 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 className="text-[34px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Be Found When It Matters Most.
+                <RevealText delay={80}>Be Found When It Matters Most.</RevealText>
               </h2>
 
               {/* Description */}
-              <p
-                className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                We build search strategies designed to improve visibility, strengthen relevance and
-                connect your business with people actively searching for what you offer.
-              </p>
+              <RevealDirectional direction="up" delay={160}>
+                <p
+                  className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  We build search strategies designed to improve visibility, strengthen relevance and
+                  connect your business with people actively searching for what you offer.
+                </p>
+              </RevealDirectional>
 
               {/* Capabilities (Clean 2x2 list) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
+              <StaggerGroup delay={200} stagger={60} className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
                 {[
                   "Keyword Strategy",
                   "On-Page SEO",
                   "Technical SEO",
                   "Content Optimization",
                 ].map((cap) => (
-                  <div key={cap} className="flex items-center gap-2.5">
+                  <StaggerItem key={cap} className="flex items-center gap-2.5">
                     <div
                       className="w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "#08703A", color: "#FFFFFF" }}
@@ -500,24 +509,26 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     >
                       {cap}
                     </span>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
 
               {/* Text CTA */}
-              <a
-                href="/contact"
-                onClick={(e) => handleNav("/contact", e)}
-                className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                <span>Explore SEO</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
-            </div>
+              <RevealDirectional direction="up" delay={260}>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleNav("/contact", e)}
+                  className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
+                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                >
+                  <span>Explore SEO</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              </RevealDirectional>
+            </RevealDirectional>
 
             {/* Visual (Custom SEO Performance Interface - Lightweight HTML/CSS) */}
-            <div className="order-2">
+            <RevealDirectional direction="right" delay={160} className="order-2">
               <div
                 className="relative rounded-[26px] p-6 sm:p-8 bg-[#F4F8F5] border border-[rgba(8,112,58,0.12)] flex flex-col justify-between"
                 style={{
@@ -539,8 +550,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 </div>
 
                 {/* Relative Metric Pillars */}
-                <div className="grid grid-cols-3 gap-3 my-6">
-                  <div className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)]">
+                <StaggerGroup delay={240} stagger={80} className="grid grid-cols-3 gap-3 my-6">
+                  <StaggerItem className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)]">
                     <div className="text-[11px] font-bold uppercase tracking-wider text-[#69736C]">
                       Visibility
                     </div>
@@ -551,9 +562,9 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     <div className="w-full bg-[#EAF2EC] h-1.5 rounded-full mt-2 overflow-hidden">
                       <div className="bg-[#08703A] h-full w-[85%] rounded-full" />
                     </div>
-                  </div>
+                  </StaggerItem>
 
-                  <div className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)]">
+                  <StaggerItem className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)]">
                     <div className="text-[11px] font-bold uppercase tracking-wider text-[#69736C]">
                       Keywords
                     </div>
@@ -564,9 +575,9 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     <div className="w-full bg-[#EAF2EC] h-1.5 rounded-full mt-2 overflow-hidden">
                       <div className="bg-[#FFC21C] h-full w-[72%] rounded-full" />
                     </div>
-                  </div>
+                  </StaggerItem>
 
-                  <div className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)]">
+                  <StaggerItem className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)]">
                     <div className="text-[11px] font-bold uppercase tracking-wider text-[#69736C]">
                       Reach
                     </div>
@@ -577,8 +588,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     <div className="w-full bg-[#EAF2EC] h-1.5 rounded-full mt-2 overflow-hidden">
                       <div className="bg-[#08703A] h-full w-[90%] rounded-full" />
                     </div>
-                  </div>
-                </div>
+                  </StaggerItem>
+                </StaggerGroup>
 
                 {/* Stylized Search Trajectory Chart */}
                 <div className="p-5 rounded-2xl bg-white border border-[rgba(8,112,58,0.08)]">
@@ -622,7 +633,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </RevealDirectional>
           </div>
         </div>
       </section>
@@ -636,38 +647,37 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Visual (Order 2 on mobile, Order 1 on desktop) */}
             <div className="order-2 lg:order-1">
-              <div
-                className="relative rounded-[26px] overflow-hidden h-[300px] xs:h-[360px] sm:h-[460px] lg:h-[500px]"
-                style={{
-                  border: "1px solid rgba(8, 112, 58, 0.08)",
-                  boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
-                }}
-              >
-                <img
-                  src={webDesignImg}
-                  alt="Responsive website design displayed across digital devices"
-                  className="w-full h-full object-cover block"
-                  loading="lazy"
-                />
-              </div>
+              <RevealImage direction="right" delay={100} className="rounded-[26px] overflow-hidden">
+                <div
+                  className="relative rounded-[26px] overflow-hidden h-[300px] xs:h-[360px] sm:h-[460px] lg:h-[500px]"
+                  style={{
+                    border: "1px solid rgba(8, 112, 58, 0.08)",
+                    boxShadow: "0 24px 60px rgba(20, 55, 35, 0.08)",
+                  }}
+                >
+                  <img
+                    src={webDesignImg}
+                    alt="Responsive website design displayed across digital devices"
+                    className="w-full h-full object-cover block"
+                    loading="lazy"
+                  />
+                </div>
+              </RevealImage>
             </div>
 
             {/* Text (Order 1 on mobile, Order 2 on desktop) */}
-            <div className="order-1 lg:order-2 flex flex-col items-start">
+            <RevealDirectional direction="right" delay={160} className="order-1 lg:order-2 flex flex-col items-start">
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span
-                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
-                  style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
-                >
-                  04
-                </span>
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  WEB DESIGN
-                </span>
+                <div className="overflow-hidden">
+                  <span
+                    className="num-digit text-[42px] sm:text-[64px] font-semibold leading-none select-none block"
+                    style={{ color: "rgba(8, 112, 58, 0.20)", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    04
+                  </span>
+                </div>
+                <RevealEyebrow text="WEB DESIGN" textColor="#08703A" dotColor="#FFC21C" />
               </div>
 
               {/* Title */}
@@ -675,27 +685,29 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 className="text-[30px] xs:text-[36px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Digital Experiences Built to Convert.
+                <RevealText delay={80}>Digital Experiences Built to Convert.</RevealText>
               </h2>
 
               {/* Description */}
-              <p
-                className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                We design modern, responsive websites that combine strong visual identity with
-                intuitive experiences and clear paths to action.
-              </p>
+              <RevealDirectional direction="up" delay={160}>
+                <p
+                  className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  We design modern, responsive websites that combine strong visual identity with
+                  intuitive experiences and clear paths to action.
+                </p>
+              </RevealDirectional>
 
               {/* Capabilities (Clean 2x2 list) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
+              <StaggerGroup delay={200} stagger={60} className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
                 {[
                   "UI/UX Design",
                   "Responsive Websites",
                   "Landing Pages",
                   "Conversion-Focused Design",
                 ].map((cap) => (
-                  <div key={cap} className="flex items-center gap-2.5">
+                  <StaggerItem key={cap} className="flex items-center gap-2.5">
                     <div
                       className="w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "#08703A", color: "#FFFFFF" }}
@@ -710,21 +722,23 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     >
                       {cap}
                     </span>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
 
               {/* Text CTA */}
-              <a
-                href="/contact"
-                onClick={(e) => handleNav("/contact", e)}
-                className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                <span>Explore Web Design</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
-            </div>
+              <RevealDirectional direction="up" delay={260}>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleNav("/contact", e)}
+                  className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
+                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                >
+                  <span>Explore Web Design</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              </RevealDirectional>
+            </RevealDirectional>
           </div>
         </div>
       </section>
@@ -737,21 +751,18 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Text (Order 1 on mobile, Order 1 on desktop) */}
-            <div className="order-1 flex flex-col items-start">
+            <RevealDirectional direction="left" delay={60} className="order-1 flex flex-col items-start">
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span
-                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
-                  style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
-                >
-                  05
-                </span>
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  PERFORMANCE MARKETING
-                </span>
+                <div className="overflow-hidden">
+                  <span
+                    className="num-digit text-[42px] sm:text-[64px] font-semibold leading-none select-none block"
+                    style={{ color: "rgba(8, 112, 58, 0.20)", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    05
+                  </span>
+                </div>
+                <RevealEyebrow text="PERFORMANCE MARKETING" textColor="#08703A" dotColor="#FFC21C" />
               </div>
 
               {/* Title */}
@@ -759,27 +770,29 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 className="text-[34px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Campaigns Built Around Outcomes.
+                <RevealText delay={80}>Campaigns Built Around Outcomes.</RevealText>
               </h2>
 
               {/* Description */}
-              <p
-                className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                We combine strategy, creative execution and continuous optimization to build paid
-                campaigns focused on meaningful business outcomes rather than vanity metrics.
-              </p>
+              <RevealDirectional direction="up" delay={160}>
+                <p
+                  className="text-[16px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  We combine strategy, creative execution and continuous optimization to build paid
+                  campaigns focused on meaningful business outcomes rather than vanity metrics.
+                </p>
+              </RevealDirectional>
 
               {/* Capabilities (Clean 2x2 list) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
+              <StaggerGroup delay={200} stagger={60} className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
                 {[
                   "Paid Advertising",
                   "Campaign Strategy",
                   "Conversion Optimization",
                   "Performance Analysis",
                 ].map((cap) => (
-                  <div key={cap} className="flex items-center gap-2.5">
+                  <StaggerItem key={cap} className="flex items-center gap-2.5">
                     <div
                       className="w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "#08703A", color: "#FFFFFF" }}
@@ -794,24 +807,26 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     >
                       {cap}
                     </span>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
 
               {/* Text CTA */}
-              <a
-                href="/contact"
-                onClick={(e) => handleNav("/contact", e)}
-                className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                <span>Explore Performance Marketing</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
-            </div>
+              <RevealDirectional direction="up" delay={260}>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleNav("/contact", e)}
+                  className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
+                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                >
+                  <span>Explore Performance Marketing</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              </RevealDirectional>
+            </RevealDirectional>
 
             {/* Custom Visual: Performance Marketing Campaign Architecture */}
-            <div className="order-2">
+            <RevealDirectional direction="right" delay={160} className="order-2">
               <div
                 className="relative rounded-[26px] p-6 sm:p-8 bg-[#F8FAF6] border border-[rgba(8,112,58,0.10)] flex flex-col justify-between"
                 style={{
@@ -833,9 +848,9 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 </div>
 
                 {/* Conversion Flow Blocks */}
-                <div className="space-y-3.5 my-6">
+                <StaggerGroup delay={240} stagger={80} className="space-y-3.5 my-6">
                   {/* Stage 1: Audience & Targeting */}
-                  <div className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)] flex items-center justify-between">
+                  <StaggerItem className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)] flex items-center justify-between">
                     <div>
                       <div className="text-[11px] font-bold uppercase text-[#69736C]">Stage 1 · Audience Ingestion</div>
                       <div className="text-[14px] font-bold text-[#15241B] mt-0.5">High-Intent Keyword &amp; Lookalike Targeting</div>
@@ -843,10 +858,10 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     <span className="text-[12px] font-bold text-[#08703A] bg-[#EAF2EC] px-2.5 py-1 rounded-full">
                       Broad Reach
                     </span>
-                  </div>
+                  </StaggerItem>
 
                   {/* Stage 2: Creative Testing */}
-                  <div className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)] flex items-center justify-between">
+                  <StaggerItem className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)] flex items-center justify-between">
                     <div>
                       <div className="text-[11px] font-bold uppercase text-[#69736C]">Stage 2 · Creative Iteration</div>
                       <div className="text-[14px] font-bold text-[#15241B] mt-0.5">Dynamic Copy, Motion &amp; Offer Variations</div>
@@ -854,10 +869,10 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     <span className="text-[12px] font-bold text-[#15241B] bg-[#FFC21C]/25 px-2.5 py-1 rounded-full">
                       Testing Grid
                     </span>
-                  </div>
+                  </StaggerItem>
 
                   {/* Stage 3: Conversion Optimization */}
-                  <div className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)] flex items-center justify-between">
+                  <StaggerItem className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)] flex items-center justify-between">
                     <div>
                       <div className="text-[11px] font-bold uppercase text-[#69736C]">Stage 3 · Frictionless Action</div>
                       <div className="text-[14px] font-bold text-[#15241B] mt-0.5">Landing Experience &amp; Tracking Calibration</div>
@@ -865,8 +880,8 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     <span className="text-[12px] font-bold text-white bg-[#08703A] px-2.5 py-1 rounded-full">
                       Direct ROI
                     </span>
-                  </div>
-                </div>
+                  </StaggerItem>
+                </StaggerGroup>
 
                 {/* Channel Allocation Distribution Bar */}
                 <div className="p-4 rounded-xl bg-white border border-[rgba(8,112,58,0.08)]">
@@ -892,7 +907,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </RevealDirectional>
           </div>
         </div>
       </section>
@@ -905,7 +920,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             {/* Visual (Editorial Ecosystem Diagram - Brand connected to channels) */}
-            <div className="order-2 lg:order-1">
+            <RevealDirectional direction="left" delay={100} className="order-2 lg:order-1">
               <div
                 className="relative rounded-[26px] p-4 xs:p-6 sm:p-8 bg-white border border-[rgba(8,112,58,0.12)] flex flex-col items-center justify-center overflow-hidden"
                 style={{
@@ -985,24 +1000,21 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                   Every touchpoint feeds into one synchronized growth engine.
                 </div>
               </div>
-            </div>
+            </RevealDirectional>
 
             {/* Text (Order 1 on mobile, Order 2 on desktop) */}
-            <div className="order-1 lg:order-2 flex flex-col items-start">
+            <RevealDirectional direction="right" delay={160} className="order-1 lg:order-2 flex flex-col items-start">
               {/* Number & Eyebrow */}
               <div className="flex items-baseline gap-3 mb-2">
-                <span
-                  className="text-[42px] sm:text-[64px] font-semibold leading-none select-none"
-                  style={{ color: "rgba(8, 112, 58, 0.16)", fontFamily: "Manrope, sans-serif" }}
-                >
-                  06
-                </span>
-                <span
-                  className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-                >
-                  DIGITAL MARKETING
-                </span>
+                <div className="overflow-hidden">
+                  <span
+                    className="num-digit text-[42px] sm:text-[64px] font-semibold leading-none select-none block"
+                    style={{ color: "rgba(8, 112, 58, 0.20)", fontFamily: "Manrope, sans-serif" }}
+                  >
+                    06
+                  </span>
+                </div>
+                <RevealEyebrow text="DIGITAL MARKETING" textColor="#08703A" dotColor="#FFC21C" />
               </div>
 
               {/* Title */}
@@ -1010,27 +1022,29 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 className="text-[30px] xs:text-[36px] sm:text-[42px] lg:text-[clamp(42px,4vw,56px)] font-bold tracking-[-0.035em] leading-[1.06] text-[#15241B] mb-5"
                 style={{ fontFamily: "Manrope, sans-serif" }}
               >
-                Everything Works Better When It Works Together.
+                <RevealText delay={80}>Everything Works Better When It Works Together.</RevealText>
               </h2>
 
               {/* Description */}
-              <p
-                className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Our integrated digital marketing approach connects content, search, social, paid
-                campaigns and digital experiences into one clear growth strategy.
-              </p>
+              <RevealDirectional direction="up" delay={160}>
+                <p
+                  className="text-[15.5px] sm:text-[17.5px] leading-[1.7] text-[#69736C] mb-8 max-w-[580px]"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Our integrated digital marketing approach connects content, search, social, paid
+                  campaigns and digital experiences into one clear growth strategy.
+                </p>
+              </RevealDirectional>
 
               {/* Capabilities (Clean 2x2 list) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
+              <StaggerGroup delay={200} stagger={60} className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 w-full mb-8 pt-4 border-t border-[rgba(8,112,58,0.10)]">
                 {[
                   "Digital Strategy",
                   "Content Marketing",
                   "Search & Social",
                   "Integrated Campaigns",
                 ].map((cap) => (
-                  <div key={cap} className="flex items-center gap-2.5">
+                  <StaggerItem key={cap} className="flex items-center gap-2.5">
                     <div
                       className="w-[20px] h-[20px] rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "#08703A", color: "#FFFFFF" }}
@@ -1045,21 +1059,23 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                     >
                       {cap}
                     </span>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
 
               {/* Text CTA */}
-              <a
-                href="/contact"
-                onClick={(e) => handleNav("/contact", e)}
-                className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                <span>Explore Digital Marketing</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-              </a>
-            </div>
+              <RevealDirectional direction="up" delay={260}>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleNav("/contact", e)}
+                  className="group inline-flex items-center gap-2 text-[14.5px] font-bold cursor-pointer transition-all duration-200"
+                  style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
+                >
+                  <span>Explore Digital Marketing</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+              </RevealDirectional>
+            </RevealDirectional>
           </div>
         </div>
       </section>
@@ -1069,27 +1085,24 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
         <div className="max-w-[1380px] mx-auto">
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full" style={{ background: "#FFC21C" }} />
-              <span
-                className="text-[11px] font-bold tracking-[0.16em] uppercase"
-                style={{ color: "#08703A", fontFamily: "Manrope, sans-serif" }}
-              >
-                OUR APPROACH
-              </span>
+            <div className="flex justify-center">
+              <RevealEyebrow text="OUR APPROACH" textColor="#08703A" dotColor="#FFC21C" className="mb-3" />
             </div>
             <h2
               className="text-[30px] sm:text-[42px] md:text-[52px] font-bold tracking-[-0.035em] leading-[1.08]"
               style={{ color: "#15241B", fontFamily: "Manrope, sans-serif" }}
             >
-              One Strategy.
-              <br />
-              Built Around Your Goals.
+              <RevealText delay={80}>
+                <span className="block">One Strategy.</span>
+              </RevealText>
+              <RevealText delay={160}>
+                <span className="block">Built Around Your Goals.</span>
+              </RevealText>
             </h2>
           </div>
 
           {/* Editorial Horizontal / Vertical Timeline Grid */}
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
+          <StaggerGroup delay={200} stagger={90} className="relative grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
             {[
               {
                 num: "01",
@@ -1113,12 +1126,13 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
               },
             ].map((step, idx) => (
               <Fragment key={step.num}>
-                <div className="relative flex flex-col items-center text-center group py-2 md:py-0">
+                <StaggerItem className="relative flex flex-col items-center text-center group py-2 md:py-0">
                   {/* Desktop Connecting Line Segment between Step i and Step i+1 */}
                   {idx < 3 && (
-                    <div
-                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none"
-                      style={{ background: "rgba(8, 112, 58, 0.18)" }}
+                    <RevealLine
+                      direction="left"
+                      delay={100 + idx * 100}
+                      className="hidden md:block absolute top-[27px] left-1/2 w-[calc(100%+32px)] h-[2px] z-0 pointer-events-none bg-[#08703A]/20"
                     />
                   )}
 
@@ -1151,7 +1165,7 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                   >
                     {step.desc}
                   </p>
-                </div>
+                </StaggerItem>
 
                 {/* Mobile Vertical Connector Line between Step i and Step i+1 */}
                 {idx < 3 && (
@@ -1161,7 +1175,90 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
                 )}
               </Fragment>
             ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
+      {/* ─── 09.5 Section: FAQs ──────────────────────────────────────────────── */}
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-10 bg-[#FAFBF9] border-t border-[rgba(8,112,58,0.08)]">
+        <div className="max-w-[880px] mx-auto">
+          <div className="text-center mb-10 sm:mb-14">
+            <div className="flex justify-center">
+              <RevealEyebrow text="FAQS" textColor="#08703A" dotColor="#FFC21C" className="mb-3.5" />
+            </div>
+            <h2
+              className="text-[30px] sm:text-[42px] font-bold text-[#15241B] tracking-[-0.035em] leading-[1.1]"
+              style={{ fontFamily: "Manrope, sans-serif" }}
+            >
+              <RevealText delay={80}>Frequently Asked Questions</RevealText>
+            </h2>
+            <RevealDirectional direction="up" delay={160}>
+              <p
+                className="text-[15px] sm:text-[16px] text-[#69736C] max-w-lg mx-auto mt-3"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                Clear answers to common questions about our core marketing services.
+              </p>
+            </RevealDirectional>
           </div>
+
+          <StaggerGroup delay={200} stagger={60} className="divide-y divide-[rgba(8,112,58,0.10)] bg-white rounded-3xl p-5 sm:p-8 md:p-10 border border-[rgba(8,112,58,0.12)] shadow-[0_12px_36px_rgba(20,55,35,0.04)]">
+            {[
+              {
+                q: "What is SEO?",
+                a: "SEO (Search Engine Optimization) is the process of optimizing your website's technical infrastructure, content relevance, and digital authority to rank high on search engines like Google. A strong SEO strategy drives steady, high-intent organic traffic to your brand without relying on paid advertising clicks.",
+              },
+              {
+                q: "What is Performance Marketing?",
+                a: "Performance Marketing is a results-driven advertising methodology where campaigns across platforms like Meta (Instagram & Facebook), Google Ads, and LinkedIn are continuously optimized for specific commercial actions — such as qualified leads, sales, and conversions — ensuring every rupee spent delivers measurable ROI.",
+              },
+              {
+                q: "How do you integrate branding with performance marketing?",
+                a: "We believe performance without branding creates expensive, forgettable ads, while branding without performance lacks accountability. We combine distinct visual identities with data-driven conversion funnels to ensure your brand both inspires trust and drives commercial returns.",
+              },
+              {
+                q: "How quickly can we expect results from our campaigns?",
+                a: "Performance marketing campaigns often yield initial conversion data within the first 1 to 2 weeks of optimization. SEO, on the other hand, is a compounding investment where noticeable ranking improvements and sustainable traffic gains typically build over 3 to 6 months.",
+              },
+            ].map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <StaggerItem key={faq.q} className="py-4 sm:py-5 first:pt-0 last:pb-0">
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full flex items-center justify-between gap-4 text-left cursor-pointer group"
+                  >
+                    <span
+                      className={`text-[16px] sm:text-[17.5px] font-bold transition-colors ${
+                        isOpen ? "text-[#08703A]" : "text-[#15241B] group-hover:text-[#08703A]"
+                      }`}
+                      style={{ fontFamily: "Manrope, sans-serif" }}
+                    >
+                      {faq.q}
+                    </span>
+                    <span
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-sm font-bold transition-all duration-200 ${
+                        isOpen
+                          ? "bg-[#08703A] text-white rotate-45"
+                          : "bg-[#F2F7F4] text-[#08703A] group-hover:bg-[#E8F4EC]"
+                      }`}
+                    >
+                      +
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <p
+                      className="mt-3 text-[14.5px] sm:text-[15.5px] leading-[1.7] text-[#55645A] pr-6"
+                      style={{ fontFamily: "Inter, sans-serif" }}
+                    >
+                      {faq.a}
+                    </p>
+                  )}
+                </StaggerItem>
+              );
+            })}
+          </StaggerGroup>
         </div>
       </section>
 
@@ -1192,89 +1289,74 @@ export default function ServicesPage({ onNavigate }: ServicesPageProps) {
 
         <div className="max-w-[850px] mx-auto relative z-10 text-center flex flex-col items-center">
           {/* Eyebrow Pill */}
-          <div
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full mb-5 sm:mb-6"
-            style={{
-              background: "rgba(255, 255, 255, 0.09)",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#FFC21C" }} />
-            <span
-              className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.14em] uppercase"
-              style={{ color: "rgba(255, 255, 255, 0.82)", fontFamily: "Manrope, sans-serif" }}
-            >
-              LET'S GROW
-            </span>
-          </div>
+          <RevealEyebrow text="LET'S GROW" textColor="rgba(255, 255, 255, 0.85)" dotColor="#FFC21C" className="mb-5 sm:mb-6" />
 
           {/* Headline */}
           <h2
             className="text-[34px] xs:text-[40px] sm:text-[48px] md:text-[56px] lg:text-[clamp(50px,5vw,66px)] font-bold text-white tracking-[-0.04em] leading-[1.05] sm:leading-[1.03] max-w-[800px]"
             style={{ fontFamily: "Manrope, sans-serif" }}
           >
-            Not Sure Which Service
-            <br />
-            Your Brand Needs?
+            <RevealText delay={80}>
+              <span className="block">Not Sure Which Service</span>
+            </RevealText>
+            <RevealText delay={170}>
+              <span className="block">Your Brand Needs?</span>
+            </RevealText>
           </h2>
 
           {/* Description */}
-          <p
-            className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
-            style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
-          >
-            Tell us where you are and where you want to go. We'll help identify the right mix of
-            strategy, creativity and digital execution.
-          </p>
+          <RevealDirectional direction="up" delay={260}>
+            <p
+              className="text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.65] max-w-[620px] mt-4 sm:mt-[26px] mb-7 sm:mb-9"
+              style={{ color: "rgba(255, 255, 255, 0.68)", fontFamily: "Inter, sans-serif" }}
+            >
+              Tell us where you are and where you want to go. We'll help identify the right mix of
+              strategy, creativity and digital execution.
+            </p>
+          </RevealDirectional>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
-            <a
-              href="/contact"
-              onClick={(e) => handleNav("/contact", e)}
-              className="group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 w-full sm:w-auto shadow-sm"
-              style={{
-                background: "#FFC21C",
-                color: "#15241B",
-                fontFamily: "Manrope, sans-serif",
-                boxShadow: "0 12px 30px rgba(255, 194, 28, 0.16)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 16px 35px rgba(255, 194, 28, 0.22)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(255, 194, 28, 0.16)";
-              }}
-            >
-              <span>Let's Talk</span>
-              <span className="transition-transform duration-200 group-hover:translate-x-[3px]">
-                →
-              </span>
-            </a>
+          <RevealDirectional direction="up" delay={340} className="w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
+              <a
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
+                className="btn-premium btn-premium-sweep group inline-flex items-center justify-center gap-2.5 h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[650] text-[15px] sm:text-[16px] cursor-pointer w-full sm:w-auto shadow-sm"
+                style={{
+                  background: "#FFC21C",
+                  color: "#15241B",
+                  fontFamily: "Manrope, sans-serif",
+                  boxShadow: "0 12px 30px rgba(255, 194, 28, 0.16)",
+                }}
+              >
+                <span>Let's Talk</span>
+                <span className="btn-arrow-icon">
+                  →
+                </span>
+              </a>
 
-            <a
-              href="/our-work"
-              onClick={(e) => handleNav("/our-work", e)}
-              className="inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer transition-all duration-200 text-white w-full sm:w-auto"
-              style={{
-                background: "transparent",
-                border: "1px solid rgba(255, 255, 255, 0.32)",
-                fontFamily: "Manrope, sans-serif",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.55)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.32)";
-              }}
-            >
-              Explore Our Work
-            </a>
-          </div>
+              <a
+                href="/contact"
+                onClick={(e) => handleNav("/contact", e)}
+                className="btn-premium inline-flex items-center justify-center h-[50px] sm:h-[54px] px-7 sm:px-8 rounded-full font-[600] text-[15px] sm:text-[16px] cursor-pointer text-white w-full sm:w-auto"
+                style={{
+                  background: "transparent",
+                  border: "1px solid rgba(255, 255, 255, 0.32)",
+                  fontFamily: "Manrope, sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.55)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.32)";
+                }}
+              >
+                Schedule a Call
+              </a>
+            </div>
+          </RevealDirectional>
         </div>
       </section>
     </main>

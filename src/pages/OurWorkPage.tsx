@@ -102,17 +102,14 @@ interface OurWorkPageProps {
 
 export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
   useEffect(() => {
-    document.title = "Our Work | Branding & Digital Projects | SUPRA BIZ";
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.setAttribute("name", "description");
-      document.head.appendChild(metaDesc);
+    document.title = "Our Work | Branding & Digital Projects | SUPRABIZ";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        "Explore selected SUPRABIZ work across branding, social media, web design, campaigns and digital marketing."
+      );
     }
-    metaDesc.setAttribute(
-      "content",
-      "Explore selected SUPRA BIZ work across branding, social media, web design, campaigns and digital marketing."
-    );
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
@@ -233,7 +230,7 @@ export default function OurWorkPage({ onNavigate }: OurWorkPageProps) {
               >
                 <img
                   src={agencyOverviewImg}
-                  alt="SUPRA BIZ selected agency projects and creative portfolio presentation"
+                  alt="SUPRABIZ selected agency projects and creative portfolio presentation"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.015] block"
                   loading="eager"
                   fetchPriority="high"

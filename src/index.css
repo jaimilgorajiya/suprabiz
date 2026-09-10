@@ -10,7 +10,7 @@ body,
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
   background-color: #FAFBF7;
   color: #17211B;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   width: 100%;
 }
@@ -273,3 +273,316 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   display: inline-block;
 }
+
+/* ============================================================
+   SUPRABIZ PREMIUM EDITORIAL MOTION SYSTEM
+   Concept: "IDEAS TAKING SHAPE"
+   Easing: cubic-bezier(0.22, 1, 0.36, 1)
+   ============================================================ */
+:root {
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --brand-yellow: #FFC21C;
+}
+
+/* Progressive enhancement: Only hide/mask if JS is active */
+html.js-motion .editorial-mask {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  padding-bottom: 4px;
+  margin-bottom: -4px;
+}
+
+html.js-motion .editorial-line {
+  display: inline-block;
+  transform: translateY(106%);
+  transition: transform 850ms var(--ease-editorial);
+  will-change: transform;
+}
+
+html.js-motion .is-revealed .editorial-line,
+html.js-motion .editorial-line.is-revealed {
+  transform: translateY(0%);
+}
+
+/* 01b. Signature SUPRABIZ Eyebrow Pill Badge */
+.eyebrow-pill,
+.eyebrow-reveal {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 500ms var(--ease-editorial), transform 500ms var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+html.js-motion .eyebrow-pill:not(.is-revealed),
+html.js-motion .eyebrow-reveal:not(.is-revealed) {
+  opacity: 0.001;
+  transform: translateY(6px);
+}
+
+html.js-motion .eyebrow-pill.is-revealed,
+html.js-motion .is-revealed .eyebrow-pill,
+html.js-motion .eyebrow-reveal.is-revealed,
+html.js-motion .is-revealed .eyebrow-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 02. Masked Image Reveal (Curtain) */
+.curtain-reveal {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1050ms var(--ease-editorial);
+  will-change: clip-path;
+}
+
+html.js-motion .curtain-reveal-left:not(.is-revealed) {
+  clip-path: inset(0 100% 0 0);
+}
+
+html.js-motion .curtain-reveal-right:not(.is-revealed) {
+  clip-path: inset(0 0 0 100%);
+}
+
+html.js-motion .curtain-reveal-up:not(.is-revealed) {
+  clip-path: inset(100% 0 0 0);
+}
+
+html.js-motion .curtain-reveal.is-revealed,
+html.js-motion .curtain-reveal-left.is-revealed,
+html.js-motion .curtain-reveal-right.is-revealed,
+html.js-motion .curtain-reveal-up.is-revealed {
+  clip-path: inset(0 0 0 0) !important;
+}
+
+html.js-motion .curtain-inner-image {
+  transform: scale(1.04);
+  transition: transform 1200ms var(--ease-editorial);
+  will-change: transform;
+}
+
+html.js-motion .curtain-reveal.is-revealed .curtain-inner-image {
+  transform: scale(1);
+}
+
+/* Desktop subtle image hover */
+@media (min-width: 1024px) {
+  .curtain-reveal.is-revealed:hover .curtain-inner-image {
+    transform: scale(1.018);
+    transition: transform 500ms var(--ease-editorial);
+  }
+}
+
+/* Signature Yellow Brand Wipe Curtain (Used 2-3x max across site) */
+.brand-wipe-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-wipe-panel {
+  position: absolute;
+  inset: 0;
+  background: #FFC21C;
+  z-index: 25;
+  transform: translateX(-101%);
+  pointer-events: none;
+}
+
+html.js-motion .brand-wipe-container.is-revealed .brand-wipe-panel {
+  animation: brandWipeSweep 1100ms var(--ease-editorial) forwards;
+  pointer-events: none;
+}
+
+@keyframes brandWipeSweep {
+  0% { transform: translateX(-101%); opacity: 1; }
+  48% { transform: translateX(0%); opacity: 1; }
+  99% { transform: translateX(101%); opacity: 1; }
+  100% { transform: translateX(101%); opacity: 0; pointer-events: none; }
+}
+
+/* 03. Accent Line Draw */
+html.js-motion .line-draw {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 800ms var(--ease-editorial);
+  will-change: transform;
+}
+
+html.js-motion .line-draw.is-revealed,
+html.js-motion .is-revealed .line-draw {
+  transform: scaleX(1);
+}
+
+html.js-motion .line-draw-right {
+  transform-origin: right;
+}
+
+/* Curved Yellow Underline Wave */
+.curved-underline {
+  overflow: visible;
+  display: block;
+}
+
+html.js-motion .curved-underline-path {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  transition: stroke-dashoffset 850ms var(--ease-editorial) 250ms;
+}
+
+html.js-motion .is-revealed .curved-underline-path,
+html.js-motion .curved-underline.is-revealed .curved-underline-path,
+html.js-motion .curved-underline-path.is-revealed {
+  stroke-dashoffset: 0;
+}
+
+/* 04. Directional Content Reveal */
+html.js-motion .dir-reveal-left {
+  opacity: 0.001;
+  transform: translateX(-24px);
+  transition: opacity 750ms var(--ease-editorial), transform 750ms var(--ease-editorial);
+  will-change: transform, opacity;
+}
+
+html.js-motion .dir-reveal-right {
+  opacity: 0.001;
+  transform: translateX(24px);
+  transition: opacity 750ms var(--ease-editorial), transform 750ms var(--ease-editorial);
+  will-change: transform, opacity;
+}
+
+html.js-motion .dir-reveal-up {
+  opacity: 0.001;
+  transform: translateY(22px);
+  transition: opacity 750ms var(--ease-editorial), transform 750ms var(--ease-editorial);
+  will-change: transform, opacity;
+}
+
+html.js-motion .dir-reveal-left.is-revealed,
+html.js-motion .dir-reveal-right.is-revealed,
+html.js-motion .dir-reveal-up.is-revealed {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* 05. Staggered List Assembly */
+html.js-motion .stagger-item {
+  opacity: 0.001;
+  transform: translateX(-12px);
+  transition: opacity 650ms var(--ease-editorial), transform 650ms var(--ease-editorial);
+}
+
+html.js-motion .is-revealed .stagger-item,
+html.js-motion .stagger-item.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 06. Number / Label Sequence */
+.num-mask {
+  overflow: hidden;
+  display: inline-block;
+}
+
+html.js-motion .num-digit {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 700ms var(--ease-editorial);
+}
+
+html.js-motion .is-revealed .num-digit,
+html.js-motion .num-digit.is-revealed {
+  transform: translateY(0);
+}
+
+/* Button Microinteractions */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: transform 260ms var(--ease-editorial), background-color 260ms ease, box-shadow 260ms ease;
+}
+
+.btn-premium:hover {
+  transform: translateY(-1.5px);
+}
+
+.btn-premium .btn-arrow-icon {
+  display: inline-block;
+  transition: transform 260ms var(--ease-editorial);
+}
+
+.btn-premium:hover .btn-arrow-icon {
+  transform: translateX(4px);
+}
+
+.btn-premium-sweep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transition: transform 650ms var(--ease-editorial);
+  pointer-events: none;
+}
+
+.btn-premium-sweep:hover::before {
+  transform: translateX(200%);
+}
+
+
+
+/* Mobile Motion adjustments */
+@media (max-width: 768px) {
+  html.js-motion .dir-reveal-left { transform: translateX(-12px); }
+  html.js-motion .dir-reveal-right { transform: translateX(12px); }
+  html.js-motion .dir-reveal-up { transform: translateY(14px); }
+  html.js-motion .stagger-item { transform: translateX(-6px); }
+  html.js-motion .curtain-inner-image { transform: scale(1.02); }
+  html.js-motion .curtain-reveal-left,
+  html.js-motion .curtain-reveal-right,
+  html.js-motion .curtain-reveal-up {
+    transition-duration: 750ms;
+  }
+}
+
+/* Prefers-reduced-motion: zero motion, immediate display */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js-motion .editorial-line,
+  html.js-motion .curtain-inner-image,
+  html.js-motion .num-digit {
+    transform: none !important;
+  }
+  html.js-motion .curtain-reveal-left,
+  html.js-motion .curtain-reveal-right,
+  html.js-motion .curtain-reveal-up {
+    clip-path: none !important;
+  }
+  html.js-motion .line-draw {
+    transform: scaleX(1) !important;
+  }
+  html.js-motion .curved-underline-path {
+    stroke-dashoffset: 0 !important;
+  }
+  html.js-motion .dir-reveal-left,
+  html.js-motion .dir-reveal-right,
+  html.js-motion .dir-reveal-up,
+  html.js-motion .stagger-item,
+  html.js-motion .eyebrow-pill,
+  html.js-motion .eyebrow-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .brand-wipe-panel {
+    display: none !important;
+  }
+}
+
