@@ -308,8 +308,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
             {/* 1. Email Inquiries */}
             <StaggerItem className="p-8 rounded-[24px] bg-white border border-[rgba(8,112,58,0.08)] shadow-[0_10px_30px_rgba(20,55,35,0.04)] hover:shadow-[0_16px_40px_rgba(20,55,35,0.07)] transition-all duration-200 flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#E8F4EC] text-[#08703A] flex items-center justify-center text-xl mb-6">
-                  ✉
+                <div className="w-12 h-12 rounded-2xl bg-[#E8F4EC] text-[#08703A] flex items-center justify-center mb-6">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m2 7 8.5 6a2.5 2.5 0 0 0 3 0L22 7" />
+                  </svg>
                 </div>
                 <span
                   className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#08703A] block mb-2"
@@ -346,8 +349,10 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
             {/* 2. Direct Call & WhatsApp (Sales + Admin) */}
             <StaggerItem className="p-8 rounded-[24px] bg-white border border-[rgba(8,112,58,0.08)] shadow-[0_10px_30px_rgba(20,55,35,0.04)] hover:shadow-[0_16px_40px_rgba(20,55,35,0.07)] transition-all duration-200 flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#E8F4EC] text-[#08703A] flex items-center justify-center text-xl mb-6">
-                  ✆
+                <div className="w-12 h-12 rounded-2xl bg-[#E8F4EC] text-[#08703A] flex items-center justify-center mb-6">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92.92z" />
+                  </svg>
                 </div>
                 <span
                   className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#08703A] block mb-2"
@@ -393,8 +398,11 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
             {/* 3. Administrative Office */}
             <StaggerItem className="p-8 rounded-[24px] bg-white border border-[rgba(8,112,58,0.08)] shadow-[0_10px_30px_rgba(20,55,35,0.04)] hover:shadow-[0_16px_40px_rgba(20,55,35,0.07)] transition-all duration-200 flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#E8F4EC] text-[#08703A] flex items-center justify-center text-xl mb-6">
-                  ⌖
+                <div className="w-12 h-12 rounded-2xl bg-[#E8F4EC] text-[#08703A] flex items-center justify-center mb-6">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
                 </div>
                 <span
                   className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#08703A] block mb-2"
