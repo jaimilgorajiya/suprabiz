@@ -1708,10 +1708,6 @@ function TrustBar() {
       logo: "/clients_logos/maruti.jpeg",
     },
     {
-      name: "Prahant Ayurveda",
-      logo: "/clients_logos/shiva__herbals_14050619_131641450.jpg.jpeg",
-    },
-    {
       name: "Vishwaroopam Gurukulam",
       logo: "/clients_logos/vishwagurukulam_14050619_124942582.jpg.jpeg",
     },
@@ -2489,10 +2485,10 @@ const testimonials = [
     initials: "MS",
   },
   {
-    quote: "Working with SUPRABIZ has been a game-changer. They handle everything — content, ads, branding — and our Ayurveda brand has never looked more credible and professional.",
-    name: "Vaidya Prahant",
-    role: "Founder, Prahant Ayurveda",
-    initials: "VP",
+    quote: "Working with SUPRABIZ has been a game-changer. They handle our digital reach, branding, and content campaigns with incredible creativity and efficiency.",
+    name: "RJ & Team",
+    role: "Radio Sabarmati 89.6 FM",
+    initials: "RS",
   },
 ];
 
