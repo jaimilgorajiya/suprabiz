@@ -622,6 +622,12 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
     };
   }, [mobileOpen]);
 
+  // Auto-close mobile drawer on route / path change
+  useEffect(() => {
+    setMobileOpen(false);
+    setMobileCourseOpen(false);
+  }, [currentPath]);
+
   const isAboutRoute =
     currentPath === "/about" ||
     currentPath === "/about/" ||
@@ -958,263 +964,291 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
         {/* Mobile Navigation Drawer / Panel */}
         {mobileOpen && (
-          <div
-            className="min-[960px]:hidden border-t bg-white px-5 sm:px-7 py-5 max-h-[calc(100vh-100px)] overflow-y-auto shadow-2xl transition-all"
-            style={{ borderColor: "rgba(10, 60, 35, 0.08)" }}
-          >
-            <div className="flex flex-col gap-1">
-              {navLinks.map((item) => {
-                if (item.isDropdown) {
-                  return (
-                    <div
-                      key={item.name}
-                      className="border-b border-emerald-950/5 py-1"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setMobileCourseOpen(!mobileCourseOpen)}
-                        className="w-full min-h-[48px] flex items-center justify-between py-2.5 text-[17px] font-semibold text-[#16251C] hover:text-[#08703A] transition-colors"
-                        aria-expanded={mobileCourseOpen}
+          <>
+            {/* Dark Backdrop Overlay */}
+            <div
+              className="fixed inset-0 top-[120px] bg-black/35 backdrop-blur-[2px] z-[990] min-[960px]:hidden transition-opacity duration-300"
+              onClick={() => {
+                setMobileOpen(false);
+                setMobileCourseOpen(false);
+              }}
+            />
+
+            <div
+              className="relative z-[995] min-[960px]:hidden border-t bg-white px-5 sm:px-7 py-5 max-h-[calc(100vh-100px)] overflow-y-auto shadow-2xl transition-all"
+              style={{ borderColor: "rgba(10, 60, 35, 0.08)" }}
+            >
+              <div className="flex flex-col gap-1">
+                {navLinks.map((item) => {
+                  if (item.isDropdown) {
+                    return (
+                      <div
+                        key={item.name}
+                        className="border-b border-emerald-950/5 py-1"
                       >
-                        <span className="flex items-center gap-2.5">
-                          <span>{item.name}</span>
-                          <span
-                            className="text-[10.5px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
-                            style={{ background: "rgba(8, 112, 58, 0.1)", color: "#08703A" }}
-                          >
-                            9 Courses
+                        <button
+                          type="button"
+                          onClick={() => setMobileCourseOpen(!mobileCourseOpen)}
+                          className="w-full min-h-[48px] flex items-center justify-between py-2.5 text-[17px] font-semibold text-[#16251C] hover:text-[#08703A] transition-colors"
+                          aria-expanded={mobileCourseOpen}
+                        >
+                          <span className="flex items-center gap-2.5">
+                            <span>{item.name}</span>
+                            <span
+                              className="text-[10.5px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
+                              style={{ background: "rgba(8, 112, 58, 0.1)", color: "#08703A" }}
+                            >
+                              9 Courses
+                            </span>
                           </span>
-                        </span>
-                        <ChevronDownIcon isOpen={mobileCourseOpen} className="w-4 h-4 text-[#08703A]" />
-                      </button>
+                          <ChevronDownIcon isOpen={mobileCourseOpen} className="w-4 h-4 text-[#08703A]" />
+                        </button>
 
-                      {/* Mobile Course Accordion Content */}
-                      {mobileCourseOpen && (
-                        <div className="pl-3 pr-2 pb-4 pt-2 space-y-4 bg-[#F8FAF7] rounded-xl my-1 p-3">
-                          {/* SOCIAL MEDIA */}
-                          <div>
-                            <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
-                              Social Media
-                            </p>
-                            <div className="space-y-1.5 pl-2.5">
+                        {/* Mobile Course Accordion Content */}
+                        {mobileCourseOpen && (
+                          <div className="pl-3 pr-2 pb-4 pt-2 space-y-4 bg-[#F8FAF7] rounded-xl my-1 p-3">
+                            {/* SOCIAL MEDIA */}
+                            <div>
+                              <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
+                                Social Media
+                              </p>
+                              <div className="space-y-1.5 pl-2.5">
+                                <a
+                                  href="/courses#social-media"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#social-media");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Social Media Marketing Course
+                                </a>
+                                <a
+                                  href="/courses#social-media"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#social-media");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Instagram Marketing Course
+                                </a>
+                                <a
+                                  href="/courses#social-media"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#social-media");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Facebook Marketing Course
+                                </a>
+                                <a
+                                  href="/courses#social-media"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#social-media");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Linkedin Marketing Course
+                                </a>
+                              </div>
+                            </div>
+
+                            {/* SEARCH & ADS */}
+                            <div>
+                              <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
+                                Search &amp; Ads
+                              </p>
+                              <div className="space-y-1.5 pl-2.5">
+                                <a
+                                  href="/courses#search-ads"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#search-ads");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  SEO Specialist Course
+                                </a>
+                                <a
+                                  href="/courses#search-ads"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#search-ads");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Google Ads Course
+                                </a>
+                                <a
+                                  href="/courses#search-ads"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#search-ads");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Performance Marketing Course
+                                </a>
+                              </div>
+                            </div>
+
+                            {/* DATA & ANALYTICS */}
+                            <div>
+                              <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
+                                Data &amp; Analytics
+                              </p>
+                              <div className="space-y-1.5 pl-2.5">
+                                <a
+                                  href="/courses#data-analytics"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#data-analytics");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Google Analytics Course
+                                </a>
+                                <a
+                                  href="/courses#data-analytics"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileOpen(false);
+                                    setMobileCourseOpen(false);
+                                    if (onNavigate) onNavigate("/courses#data-analytics");
+                                  }}
+                                  className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                >
+                                  Digital Marketing &amp; Data Analytics Course
+                                </a>
+                              </div>
+                            </div>
+
+                            {/* Bottom Explore CTAs */}
+                            <div className="pt-2 pl-2.5 flex flex-col gap-2 border-t border-[#08703A]/10">
                               <a
-                                href="/courses#social-media"
+                                href="/courses"
                                 onClick={(e) => {
                                   e.preventDefault();
                                   setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#social-media");
+                                  setMobileCourseOpen(false);
+                                  if (onNavigate) onNavigate("/courses");
                                 }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#08703A]"
                               >
-                                Social Media Marketing Course
+                                <span>Explore All 9 Courses</span>
+                                <span>→</span>
                               </a>
                               <a
-                                href="/courses#social-media"
+                                href="/contact"
                                 onClick={(e) => {
                                   e.preventDefault();
                                   setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#social-media");
+                                  setMobileCourseOpen(false);
+                                  if (onNavigate) onNavigate("/contact");
                                 }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
+                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#55695C] hover:text-[#08703A] cursor-pointer"
                               >
-                                Instagram Marketing Course
-                              </a>
-                              <a
-                                href="/courses#social-media"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#social-media");
-                                }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Facebook Marketing Course
-                              </a>
-                              <a
-                                href="/courses#social-media"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#social-media");
-                                }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Linkedin Marketing Course
+                                <span>Book Free Career Guidance</span>
+                                <span>→</span>
                               </a>
                             </div>
                           </div>
+                        )}
+                      </div>
+                    );
+                  }
 
-                          {/* SEARCH & ADS */}
-                          <div>
-                            <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#08703A]" />
-                              Search &amp; Ads
-                            </p>
-                            <div className="space-y-1.5 pl-2.5">
-                              <a
-                                href="/courses#search-ads"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#search-ads");
-                                }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                SEO Specialist Course
-                              </a>
-                              <a
-                                href="/courses#search-ads"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#search-ads");
-                                }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Google Ads Course
-                              </a>
-                              <a
-                                href="/courses#search-ads"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#search-ads");
-                                }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Performance Marketing Course
-                              </a>
-                            </div>
-                          </div>
+                  const isActive = isAboutRoute
+                    ? item.id === "about"
+                    : isServicesRoute
+                    ? item.id === "services"
+                    : isCoursesRoute
+                    ? item.id === "course"
+                    : isContactRoute
+                    ? item.id === "contact"
+                    : item.id === "home";
 
-                          {/* DATA & ANALYTICS */}
-                          <div>
-                            <p className="text-[11.5px] font-bold text-[#08703A] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#FFC21C]" />
-                              Data &amp; Analytics
-                            </p>
-                            <div className="space-y-1.5 pl-2.5">
-                              <a
-                                href="/courses#data-analytics"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#data-analytics");
-                                }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Google Analytics Course
-                              </a>
-                              <a
-                                href="/courses#data-analytics"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMobileOpen(false);
-                                  if (onNavigate) onNavigate("/courses#data-analytics");
-                                }}
-                                className="block py-1 text-[14.5px] text-[#1A261F] hover:text-[#08703A]"
-                              >
-                                Digital Marketing &amp; Data Analytics Course
-                              </a>
-                            </div>
-                          </div>
-
-                          {/* Bottom Explore CTAs */}
-                          <div className="pt-2 pl-2.5 flex flex-col gap-2 border-t border-[#08703A]/10">
-                            <a
-                              href="/courses"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setMobileOpen(false);
-                                if (onNavigate) onNavigate("/courses");
-                              }}
-                              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#08703A]"
-                            >
-                              <span>Explore All 9 Courses</span>
-                              <span>→</span>
-                            </a>
-                            <a
-                              href="/contact"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setMobileOpen(false);
-                                if (onNavigate) onNavigate("/contact");
-                              }}
-                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#55695C] hover:text-[#08703A] cursor-pointer"
-                            >
-                              <span>Book Free Career Guidance</span>
-                              <span>→</span>
-                            </a>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-
-                const isActive = isAboutRoute
-                  ? item.id === "about"
-                  : isServicesRoute
-                  ? item.id === "services"
-                  : isCoursesRoute
-                  ? item.id === "course"
-                  : isContactRoute
-                  ? item.id === "contact"
-                  : item.id === "home";
-
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={`min-h-[48px] flex items-center py-2.5 text-[17px] font-semibold border-b border-emerald-950/5 transition-colors ${
-                      isActive ? "text-[#08703A] font-bold" : "text-[#16251C] hover:text-[#08703A]"
-                    }`}
-                    onClick={(e) => {
-                      setMobileOpen(false);
-                      if (item.id === "about") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/about");
-                      } else if (item.id === "services") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/services");
-                      } else if (item.id === "contact") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/contact");
-                      } else if (item.id === "home") {
-                        e.preventDefault();
-                        if (onNavigate) onNavigate("/");
-                      } else if (item.href.startsWith("#")) {
-                        if (currentPath !== "/") {
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`min-h-[48px] flex items-center py-2.5 text-[17px] font-semibold border-b border-emerald-950/5 transition-colors ${
+                        isActive ? "text-[#08703A] font-bold" : "text-[#16251C] hover:text-[#08703A]"
+                      }`}
+                      onClick={(e) => {
+                        setMobileOpen(false);
+                        setMobileCourseOpen(false);
+                        if (item.id === "about") {
                           e.preventDefault();
-                          if (onNavigate) onNavigate("/" + item.href);
+                          if (onNavigate) onNavigate("/about");
+                        } else if (item.id === "services") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/services");
+                        } else if (item.id === "contact") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/contact");
+                        } else if (item.id === "home") {
+                          e.preventDefault();
+                          if (onNavigate) onNavigate("/");
+                          else window.scrollTo({ top: 0, behavior: "smooth" });
+                        } else if (item.href.startsWith("#")) {
+                          e.preventDefault();
+                          if (currentPath !== "/") {
+                            if (onNavigate) onNavigate("/" + item.href);
+                          } else {
+                            const targetEl = document.querySelector(item.href);
+                            if (targetEl) targetEl.scrollIntoView({ behavior: "smooth" });
+                          }
                         }
-                      }
+                      }}
+                    >
+                      {item.name}
+                    </a>
+                  );
+                })}
+
+                {/* Mobile "Let's Talk →" Button */}
+                <div className="pt-6 pb-2">
+                  <a
+                    href="/contact"
+                    className="w-full flex items-center justify-center gap-2 h-[50px] min-h-[48px] rounded-full text-[15px] font-semibold text-white shadow-md transition-transform active:scale-98"
+                    style={{ background: "#08703A" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileOpen(false);
+                      setMobileCourseOpen(false);
+                      if (onNavigate) onNavigate("/contact");
                     }}
                   >
-                    {item.name}
+                    <span>Let's Talk</span>
+                    <span>→</span>
                   </a>
-                );
-              })}
-
-              {/* Mobile "Let's Talk →" Button */}
-              <div className="pt-6 pb-2">
-                <a
-                  href="/contact"
-                  className="w-full flex items-center justify-center gap-2 h-[50px] min-h-[48px] rounded-full text-[15px] font-semibold text-white shadow-md transition-transform active:scale-98"
-                  style={{ background: "#08703A" }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setMobileOpen(false);
-                    if (onNavigate) onNavigate("/contact");
-                  }}
-                >
-                  <span>Let's Talk</span>
-                  <span>→</span>
-                </a>
+                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
       </nav>
     </header>
