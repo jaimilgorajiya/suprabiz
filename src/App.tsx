@@ -915,32 +915,43 @@ function Navbar({ currentPath = "/", onNavigate }: NavbarProps) {
 
             <button
               type="button"
-              className="flex flex-col justify-center items-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl hover:bg-emerald-950/5 active:bg-emerald-950/10 transition-colors focus:outline-none"
+              className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#F0F7F2] text-[#08703A] hover:bg-[#E2F0E6] active:scale-95 transition-all focus:outline-none"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={mobileOpen}
             >
-              <span
-                className="block h-[2.5px] w-6 rounded-full transition-all duration-300"
-                style={{
-                  background: "#08703A",
-                  transform: mobileOpen ? "rotate(45deg) translateY(6.5px)" : "",
-                }}
-              />
-              <span
-                className="block h-[2.5px] w-6 rounded-full my-1.5 transition-all duration-300"
-                style={{
-                  background: "#08703A",
-                  opacity: mobileOpen ? 0 : 1,
-                }}
-              />
-              <span
-                className="block h-[2.5px] w-6 rounded-full transition-all duration-300"
-                style={{
-                  background: "#08703A",
-                  transform: mobileOpen ? "rotate(-45deg) translateY(-6.5px)" : "",
-                }}
-              />
+              {mobileOpen ? (
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5 text-[#08703A]"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              ) : (
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5.5 h-5.5 text-[#08703A]"
+                >
+                  <line x1="4" y1="6" x2="20" y2="6" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="18" x2="20" y2="18" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
