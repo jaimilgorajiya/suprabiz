@@ -1693,59 +1693,49 @@ function TrustBar() {
   const trustedBrands = [
     {
       name: "Radio Sabarmati 89.6 FM",
-      style: { letterSpacing: "0.04em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/radiosabarmati_14050619_145954513.jpg.jpeg",
     },
     {
       name: "Blossom Pediatric Clinic",
-      style: { letterSpacing: "0.03em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/blossom.clinic__14050619_123713337.jpg.jpeg",
     },
     {
       name: "Jay Womens Hospital",
-      style: { letterSpacing: "0.04em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
-      logo: null,
-    },
-    {
-      name: "Fashion World",
-      style: { letterSpacing: "0.06em", fontWeight: 800, fontFamily: "Manrope, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/Jay%20Womens%20Hospital%20logo.png",
     },
     {
       name: "Maruti Dental Clinic",
-      style: { letterSpacing: "0.04em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/maruti.jpeg",
     },
     {
       name: "Prahant Ayurveda",
-      style: { letterSpacing: "0.05em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/shiva__herbals_14050619_131641450.jpg.jpeg",
     },
     {
       name: "Vishwaroopam Gurukulam",
-      style: { letterSpacing: "0.03em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/vishwagurukulam_14050619_124942582.jpg.jpeg",
     },
     {
       name: "Woww Chik",
-      style: { letterSpacing: "0.07em", fontWeight: 800, fontFamily: "Manrope, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/wowwchick_14050619_131104323.jpg.jpeg",
     },
     {
       name: "Satara Spices",
-      style: { letterSpacing: "0.06em", fontWeight: 700, fontFamily: "Manrope, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/sataraspices_14050619_124047666.jpg.jpeg",
     },
     {
       name: "Twacha Skincare",
-      style: { letterSpacing: "0.05em", fontWeight: 600, fontFamily: "Inter, sans-serif" },
-      logo: null,
+      logo: "/clients_logos/BeautyPlusCam_20260910150850232_save.jpg.jpeg",
+    },
+    {
+      name: "Kathiyawadi Darbar",
+      logo: "/clients_logos/kathiyawadidarbar_alk_14050619_133006598.jpg.jpeg",
     },
   ];
 
   return (
     <section
-      className="relative py-7 sm:py-8 lg:py-9 px-6 sm:px-8 lg:px-10 overflow-hidden"
+      className="relative py-7 sm:py-8 lg:py-9 px-0 overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #FFFFFF 0%, #F8FBF8 100%)",
         borderTop: "1px solid rgba(8, 112, 58, 0.07)",
@@ -1761,9 +1751,9 @@ function TrustBar() {
         }}
       />
 
-      <div className="max-w-[1380px] mx-auto relative z-10 flex flex-col items-center">
+      <div className="w-full relative z-10 flex flex-col items-center">
         {/* Subtle Section Title with Side Accent Lines */}
-        <div className="w-full max-w-[560px] flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-6">
+        <div className="w-full max-w-[560px] px-6 flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-6">
           <RevealLine
             className="h-[1px] flex-1 max-w-[80px] sm:max-w-[110px]"
             direction="right"
@@ -1784,31 +1774,49 @@ function TrustBar() {
           />
         </div>
 
-        {/* Brand Logos Row - Staggered progressive assembly */}
-        <StaggerGroup className="w-full max-w-[1200px] mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center justify-items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-          {trustedBrands.map((brand, i) => (
-            <StaggerItem key={brand.name} index={i} staggerMs={70}>
+        {/* Client Logos Marquee - Infinite Horizontal Auto-Scroll with Fade Overlay (Crosshole effect) */}
+        <div className="relative w-full overflow-hidden py-2">
+          {/* Left Fade Gradient Mask */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
+            style={{
+              background: "linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0) 100%)",
+            }}
+          />
+          {/* Right Fade Gradient Mask */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 pointer-events-none"
+            style={{
+              background: "linear-gradient(to left, #FFFFFF 0%, rgba(255,255,255,0) 100%)",
+            }}
+          />
+
+          <div className="animate-client-marquee flex items-center py-2">
+            {[...trustedBrands, ...trustedBrands].map((brand, i) => (
               <div
-                className="group cursor-default py-1 px-2 flex flex-col items-center transition-all duration-200"
+                key={`${brand.name}-${i}`}
+                className="group flex items-center gap-3 px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl bg-white border border-[rgba(8,112,58,0.09)] shadow-[0_4px_16px_rgba(8,112,58,0.04)] hover:shadow-[0_8px_24px_rgba(8,112,58,0.12)] hover:border-[#08703A]/30 transition-all duration-300 transform hover:-translate-y-1 mx-2.5 sm:mx-3.5 shrink-0 cursor-pointer"
               >
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#F6FAF7] border border-[rgba(8,112,58,0.08)] p-1 flex items-center justify-center overflow-hidden shrink-0 shadow-xs group-hover:scale-105 transition-transform duration-300">
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="w-full h-full object-contain rounded-lg"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                </div>
                 <span
-                  className="text-[13px] sm:text-[14px] md:text-[15px] transition-all duration-200 select-none group-hover:text-[#08703A] group-hover:-translate-y-[2px] text-center leading-snug"
-                  style={{
-                    color: "#8E9992",
-                    opacity: 0.85,
-                    ...brand.style,
-                  }}
+                  className="text-[13px] sm:text-[14px] font-bold text-[#1C2B22] group-hover:text-[#08703A] transition-colors whitespace-nowrap"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   {brand.name}
                 </span>
-                <span
-                  className="w-0 h-[2px] rounded-full transition-all duration-200 group-hover:w-4 mt-0.5"
-                  style={{ background: "#FFC21C" }}
-                />
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+            ))}
+          </div>
+        </div>
 
         {/* Small Supporting Trust Indicator */}
         <p

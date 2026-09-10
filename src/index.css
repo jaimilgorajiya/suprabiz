@@ -586,3 +586,23 @@ html.js-motion .num-digit.is-revealed {
   }
 }
 
+/* Client Marquee Infinite Scrolling */
+@keyframes client-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-client-marquee {
+  display: flex;
+  width: max-content;
+  animation: client-marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-client-marquee:hover {
+  animation-play-state: paused;
+}
